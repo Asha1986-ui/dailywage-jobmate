@@ -6,6 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Clock, DollarSign, Search, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSelector from "@/components/LanguageSelector";
 
 // Mock job data
 const mockJobs = [
@@ -62,6 +64,7 @@ const mockJobs = [
 const jobTypes = ["All", "Construction", "Plumbing", "Electrical", "Painting", "Carpentry", "Masonry"];
 
 const WorkerDashboard = () => {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJobType, setSelectedJobType] = useState("All");
   const [filteredJobs, setFilteredJobs] = useState(mockJobs);
@@ -85,7 +88,7 @@ const WorkerDashboard = () => {
   };
 
   const handleApply = (jobId: number) => {
-    alert(`Application sent for job ID: ${jobId}. The employer will contact you soon!`);
+    alert(t('worker.applicationSent'));
   };
 
   return (
@@ -97,16 +100,19 @@ const WorkerDashboard = () => {
             <Link to="/" className="text-2xl font-bold text-white">
               Work<span className="text-accent">Link</span>
             </Link>
-            <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-              Profile
-            </Button>
+            <div className="flex items-center gap-4">
+              <LanguageSelector />
+              <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                Profile
+              </Button>
+            </div>
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Find Your Next Job
+            {t('worker.title')}
           </h1>
           <p className="text-white/90 text-lg">
-            Discover daily wage opportunities near you
+            {t('hero.tagline')}
           </p>
         </div>
       </header>
@@ -117,7 +123,7 @@ const WorkerDashboard = () => {
           <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
             <div className="flex-1">
               <Input
-                placeholder="Search jobs, location, or employer..."
+                placeholder={t('worker.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="h-12 text-lg shadow-soft"
@@ -126,10 +132,11 @@ const WorkerDashboard = () => {
             
             <Select value={selectedJobType} onValueChange={setSelectedJobType}>
               <SelectTrigger className="md:w-48 h-12 shadow-soft">
-                <SelectValue placeholder="Job Type" />
+                <SelectValue placeholder={t('worker.allJobTypes')} />
               </SelectTrigger>
-              <SelectContent>
-                {jobTypes.map((type) => (
+              <SelectContent className="bg-background border border-border shadow-lg z-50">
+                <SelectItem value="All">{t('worker.allJobTypes')}</SelectItem>
+                {jobTypes.slice(1).map((type) => (
                   <SelectItem key={type} value={type}>
                     {type}
                   </SelectItem>
@@ -204,7 +211,7 @@ const WorkerDashboard = () => {
                       onClick={() => handleApply(job.id)}
                       className="w-full shadow-soft"
                     >
-                      Apply Now
+                      {t('worker.applyNow')}
                     </Button>
                     <Button 
                       variant="outline" 
@@ -213,7 +220,7 @@ const WorkerDashboard = () => {
                       onClick={() => window.open(`tel:${job.contact}`, '_self')}
                     >
                       <Phone className="mr-1 h-4 w-4" />
-                      Call
+                      {t('worker.call')}
                     </Button>
                   </div>
                 </div>
