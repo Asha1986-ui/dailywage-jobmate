@@ -7,7 +7,9 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -20,8 +22,17 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/worker-dashboard" element={<WorkerDashboard />} />
-            <Route path="/employer-dashboard" element={<EmployerDashboard />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/worker-dashboard" element={
+              <ProtectedRoute>
+                <WorkerDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/employer-dashboard" element={
+              <ProtectedRoute>
+                <EmployerDashboard />
+              </ProtectedRoute>
+            } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
