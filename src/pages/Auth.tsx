@@ -32,8 +32,6 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      const redirectUrl = `${window.location.origin}/`;
-      
       const { error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
@@ -107,8 +105,6 @@ const Auth = () => {
   const handleResendOTP = async () => {
     setLoading(true);
     try {
-      const redirectUrl = `${window.location.origin}/`;
-      
       const { error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
