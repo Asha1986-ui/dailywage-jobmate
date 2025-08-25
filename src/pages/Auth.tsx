@@ -6,11 +6,11 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import { Phone, Shield } from "lucide-react";
+import { Mail, Shield } from "lucide-react";
 
 const Auth = () => {
-  const [step, setStep] = useState<'phone' | 'otp'>('phone');
-  const [phone, setPhone] = useState("");
+  const [step, setStep] = useState<'email' | 'otp'>('email');
+  const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
@@ -32,31 +32,29 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      // Format phone number to E.164 format if needed
-      let formattedPhone = phone;
-      if (!phone.startsWith('+')) {
-        // Assuming Indian numbers, add +91 prefix
-        formattedPhone = `+91${phone}`;
-      }
-
+      const redirectUrl = `${window.location.origin}/`;
+      
       const { error } = await supabase.auth.signInWithOtp({
-        phone: formattedPhone,
+        email: email,
+        options: {
+          emailRedirectTo: redirectUrl,
+        }
       });
 
       if (error) throw error;
 
       setStep('otp');
       toast({
-        title: "OTP Sent!",
-        description: "Please check your phone for the verification code.",
+        title: "Check your email!",
+        description: "We've sent you a login link and verification code.",
       });
     } catch (error: any) {
-      let errorMessage = "Failed to send OTP. Please try again.";
+      let errorMessage = "Failed to send login link. Please try again.";
       
-      if (error.message.includes("Invalid phone number")) {
-        errorMessage = "Please enter a valid phone number.";
-      } else if (error.message.includes("Phone number not authorized")) {
-        errorMessage = "This phone number is not authorized. Please contact support.";
+      if (error.message.includes("Invalid email")) {
+        errorMessage = "Please enter a valid email address.";
+      } else if (error.message.includes("Email not authorized")) {
+        errorMessage = "This email address is not authorized. Please contact support.";
       }
       
       toast({
@@ -74,16 +72,10 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      // Format phone number to E.164 format if needed
-      let formattedPhone = phone;
-      if (!phone.startsWith('+')) {
-        formattedPhone = `+91${phone}`;
-      }
-
       const { error } = await supabase.auth.verifyOtp({
-        phone: formattedPhone,
+        email: email,
         token: otp,
-        type: 'sms'
+        type: 'email'
       });
 
       if (error) throw error;
@@ -94,12 +86,12 @@ const Auth = () => {
       });
       navigate("/");
     } catch (error: any) {
-      let errorMessage = "Invalid OTP. Please try again.";
+      let errorMessage = "Invalid verification code. Please try again.";
       
       if (error.message.includes("Token has expired")) {
-        errorMessage = "OTP has expired. Please request a new one.";
+        errorMessage = "Verification code has expired. Please request a new one.";
       } else if (error.message.includes("Invalid token")) {
-        errorMessage = "Invalid OTP. Please check and try again.";
+        errorMessage = "Invalid verification code. Please check and try again.";
       }
       
       toast({
@@ -115,25 +107,25 @@ const Auth = () => {
   const handleResendOTP = async () => {
     setLoading(true);
     try {
-      let formattedPhone = phone;
-      if (!phone.startsWith('+')) {
-        formattedPhone = `+91${phone}`;
-      }
-
+      const redirectUrl = `${window.location.origin}/`;
+      
       const { error } = await supabase.auth.signInWithOtp({
-        phone: formattedPhone,
+        email: email,
+        options: {
+          emailRedirectTo: redirectUrl,
+        }
       });
 
       if (error) throw error;
 
       toast({
-        title: "OTP Resent!",
-        description: "A new verification code has been sent to your phone.",
+        title: "Email sent!",
+        description: "A new login link and verification code has been sent to your email.",
       });
     } catch (error: any) {
       toast({
         title: "Error",
-        description: "Failed to resend OTP. Please try again.",
+        description: "Failed to resend email. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -146,43 +138,43 @@ const Auth = () => {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">
-            {step === 'phone' ? "Enter Phone Number" : "Verify OTP"}
+            {step === 'email' ? "Enter Email Address" : "Verify Code"}
           </CardTitle>
           <CardDescription>
-            {step === 'phone' 
-              ? "We'll send you a verification code via SMS" 
-              : `Enter the 6-digit code sent to ${phone}`
+            {step === 'email' 
+              ? "We'll send you a login link and verification code" 
+              : `Enter the code sent to ${email} or click the magic link in your email`
             }
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {step === 'phone' ? (
+          {step === 'email' ? (
             <form onSubmit={handleSendOTP} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="email">Email Address</Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    id="phone"
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Enter your phone number"
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
                     className="pl-10"
                     required
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Enter phone number with country code (e.g., +919876543210) or without (+91 will be added automatically)
+                  You'll receive both a magic link and a verification code
                 </p>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? (
-                  "Sending OTP..."
+                  "Sending..."
                 ) : (
                   <>
-                    <Phone className="mr-2 h-4 w-4" />
-                    Send OTP
+                    <Mail className="mr-2 h-4 w-4" />
+                    Send Login Link
                   </>
                 )}
               </Button>
@@ -204,6 +196,9 @@ const Auth = () => {
                     required
                   />
                 </div>
+                <p className="text-xs text-muted-foreground">
+                  You can also click the magic link in your email to log in instantly
+                </p>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? (
@@ -219,10 +214,10 @@ const Auth = () => {
                 <Button
                   type="button"
                   variant="ghost"
-                  onClick={() => setStep('phone')}
+                  onClick={() => setStep('email')}
                   className="text-sm"
                 >
-                  Change Phone Number
+                  Change Email Address
                 </Button>
                 <Button
                   type="button"
@@ -231,7 +226,7 @@ const Auth = () => {
                   disabled={loading}
                   className="text-sm"
                 >
-                  Resend OTP
+                  Resend Email
                 </Button>
               </div>
             </form>
