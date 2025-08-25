@@ -37,7 +37,7 @@ const Auth = () => {
       const { error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
-          emailRedirectTo: redirectUrl,
+          shouldCreateUser: true,
         }
       });
 
@@ -46,10 +46,10 @@ const Auth = () => {
       setStep('otp');
       toast({
         title: "Check your email!",
-        description: "We've sent you a login link and verification code.",
+        description: "We've sent you a 6-digit verification code.",
       });
     } catch (error: any) {
-      let errorMessage = "Failed to send login link. Please try again.";
+      let errorMessage = "Failed to send verification code. Please try again.";
       
       if (error.message.includes("Invalid email")) {
         errorMessage = "Please enter a valid email address.";
@@ -112,20 +112,20 @@ const Auth = () => {
       const { error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {
-          emailRedirectTo: redirectUrl,
+          shouldCreateUser: true,
         }
       });
 
       if (error) throw error;
 
       toast({
-        title: "Email sent!",
-        description: "A new login link and verification code has been sent to your email.",
+        title: "Code sent!",
+        description: "A new 6-digit verification code has been sent to your email.",
       });
     } catch (error: any) {
       toast({
         title: "Error",
-        description: "Failed to resend email. Please try again.",
+        description: "Failed to resend verification code. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -142,8 +142,8 @@ const Auth = () => {
           </CardTitle>
           <CardDescription>
             {step === 'email' 
-              ? "We'll send you a login link and verification code" 
-              : `Enter the code sent to ${email} or click the magic link in your email`
+              ? "We'll send you a 6-digit verification code" 
+              : `Enter the 6-digit code sent to ${email}`
             }
           </CardDescription>
         </CardHeader>
@@ -165,7 +165,7 @@ const Auth = () => {
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  You'll receive both a magic link and a verification code
+                  You'll receive a 6-digit verification code via email
                 </p>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
@@ -174,7 +174,7 @@ const Auth = () => {
                 ) : (
                   <>
                     <Mail className="mr-2 h-4 w-4" />
-                    Send Login Link
+                    Send Verification Code
                   </>
                 )}
               </Button>
@@ -197,7 +197,7 @@ const Auth = () => {
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  You can also click the magic link in your email to log in instantly
+                  Enter the 6-digit code from your email to continue
                 </p>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
@@ -226,7 +226,7 @@ const Auth = () => {
                   disabled={loading}
                   className="text-sm"
                 >
-                  Resend Email
+                  Resend Code
                 </Button>
               </div>
             </form>
