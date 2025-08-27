@@ -4,6 +4,7 @@ import { Users, Briefcase, MapPin, Star, LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSelector from "@/components/LanguageSelector";
+import ServicesSection from "@/components/ServicesSection";
 
 const Index = () => {
   const { t } = useLanguage();
@@ -116,6 +117,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Services Section */}
+      <ServicesSection />
     </div>
   );
 };
