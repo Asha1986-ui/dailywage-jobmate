@@ -13,6 +13,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resendTimer, setResendTimer] = useState(0);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -26,6 +27,17 @@ const Auth = () => {
     };
     checkUser();
   }, [navigate]);
+
+  // Resend timer countdown
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (resendTimer > 0) {
+      interval = setInterval(() => {
+        setResendTimer((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [resendTimer]);
 
   const handleSendOTP = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,6 +54,7 @@ const Auth = () => {
       if (error) throw error;
 
       setStep('otp');
+      setResendTimer(30); // Start 30-second countdown
       toast({
         title: "Check your email!",
         description: "We've sent you a 6-digit verification code.",
@@ -84,17 +97,9 @@ const Auth = () => {
       });
       navigate("/");
     } catch (error: any) {
-      let errorMessage = "Invalid verification code. Please try again.";
-      
-      if (error.message.includes("Token has expired")) {
-        errorMessage = "Verification code has expired. Please request a new one.";
-      } else if (error.message.includes("Invalid token")) {
-        errorMessage = "Invalid verification code. Please check and try again.";
-      }
-      
       toast({
         title: "Verification Failed",
-        description: errorMessage,
+        description: "Invalid or expired OTP. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -114,6 +119,7 @@ const Auth = () => {
 
       if (error) throw error;
 
+      setResendTimer(30); // Reset countdown
       toast({
         title: "Code sent!",
         description: "A new 6-digit verification code has been sent to your email.",
@@ -185,10 +191,17 @@ const Auth = () => {
                     id="otp"
                     type="text"
                     value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+                      if (value.length <= 6) {
+                        setOtp(value);
+                      }
+                    }}
                     placeholder="Enter 6-digit code"
                     className="pl-10 text-center text-lg tracking-widest"
                     maxLength={6}
+                    pattern="[0-9]{6}"
+                    inputMode="numeric"
                     required
                   />
                 </div>
@@ -219,10 +232,10 @@ const Auth = () => {
                   type="button"
                   variant="link"
                   onClick={handleResendOTP}
-                  disabled={loading}
+                  disabled={loading || resendTimer > 0}
                   className="text-sm"
                 >
-                  Resend Code
+                  {resendTimer > 0 ? `Resend Code (${resendTimer}s)` : "Resend Code"}
                 </Button>
               </div>
             </form>
