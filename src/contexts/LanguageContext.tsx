@@ -17,8 +17,8 @@ const translations = {
     // Hero Section
     'hero.tagline': 'Connecting daily wage workers with job opportunities near them',
     
-    // How WorkLink Works
-    'features.title': 'How WorkLink Works',
+    // How WorkXpress Works
+    'features.title': 'How WorkXpress Works',
     'features.findJobs.title': 'Find Jobs Nearby',
     'features.findJobs.description': 'Discover daily wage opportunities in your area. Location-based matching ensures you find work close to home.',
     'features.postJobs.title': 'Easy Job Posting',
@@ -28,7 +28,7 @@ const translations = {
     
     // Ready Section
     'cta.title': 'Ready to Get Started?',
-    'cta.description': 'Join thousands of workers and employers already using WorkLink to build better opportunities.',
+    'cta.description': 'Join thousands of workers and employers already using WorkXpress to build better opportunities.',
     'cta.startFinding': 'Start Finding Work',
     'cta.startHiring': 'Start Hiring',
     
@@ -142,8 +142,8 @@ const translations = {
     // Hero Section
     'hero.tagline': 'ದೈನಂದಿನ ಕೂಲಿ ಕಾರ್ಮಿಕರನ್ನು ಅವರ ಹತ್ತಿರದ ಉದ್ಯೋಗ ಅವಕಾಶಗಳೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ',
     
-    // How WorkLink Works
-    'features.title': 'ವರ್ಕ್‌ಲಿಂಕ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ',
+    // How WorkXpress Works
+    'features.title': 'ವರ್ಕ್‌ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ',
     'features.findJobs.title': 'ಹತ್ತಿರದ ಕೆಲಸ ಹುಡುಕಿ',
     'features.findJobs.description': 'ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ದೈನಂದಿನ ಕೂಲಿ ಅವಕಾಶಗಳನ್ನು ಕಂಡುಹಿಡಿಯಿರಿ. ಸ್ಥಳ-ಆಧಾರಿತ ಹೊಂದಾಣಿಕೆಯು ಮನೆಯ ಹತ್ತಿರ ಕೆಲಸ ಕಂಡುಕೊಳ್ಳಲು ಖಾತ್ರಿ ನೀಡುತ್ತದೆ.',
     'features.postJobs.title': 'ಸುಲಭ ಕೆಲಸ ಪ್ರಕಟಣೆ',
@@ -153,7 +153,7 @@ const translations = {
     
     // Ready Section
     'cta.title': 'ಪ್ರಾರಂಭಿಸಲು ಸಿದ್ಧವೇ?',
-    'cta.description': 'ಉತ್ತಮ ಅವಕಾಶಗಳನ್ನು ನಿರ್ಮಿಸಲು ಈಗಾಗಲೇ ವರ್ಕ್‌ಲಿಂಕ್ ಬಳಸುತ್ತಿರುವ ಸಾವಿರಾರು ಕಾರ್ಮಿಕರು ಮತ್ತು ಉದ್ಯೋಗದಾತರೊಂದಿಗೆ ಸೇರಿಕೊಳ್ಳಿ.',
+    'cta.description': 'ಉತ್ತಮ ಅವಕಾಶಗಳನ್ನು ನಿರ್ಮಿಸಲು ಈಗಾಗಲೇ ವರ್ಕ್‌ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಬಳಸುತ್ತಿರುವ ಸಾವಿರಾರು ಕಾರ್ಮಿಕರು ಮತ್ತು ಉದ್ಯೋಗದಾತರೊಂದಿಗೆ ಸೇರಿಕೊಳ್ಳಿ.',
     'cta.startFinding': 'ಕೆಲಸ ಹುಡುಕುವಿಕೆ ಪ್ರಾರಂಭಿಸಿ',
     'cta.startHiring': 'ನೇಮಕಾತಿ ಪ್ರಾರಂಭಿಸಿ',
     
@@ -267,8 +267,8 @@ const translations = {
     // Hero Section
     'hero.tagline': 'दैनिक वेतन श्रमिकों को उनके नज़दीकी नौकरी के अवसरों से जोड़ना',
     
-    // How WorkLink Works
-    'features.title': 'वर्कलिंक कैसे काम करता है',
+    // How WorkXpress Works
+    'features.title': 'वर्कएक्सप्रेस कैसे काम करता है',
     'features.findJobs.title': 'पास के काम खोजें',
     'features.findJobs.description': 'अपने क्षेत्र में दैनिक मजदूरी के अवसर खोजें। स्थान-आधारित मिलान यह सुनिश्चित करता है कि आपको घर के पास काम मिले।',
     'features.postJobs.title': 'आसान नौकरी पोस्टिंग',
@@ -278,7 +278,7 @@ const translations = {
     
     // Ready Section
     'cta.title': 'शुरू करने के लिए तैयार?',
-    'cta.description': 'बेहतर अवसर बनाने के लिए पहले से ही वर्कलिंक का उपयोग कर रहे हजारों श्रमिकों और नियोक्ताओं के साथ जुड़ें।',
+    'cta.description': 'बेहतर अवसर बनाने के लिए पहले से ही वर्कएक्सप्रेस का उपयोग कर रहे हजारों श्रमिकों और नियोक्ताओं के साथ जुड़ें।',
     'cta.startFinding': 'काम खोजना शुरू करें',
     'cta.startHiring': 'भर्ती शुरू करें',
     
