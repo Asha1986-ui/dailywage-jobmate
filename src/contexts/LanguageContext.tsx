@@ -40,6 +40,39 @@ const translations = {
     'worker.call': 'Call',
     'worker.perDay': 'per day',
     'worker.applicationSent': 'Application sent successfully!',
+    'worker.profile': 'Profile',
+    'worker.search': 'Search',
+    'worker.moreFilters': 'More Filters',
+    'worker.availableJobs': 'Available Jobs',
+    'worker.hoursAgo': 'hours ago',
+    'worker.dayAgo': 'day ago',
+    'worker.daysAgo': 'days ago',
+    
+    // Job Types
+    'jobTypes.construction': 'Construction',
+    'jobTypes.plumbing': 'Plumbing',
+    'jobTypes.electrical': 'Electrical',
+    'jobTypes.painting': 'Painting',
+    'jobTypes.carpentry': 'Carpentry',
+    'jobTypes.masonry': 'Masonry',
+    
+    // Job Titles
+    'jobs.constructionHelper': 'Construction Helper',
+    'jobs.plumberAssistant': 'Plumber Assistant',
+    'jobs.painter': 'Painter',
+    'jobs.electricianHelper': 'Electrician Helper',
+    
+    // Job Descriptions
+    'jobs.constructionHelperDesc': 'Need 2 helpers for concrete work. Experience preferred.',
+    'jobs.plumberAssistantDesc': 'Assist senior plumber with residential repairs.',
+    'jobs.painterDesc': 'Interior painting work for 3BHK apartment.',
+    'jobs.electricianHelperDesc': 'Support electrician with wiring and installations.',
+    
+    // Employer Names
+    'employers.buildRight': 'BuildRight Construction',
+    'employers.quickFix': 'Quick Fix Solutions',
+    'employers.homeMakeover': 'Home Makeover',
+    'employers.powerTech': 'PowerTech Services',
     
     // Employer Dashboard
     'employer.title': 'Employer Dashboard',
@@ -165,6 +198,39 @@ const translations = {
     'worker.call': 'ಕರೆ ಮಾಡಿ',
     'worker.perDay': 'ದಿನಕ್ಕೆ',
     'worker.applicationSent': 'ಅರ್ಜಿ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲಾಗಿದೆ!',
+    'worker.profile': 'ಪ್ರೊಫೈಲ್',
+    'worker.search': 'ಹುಡುಕಿ',
+    'worker.moreFilters': 'ಹೆಚ್ಚಿನ ಫಿಲ್ಟರ್‌ಗಳು',
+    'worker.availableJobs': 'ಲಭ್ಯವಿರುವ ಕೆಲಸಗಳು',
+    'worker.hoursAgo': 'ಗಂಟೆಗಳ ಹಿಂದೆ',
+    'worker.dayAgo': 'ದಿನ ಹಿಂದೆ',
+    'worker.daysAgo': 'ದಿನಗಳ ಹಿಂದೆ',
+    
+    // Job Types
+    'jobTypes.construction': 'ನಿರ್ಮಾಣ',
+    'jobTypes.plumbing': 'ಪ್ಲಂಬಿಂಗ್',
+    'jobTypes.electrical': 'ವಿದ್ಯುತ್',
+    'jobTypes.painting': 'ಚಿತ್ರಕಲೆ',
+    'jobTypes.carpentry': 'ಬಡಗಿ ಕೆಲಸ',
+    'jobTypes.masonry': 'ಕಲ್ಲು ಕೆಲಸ',
+    
+    // Job Titles
+    'jobs.constructionHelper': 'ನಿರ್ಮಾಣ ಸಹಾಯಕ',
+    'jobs.plumberAssistant': 'ಪ್ಲಂಬರ್ ಸಹಾಯಕ',
+    'jobs.painter': 'ಪೇಂಟರ್',
+    'jobs.electricianHelper': 'ಎಲೆಕ್ಟ್ರಿಷಿಯನ್ ಸಹಾಯಕ',
+    
+    // Job Descriptions
+    'jobs.constructionHelperDesc': 'ಕಾಂಕ್ರೀಟ್ ಕೆಲಸಕ್ಕೆ 2 ಸಹಾಯಕರ ಅವಶ್ಯಕತೆ. ಅನುಭವ ಆದ್ಯತೆ.',
+    'jobs.plumberAssistantDesc': 'ವಸತಿ ದುರಸ್ತಿಗಾಗಿ ಹಿರಿಯ ಪ್ಲಂಬರ್‌ಗೆ ಸಹಾಯ ಮಾಡಿ.',
+    'jobs.painterDesc': '3BHK ಅಪಾರ್ಟ್‌ಮೆಂಟ್‌ಗೆ ಒಳಾಂಗಣ ಪೇಂಟಿಂಗ್ ಕೆಲಸ.',
+    'jobs.electricianHelperDesc': 'ವೈರಿಂಗ್ ಮತ್ತು ಇನ್‌ಸ್ಟಾಲೇಶನ್‌ಗಳಲ್ಲಿ ಎಲೆಕ್ಟ್ರಿಷಿಯನ್‌ಗೆ ಬೆಂಬಲ.',
+    
+    // Employer Names
+    'employers.buildRight': 'ಬಿಲ್ಡ್‌ರೈಟ್ ಕನ್‌ಸ್ಟ್ರಕ್ಷನ್',
+    'employers.quickFix': 'ಕ್ವಿಕ್ ಫಿಕ್ಸ್ ಸೊಲ್ಯೂಷನ್ಸ್',
+    'employers.homeMakeover': 'ಹೋಮ್ ಮೇಕ್‌ಓವರ್',
+    'employers.powerTech': 'ಪವರ್‌ಟೆಕ್ ಸರ್ವಿಸಸ್',
     
     // Employer Dashboard
     'employer.title': 'ಉದ್ಯೋಗದಾತ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
@@ -290,6 +356,39 @@ const translations = {
     'worker.call': 'कॉल करें',
     'worker.perDay': 'प्रति दिन',
     'worker.applicationSent': 'आवेदन सफलतापूर्वक भेजा गया!',
+    'worker.profile': 'प्रोफाइल',
+    'worker.search': 'खोजें',
+    'worker.moreFilters': 'अधिक फ़िल्टर',
+    'worker.availableJobs': 'उपलब्ध नौकरियां',
+    'worker.hoursAgo': 'घंटे पहले',
+    'worker.dayAgo': 'दिन पहले',
+    'worker.daysAgo': 'दिन पहले',
+    
+    // Job Types
+    'jobTypes.construction': 'निर्माण',
+    'jobTypes.plumbing': 'प्लंबिंग',
+    'jobTypes.electrical': 'इलेक्ट्रिकल',
+    'jobTypes.painting': 'पेंटिंग',
+    'jobTypes.carpentry': 'बढ़ईगीरी',
+    'jobTypes.masonry': 'राजमिस्त्री',
+    
+    // Job Titles
+    'jobs.constructionHelper': 'निर्माण सहायक',
+    'jobs.plumberAssistant': 'प्लंबर सहायक',
+    'jobs.painter': 'पेंटर',
+    'jobs.electricianHelper': 'इलेक्ट्रिशियन सहायक',
+    
+    // Job Descriptions
+    'jobs.constructionHelperDesc': 'कंक्रीट कार्य के लिए 2 सहायकों की आवश्यकता। अनुभव प्राथमिकता।',
+    'jobs.plumberAssistantDesc': 'आवासीय मरम्मत के लिए वरिष्ठ प्लंबर की सहायता करें।',
+    'jobs.painterDesc': '3BHK अपार्टमेंट के लिए इंटीरियर पेंटिंग कार्य।',
+    'jobs.electricianHelperDesc': 'वायरिंग और इंस्टॉलेशन के साथ इलेक्ट्रिशियन का समर्थन करें।',
+    
+    // Employer Names
+    'employers.buildRight': 'बिल्डराइट कंस्ट्रक्शन',
+    'employers.quickFix': 'क्विक फिक्स सॉल्यूशंस',
+    'employers.homeMakeover': 'होम मेकओवर',
+    'employers.powerTech': 'पावरटेक सर्विसेज',
     
     // Employer Dashboard
     'employer.title': 'नियोक्ता डैशबोर्ड',

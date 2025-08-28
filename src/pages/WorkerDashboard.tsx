@@ -9,59 +9,59 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSelector from "@/components/LanguageSelector";
 
-// Mock job data
+// Mock job data with translation keys
 const mockJobs = [
   {
     id: 1,
-    title: "Construction Helper",
-    employer: "BuildRight Construction",
-    location: "Koramangala, Bangalore",
-    distance: "2.3 km",
-    payment: "₹800/day",
-    jobType: "Construction",
-    description: "Need 2 helpers for concrete work. Experience preferred.",
-    contact: "+91 98765 43210",
-    postedTime: "2 hours ago"
+    titleKey: 'jobs.constructionHelper',
+    employerKey: 'employers.buildRight',
+    location: 'Koramangala, Bangalore',
+    distance: '2.3 km',
+    payment: '₹800/day',
+    jobTypeKey: 'jobTypes.construction',
+    descriptionKey: 'jobs.constructionHelperDesc',
+    contact: '+91 98765 43210',
+    postedHours: 2
   },
   {
     id: 2,
-    title: "Plumber Assistant",
-    employer: "Quick Fix Solutions",
-    location: "Whitefield, Bangalore",
-    distance: "5.1 km",
-    payment: "₹600/day",
-    jobType: "Plumbing",
-    description: "Assist senior plumber with residential repairs.",
-    contact: "+91 87654 32109",
-    postedTime: "4 hours ago"
+    titleKey: 'jobs.plumberAssistant',
+    employerKey: 'employers.quickFix',
+    location: 'Whitefield, Bangalore',
+    distance: '5.1 km',
+    payment: '₹600/day',
+    jobTypeKey: 'jobTypes.plumbing',
+    descriptionKey: 'jobs.plumberAssistantDesc',
+    contact: '+91 87654 32109',
+    postedHours: 4
   },
   {
     id: 3,
-    title: "Painter",
-    employer: "Home Makeover",
-    location: "Indiranagar, Bangalore",
-    distance: "3.7 km",
-    payment: "₹700/day",
-    jobType: "Painting",
-    description: "Interior painting work for 3BHK apartment.",
-    contact: "+91 76543 21098",
-    postedTime: "6 hours ago"
+    titleKey: 'jobs.painter',
+    employerKey: 'employers.homeMakeover',
+    location: 'Indiranagar, Bangalore',
+    distance: '3.7 km',
+    payment: '₹700/day',
+    jobTypeKey: 'jobTypes.painting',
+    descriptionKey: 'jobs.painterDesc',
+    contact: '+91 76543 21098',
+    postedHours: 6
   },
   {
     id: 4,
-    title: "Electrician Helper",
-    employer: "PowerTech Services",
-    location: "HSR Layout, Bangalore",
-    distance: "4.2 km",
-    payment: "₹650/day",
-    jobType: "Electrical",
-    description: "Support electrician with wiring and installations.",
-    contact: "+91 65432 10987",
-    postedTime: "1 day ago"
+    titleKey: 'jobs.electricianHelper',
+    employerKey: 'employers.powerTech',
+    location: 'HSR Layout, Bangalore',
+    distance: '4.2 km',
+    payment: '₹650/day',
+    jobTypeKey: 'jobTypes.electrical',
+    descriptionKey: 'jobs.electricianHelperDesc',
+    contact: '+91 65432 10987',
+    postedHours: 24
   }
 ];
 
-const jobTypes = ["All", "Construction", "Plumbing", "Electrical", "Painting", "Carpentry", "Masonry"];
+const jobTypeKeys = ['jobTypes.construction', 'jobTypes.plumbing', 'jobTypes.electrical', 'jobTypes.painting', 'jobTypes.carpentry', 'jobTypes.masonry'];
 
 const WorkerDashboard = () => {
   const { t } = useLanguage();
@@ -69,19 +69,29 @@ const WorkerDashboard = () => {
   const [selectedJobType, setSelectedJobType] = useState("All");
   const [filteredJobs, setFilteredJobs] = useState(mockJobs);
 
+  // Helper function to format posted time
+  const formatPostedTime = (hours: number) => {
+    if (hours < 24) {
+      return `${hours} ${t('worker.hoursAgo')}`;
+    } else {
+      const days = Math.floor(hours / 24);
+      return days === 1 ? `1 ${t('worker.dayAgo')}` : `${days} ${t('worker.daysAgo')}`;
+    }
+  };
+
   const handleSearch = () => {
     let filtered = mockJobs;
     
     if (searchTerm) {
       filtered = filtered.filter(job => 
-        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        t(job.titleKey).toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.employer.toLowerCase().includes(searchTerm.toLowerCase())
+        t(job.employerKey).toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     
     if (selectedJobType !== "All") {
-      filtered = filtered.filter(job => job.jobType === selectedJobType);
+      filtered = filtered.filter(job => t(job.jobTypeKey) === selectedJobType);
     }
     
     setFilteredJobs(filtered);
@@ -98,12 +108,12 @@ const WorkerDashboard = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-6">
             <Link to="/" className="text-2xl font-bold text-white">
-              Work<span className="text-accent">Link</span>
+              Work<span className="text-accent">Xpress</span>
             </Link>
             <div className="flex items-center gap-4">
               <LanguageSelector />
               <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-                Profile
+                {t('worker.profile')}
               </Button>
             </div>
           </div>
@@ -136,9 +146,9 @@ const WorkerDashboard = () => {
               </SelectTrigger>
               <SelectContent className="bg-background border border-border shadow-lg z-50">
                 <SelectItem value="All">{t('worker.allJobTypes')}</SelectItem>
-                {jobTypes.slice(1).map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
+                {jobTypeKeys.map((typeKey) => (
+                  <SelectItem key={typeKey} value={t(typeKey)}>
+                    {t(typeKey)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -146,7 +156,7 @@ const WorkerDashboard = () => {
             
             <Button onClick={handleSearch} className="h-12 px-6 shadow-soft">
               <Search className="mr-2 h-5 w-5" />
-              Search
+              {t('worker.search')}
             </Button>
           </div>
         </div>
@@ -157,11 +167,11 @@ const WorkerDashboard = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">
-              Available Jobs ({filteredJobs.length})
+              {t('worker.availableJobs')} ({filteredJobs.length})
             </h2>
             <Button variant="outline" size="sm">
               <Filter className="mr-2 h-4 w-4" />
-              More Filters
+              {t('worker.moreFilters')}
             </Button>
           </div>
           
@@ -172,11 +182,11 @@ const WorkerDashboard = () => {
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-xl font-semibold mb-1">{job.title}</h3>
-                        <p className="text-muted-foreground font-medium">{job.employer}</p>
+                        <h3 className="text-xl font-semibold mb-1">{t(job.titleKey)}</h3>
+                        <p className="text-muted-foreground font-medium">{t(job.employerKey)}</p>
                       </div>
                       <Badge variant="secondary" className="ml-2">
-                        {job.jobType}
+                        {t(job.jobTypeKey)}
                       </Badge>
                     </div>
                     
@@ -188,11 +198,11 @@ const WorkerDashboard = () => {
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock className="h-4 w-4" />
-                        <span>{job.postedTime}</span>
+                        <span>{formatPostedTime(job.postedHours)}</span>
                       </div>
                     </div>
                     
-                    <p className="text-foreground mb-4">{job.description}</p>
+                    <p className="text-foreground mb-4">{t(job.descriptionKey)}</p>
                     
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2 text-lg font-semibold text-primary">

@@ -101,7 +101,7 @@ const EmployerDashboard = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-6">
             <Link to="/" className="text-2xl font-bold text-white">
-              Work<span className="text-accent">Link</span>
+              Work<span className="text-accent">Xpress</span>
             </Link>
             <div className="flex items-center gap-4">
               <LanguageSelector />
