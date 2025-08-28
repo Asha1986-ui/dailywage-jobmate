@@ -16,12 +16,6 @@ const Index = () => {
         {/* Navigation */}
         <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
           <LanguageSelector />
-          <Link to="/auth">
-            <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-              <LogIn className="mr-2 h-4 w-4" />
-              Login
-            </Button>
-          </Link>
         </div>
         
         <div className="container mx-auto text-center relative z-10">

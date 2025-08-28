@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
+import VoiceSearch from "@/components/VoiceSearch";
 import {
   Users,
   Wrench,
@@ -155,16 +156,22 @@ const ServicesSection = () => {
             {t("services.title")}
           </h2>
 
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto mb-8">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder={t("services.searchPlaceholder")}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+          {/* Search Bar with Voice Input */}
+          <div className="max-w-lg mx-auto mb-8">
+            <div className="flex gap-2 items-center">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder={t("services.searchPlaceholder")}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <VoiceSearch 
+                onVoiceResult={setSearchTerm}
+                className="flex-shrink-0"
               />
             </div>
           </div>

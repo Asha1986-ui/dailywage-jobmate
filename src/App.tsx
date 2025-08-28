@@ -23,16 +23,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/worker-dashboard" element={
-              <ProtectedRoute>
-                <WorkerDashboard />
-              </ProtectedRoute>
-            } />
-            <Route path="/employer-dashboard" element={
-              <ProtectedRoute>
-                <EmployerDashboard />
-              </ProtectedRoute>
-            } />
+            <Route path="/worker-dashboard" element={<WorkerDashboard />} />
+            <Route path="/employer-dashboard" element={<EmployerDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
