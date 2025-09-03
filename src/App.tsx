@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import Auth from "./pages/Auth";
+import ServiceDetails from "./pages/ServiceDetails";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/service/:serviceKey" element={<ServiceDetails />} />
             <Route path="/worker-dashboard" element={<WorkerDashboard />} />
             <Route path="/employer-dashboard" element={<EmployerDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

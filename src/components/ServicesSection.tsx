@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
-import { useToast } from "@/hooks/use-toast";
 import {
   Users,
   Wrench,
@@ -42,7 +42,7 @@ interface ServicesSectionProps {
 
 const ServicesSection = ({ voiceSearchTerm = "" }: ServicesSectionProps) => {
   const { t, language, setLanguage } = useLanguage();
-  const { toast } = useToast();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
   // Update search term when voice search term changes
@@ -136,11 +136,8 @@ const ServicesSection = ({ voiceSearchTerm = "" }: ServicesSectionProps) => {
     }),
   })).filter((category) => category.services.length > 0);
 
-  const handleBookService = (serviceName: string) => {
-    toast({
-      title: "Service Booking",
-      description: `Booking request for ${serviceName} has been received. We'll contact you soon!`,
-    });
+  const handleBookService = (serviceKey: string) => {
+    navigate(`/service/${serviceKey}`);
   };
 
   return (
@@ -216,7 +213,7 @@ const ServicesSection = ({ voiceSearchTerm = "" }: ServicesSectionProps) => {
                       </CardDescription>
                       <Button 
                         className="w-full shadow-medium group-hover:shadow-lg transition-shadow"
-                        onClick={() => handleBookService(t(`services.${service.key}.title`))}
+                        onClick={() => handleBookService(service.key)}
                       >
                         {t("services.bookNow")}
                       </Button>

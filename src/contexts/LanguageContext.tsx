@@ -99,6 +99,35 @@ const translations = {
     'services.searchPlaceholder': 'Search for services...',
     'services.bookNow': 'Book Now',
     
+    // Service Details
+    'serviceDetails.serviceTitle': 'Service Details',
+    'serviceDetails.serviceDescription': 'Choose from our verified service providers',
+    'serviceDetails.availableProviders': 'Available Service Providers',
+    'serviceDetails.reviews': 'reviews',
+    'serviceDetails.per': 'per',
+    'serviceDetails.hour': 'hour',
+    'serviceDetails.day': 'day',
+    'serviceDetails.available': 'Available',
+    'serviceDetails.busy': 'Busy',
+    'serviceDetails.unavailable': 'Not Available',
+    'serviceDetails.call': 'Call',
+    'serviceDetails.message': 'Message',
+    'serviceDetails.bookNow': 'Book Now',
+    'serviceDetails.booked': 'Booked',
+    'serviceDetails.phone': 'phone',
+    'serviceDetails.needHelp': 'Need Help?',
+    'serviceDetails.contactSupport': 'Our customer support team is here to assist you',
+    'serviceDetails.contactUs': 'Contact Us',
+    'serviceDetails.bookingConfirmed': 'Booking Confirmed!',
+    'serviceDetails.bookingWith': 'Your booking with',
+    'serviceDetails.contactSoon': 'They will contact you soon.',
+    'serviceDetails.contactInitiated': 'Contact Initiated',
+    'serviceDetails.contacting': 'Contacting',
+    'serviceDetails.via': 'via',
+    
+    // Common
+    'common.back': 'Back',
+    
     // Voice Search
     'voiceSearch.title': 'Tap and Speak to Find a Service',
     'voiceSearch.subtitle': 'Speak your service request in your preferred language',
@@ -262,6 +291,35 @@ const translations = {
     'services.searchPlaceholder': 'ಸೇವೆಗಳಿಗಾಗಿ ಹುಡುಕಿ...',
     'services.bookNow': 'ಈಗ ಬುಕ್ ಮಾಡಿ',
     
+    // Service Details
+    'serviceDetails.serviceTitle': 'ಸೇವೆಯ ವಿವರಗಳು',
+    'serviceDetails.serviceDescription': 'ನಮ್ಮ ಪರಿಶೀಲಿತ ಸೇವಾ ಪೂರೈಕೆದಾರರಿಂದ ಆಯ್ಕೆ ಮಾಡಿ',
+    'serviceDetails.availableProviders': 'ಲಭ್ಯವಿರುವ ಸೇವಾ ಪೂರೈಕೆದಾರರು',
+    'serviceDetails.reviews': 'ಪರಿಶೀಲನೆಗಳು',
+    'serviceDetails.per': 'ಪ್ರತಿ',
+    'serviceDetails.hour': 'ಗಂಟೆ',
+    'serviceDetails.day': 'ದಿನ',
+    'serviceDetails.available': 'ಲಭ್ಯ',
+    'serviceDetails.busy': 'ಕಾರ್ಯನಿರತ',
+    'serviceDetails.unavailable': 'ಲಭ್ಯವಿಲ್ಲ',
+    'serviceDetails.call': 'ಕಾಲ್ ಮಾಡಿ',
+    'serviceDetails.message': 'ಸಂದೇಶ',
+    'serviceDetails.bookNow': 'ಈಗ ಬುಕ್ ಮಾಡಿ',
+    'serviceDetails.booked': 'ಬುಕ್ ಆಗಿದೆ',
+    'serviceDetails.phone': 'ಫೋನ್',
+    'serviceDetails.needHelp': 'ಸಹಾಯ ಬೇಕೇ?',
+    'serviceDetails.contactSupport': 'ನಮ್ಮ ಗ್ರಾಹಕ ಬೆಂಬಲ ತಂಡವು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು ಇಲ್ಲಿದೆ',
+    'serviceDetails.contactUs': 'ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ',
+    'serviceDetails.bookingConfirmed': 'ಬುಕಿಂಗ್ ಖಚಿತಪಡಿಸಲಾಗಿದೆ!',
+    'serviceDetails.bookingWith': 'ನಿಮ್ಮ ಬುಕಿಂಗ್ ಇವರೊಂದಿಗೆ',
+    'serviceDetails.contactSoon': 'ಅವರು ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತಾರೆ.',
+    'serviceDetails.contactInitiated': 'ಸಂಪರ್ಕ ಆರಂಭಿಸಲಾಗಿದೆ',
+    'serviceDetails.contacting': 'ಸಂಪರ್ಕಿಸುತ್ತಿದ್ದೇವೆ',
+    'serviceDetails.via': 'ಮೂಲಕ',
+    
+    // Common
+    'common.back': 'ಹಿಂದೆ',
+    
     // Voice Search
     'voiceSearch.title': 'ಸೇವೆಯನ್ನು ಹುಡುಕಲು ತಟ್ಟಿ ಮತ್ತು ಮಾತನಾಡಿ',
     'voiceSearch.subtitle': 'ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ಸೇವೆಯ ವಿನಂತಿಯನ್ನು ಮಾತನಾಡಿ',
@@ -424,6 +482,35 @@ const translations = {
     'services.title': 'हमारी सेवाएं',
     'services.searchPlaceholder': 'सेवाओं के लिए खोजें...',
     'services.bookNow': 'अभी बुक करें',
+    
+    // Service Details
+    'serviceDetails.serviceTitle': 'सेवा विवरण',
+    'serviceDetails.serviceDescription': 'हमारे सत्यापित सेवा प्रदाताओं में से चुनें',
+    'serviceDetails.availableProviders': 'उपलब्ध सेवा प्रदाता',
+    'serviceDetails.reviews': 'समीक्षाएं',
+    'serviceDetails.per': 'प्रति',
+    'serviceDetails.hour': 'घंटा',
+    'serviceDetails.day': 'दिन',
+    'serviceDetails.available': 'उपलब्ध',
+    'serviceDetails.busy': 'व्यस्त',
+    'serviceDetails.unavailable': 'उपलब्ध नहीं',
+    'serviceDetails.call': 'कॉल करें',
+    'serviceDetails.message': 'संदेश',
+    'serviceDetails.bookNow': 'अभी बुक करें',
+    'serviceDetails.booked': 'बुक किया गया',
+    'serviceDetails.phone': 'फोन',
+    'serviceDetails.needHelp': 'मदद चाहिए?',
+    'serviceDetails.contactSupport': 'हमारी ग्राहक सहायता टीम आपकी सहायता के लिए यहां है',
+    'serviceDetails.contactUs': 'हमसे संपर्क करें',
+    'serviceDetails.bookingConfirmed': 'बुकिंग पुष्टि!',
+    'serviceDetails.bookingWith': 'आपकी बुकिंग इनके साथ',
+    'serviceDetails.contactSoon': 'वे जल्द ही आपसे संपर्क करेंगे।',
+    'serviceDetails.contactInitiated': 'संपर्क शुरू किया गया',
+    'serviceDetails.contacting': 'संपर्क कर रहे हैं',
+    'serviceDetails.via': 'के माध्यम से',
+    
+    // Common
+    'common.back': 'वापस',
     
     // Voice Search
     'voiceSearch.title': 'सेवा खोजने के लिए टैप करें और बोलें',
