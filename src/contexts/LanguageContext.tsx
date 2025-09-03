@@ -99,6 +99,11 @@ const translations = {
     'services.searchPlaceholder': 'Search for services...',
     'services.bookNow': 'Book Now',
     
+    // Voice Search
+    'voiceSearch.title': 'Tap and Speak to Find a Service',
+    'voiceSearch.subtitle': 'Speak your service request in your preferred language',
+    'voiceSearch.searchAlternative': 'Or search manually below',
+    
     // Service Categories
     'services.household': 'Household Services',
     'services.repair': 'Repair & Maintenance',
@@ -257,6 +262,11 @@ const translations = {
     'services.searchPlaceholder': 'ಸೇವೆಗಳಿಗಾಗಿ ಹುಡುಕಿ...',
     'services.bookNow': 'ಈಗ ಬುಕ್ ಮಾಡಿ',
     
+    // Voice Search
+    'voiceSearch.title': 'ಸೇವೆಯನ್ನು ಹುಡುಕಲು ತಟ್ಟಿ ಮತ್ತು ಮಾತನಾಡಿ',
+    'voiceSearch.subtitle': 'ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ಸೇವೆಯ ವಿನಂತಿಯನ್ನು ಮಾತನಾಡಿ',
+    'voiceSearch.searchAlternative': 'ಅಥವಾ ಕೆಳಗೆ ಹಸ್ತಚಾಲಿತವಾಗಿ ಹುಡುಕಿ',
+    
     // Service Categories
     'services.household': 'ಮನೆಯ ಸೇವೆಗಳು',
     'services.repair': 'ದುರಸ್ತಿ ಮತ್ತು ನಿರ್ವಹಣೆ',
@@ -414,6 +424,11 @@ const translations = {
     'services.title': 'हमारी सेवाएं',
     'services.searchPlaceholder': 'सेवाओं के लिए खोजें...',
     'services.bookNow': 'अभी बुक करें',
+    
+    // Voice Search
+    'voiceSearch.title': 'सेवा खोजने के लिए टैप करें और बोलें',
+    'voiceSearch.subtitle': 'अपनी पसंदीदा भाषा में अपना सेवा अनुरोध बोलें',
+    'voiceSearch.searchAlternative': 'या नीचे मैन्युअल रूप से खोजें',
     
     // Service Categories
     'services.household': 'घरेलू सेवाएं',

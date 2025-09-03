@@ -1,13 +1,25 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Users, Briefcase, MapPin, Star, LogIn } from "lucide-react";
+import { Users, Briefcase, MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSelector from "@/components/LanguageSelector";
 import ServicesSection from "@/components/ServicesSection";
+import VoiceSearch from "@/components/VoiceSearch";
 
 const Index = () => {
   const { t } = useLanguage();
+  const [voiceSearchTerm, setVoiceSearchTerm] = useState("");
+
+  const handleVoiceResult = (text: string) => {
+    setVoiceSearchTerm(text);
+    // Scroll to services section smoothly
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,8 +124,36 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Voice Search Section */}
+      <section className="py-16 px-4 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            {t('voiceSearch.title')}
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            {t('voiceSearch.subtitle')}
+          </p>
+          
+          {/* Prominent Voice Input */}
+          <div className="bg-card border border-border rounded-2xl p-8 shadow-elegant">
+            <div className="flex flex-col items-center gap-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/20 rounded-full animate-pulse"></div>
+                <VoiceSearch 
+                  onVoiceResult={handleVoiceResult}
+                  className="relative z-10 scale-150"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {t('voiceSearch.searchAlternative')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <ServicesSection />
+      <ServicesSection voiceSearchTerm={voiceSearchTerm} />
     </div>
   );
 };

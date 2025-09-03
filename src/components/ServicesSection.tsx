@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
-import VoiceSearch from "@/components/VoiceSearch";
 import {
   Users,
   Wrench,
@@ -37,10 +36,21 @@ import {
   Search,
 } from "lucide-react";
 
-const ServicesSection = () => {
+interface ServicesSectionProps {
+  voiceSearchTerm?: string;
+}
+
+const ServicesSection = ({ voiceSearchTerm = "" }: ServicesSectionProps) => {
   const { t, language, setLanguage } = useLanguage();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Update search term when voice search term changes
+  useEffect(() => {
+    if (voiceSearchTerm) {
+      setSearchTerm(voiceSearchTerm);
+    }
+  }, [voiceSearchTerm]);
 
   const languageLabels = {
     en: "English",
@@ -134,7 +144,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-background via-muted/30 to-background">
+    <section id="services-section" className="py-16 px-4 bg-gradient-to-br from-background via-muted/30 to-background">
       <div className="container mx-auto max-w-7xl">
         {/* Language Switcher and Title */}
         <div className="text-center mb-12">
@@ -156,22 +166,16 @@ const ServicesSection = () => {
             {t("services.title")}
           </h2>
 
-          {/* Search Bar with Voice Input */}
+          {/* Text Search Bar */}
           <div className="max-w-lg mx-auto mb-8">
-            <div className="flex gap-2 items-center">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder={t("services.searchPlaceholder")}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              <VoiceSearch 
-                onVoiceResult={setSearchTerm}
-                className="flex-shrink-0"
+            <div className="relative">
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder={t("services.searchPlaceholder")}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 h-12 text-base"
               />
             </div>
           </div>
