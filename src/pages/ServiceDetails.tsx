@@ -23,6 +23,40 @@ const ServiceDetails = () => {
   const { toast } = useToast();
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
 
+  // Dynamic skills based on service category
+  const getServiceSkills = (serviceKey: string | undefined) => {
+    const skillsMap: Record<string, string[]> = {
+      plumber: ["Pipe Repair", "Leak Fixing", "Tap Installation", "Drain Cleaning", "Water Heater Repair"],
+      maid: ["Deep Cleaning", "Dusting", "Bathroom Cleaning", "Kitchen Cleaning", "Floor Mopping"],
+      cook: ["Indian Cuisine", "South Indian", "North Indian", "Vegetarian", "Home Style Cooking"],
+      laundry: ["Washing", "Ironing", "Dry Cleaning", "Stain Removal", "Folding"],
+      babysitting: ["Child Care", "Playtime", "Feeding", "Homework Help", "Activity Planning"],
+      elderly: ["Health Monitoring", "Meal Prep", "Companionship", "Medication Reminders", "Mobility Assistance"],
+      electrician: ["Wiring", "Switch Installation", "Appliance Repair", "Safety Checks", "LED Installation"],
+      carpenter: ["Furniture Repair", "Woodwork", "Cabinet Installation", "Door Repair", "Custom Carpentry"],
+      painter: ["Wall Painting", "Interior Design", "Color Consultation", "Texture Work", "Exterior Painting"],
+      appliance: ["AC Repair", "Refrigerator Service", "Washing Machine", "Microwave Repair", "Water Purifier"],
+      delivery: ["Fast Delivery", "Package Handling", "Document Delivery", "Grocery Pickup", "Express Service"],
+      bikemechanic: ["Engine Repair", "Brake Service", "Tire Change", "Oil Change", "Battery Check"],
+      towing: ["Car Towing", "Bike Towing", "Emergency Service", "Breakdown Assistance", "Roadside Help"],
+      watertanker: ["Water Supply", "Tank Filling", "Emergency Water", "Quality Water", "Timely Delivery"],
+      catering: ["Event Setup", "Food Service", "Kitchen Help", "Serving", "Cleanup"],
+      decoration: ["Event Decor", "Flower Arrangement", "Theme Setup", "Lighting", "Stage Decoration"],
+      cleaning: ["Post Event Cleanup", "Deep Cleaning", "Waste Management", "Sanitization", "Quick Cleanup"],
+      salon: ["Hair Styling", "Facial", "Pedicure", "Manicure", "Makeup"],
+      fitness: ["Personal Training", "Yoga", "Weight Training", "Cardio", "Diet Planning"],
+      petcare: ["Pet Walking", "Feeding", "Grooming", "Pet Sitting", "Exercise"],
+      driver: ["Safe Driving", "Local Routes", "Long Distance", "Vehicle Care", "Punctuality"],
+      grocery: ["Fresh Produce", "Quick Shopping", "List Management", "Quality Check", "Fast Delivery"],
+      pickdrop: ["Parcel Delivery", "Document Pickup", "Shopping Pickup", "Express Service", "Safe Handling"],
+      instanthelp: ["Emergency Service", "Quick Response", "Multi-tasking", "Problem Solving", "24/7 Available"]
+    };
+    
+    return skillsMap[serviceKey || 'default'] || ["Professional Service", "Reliable", "Experienced", "Quality Work", "Customer Focused"];
+  };
+
+  const serviceSkills = getServiceSkills(serviceKey);
+
   // Dummy data for service providers
   const serviceProviders = [
     {
@@ -35,7 +69,7 @@ const ServiceDetails = () => {
       reviews: 127,
       availability: "available",
       experience: "5+ years",
-      specialties: ["Deep Cleaning", "Kitchen Management"],
+      specialties: [serviceSkills[0], serviceSkills[1]],
       image: "/placeholder.svg",
       estimatedArrival: 25,
       distance: 2.1
@@ -50,7 +84,7 @@ const ServiceDetails = () => {
       reviews: 89,
       availability: "available",
       experience: "3+ years",
-      specialties: ["Regular Cleaning", "Laundry"],
+      specialties: [serviceSkills[2], serviceSkills[3]],
       image: "/placeholder.svg",
       estimatedArrival: 15,
       distance: 1.5
@@ -65,7 +99,7 @@ const ServiceDetails = () => {
       reviews: 203,
       availability: "available",
       experience: "8+ years",
-      specialties: ["Premium Service", "Organization"],
+      specialties: [serviceSkills[1], serviceSkills[4]],
       image: "/placeholder.svg",
       estimatedArrival: 35,
       distance: 3.2
