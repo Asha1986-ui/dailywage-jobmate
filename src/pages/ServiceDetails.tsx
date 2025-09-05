@@ -36,7 +36,9 @@ const ServiceDetails = () => {
       availability: "available",
       experience: "5+ years",
       specialties: ["Deep Cleaning", "Kitchen Management"],
-      image: "/placeholder.svg"
+      image: "/placeholder.svg",
+      estimatedArrival: 25,
+      distance: 2.1
     },
     {
       id: "2", 
@@ -46,10 +48,12 @@ const ServiceDetails = () => {
       location: "Indiranagar, Bengaluru",
       rating: 4.6,
       reviews: 89,
-      availability: "busy",
+      availability: "available",
       experience: "3+ years",
       specialties: ["Regular Cleaning", "Laundry"],
-      image: "/placeholder.svg"
+      image: "/placeholder.svg",
+      estimatedArrival: 15,
+      distance: 1.5
     },
     {
       id: "3",
@@ -62,9 +66,11 @@ const ServiceDetails = () => {
       availability: "available",
       experience: "8+ years",
       specialties: ["Premium Service", "Organization"],
-      image: "/placeholder.svg"
+      image: "/placeholder.svg",
+      estimatedArrival: 35,
+      distance: 3.2
     }
-  ];
+  ].sort((a, b) => a.estimatedArrival - b.estimatedArrival);
 
   const handleBookProvider = (providerId: string, providerName: string) => {
     setSelectedProvider(providerId);
@@ -81,7 +87,16 @@ const ServiceDetails = () => {
     });
   };
 
-  const getAvailabilityBadge = (availability: string) => {
+  const getAvailabilityBadge = (availability: string, estimatedArrival: number) => {
+    if (availability === "available" && estimatedArrival <= 30) {
+      return (
+        <Badge className="bg-success text-success-foreground animate-pulse">
+          <CheckCircle className="w-3 h-3 mr-1" />
+          {t("serviceDetails.availableNow")}
+        </Badge>
+      );
+    }
+    
     switch (availability) {
       case "available":
         return (
@@ -118,6 +133,16 @@ const ServiceDetails = () => {
           </Button>
         </div>
 
+        {/* Instant Service Banner */}
+        <div className="bg-gradient-to-r from-primary to-primary-glow rounded-xl p-6 text-center mb-6 shadow-glow">
+          <h2 className="text-xl md:text-2xl font-bold text-primary-foreground mb-2">
+            {t("serviceDetails.instantService")}
+          </h2>
+          <p className="text-primary-foreground/90">
+            {t("serviceDetails.fastDelivery")}
+          </p>
+        </div>
+
         {/* Service Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
@@ -147,7 +172,13 @@ const ServiceDetails = () => {
                   <div className="flex-1 space-y-2">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                       <CardTitle className="text-lg">{provider.name}</CardTitle>
-                      {getAvailabilityBadge(provider.availability)}
+                      <div className="flex gap-2 flex-wrap">
+                        {getAvailabilityBadge(provider.availability, provider.estimatedArrival)}
+                        <Badge variant="outline" className="text-xs font-medium">
+                          <Clock className="w-3 h-3 mr-1" />
+                          {t("serviceDetails.arrivesIn")} {provider.estimatedArrival} {t("serviceDetails.mins")}
+                        </Badge>
+                      </div>
                     </div>
                     
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -212,13 +243,14 @@ const ServiceDetails = () => {
                   <Button
                     onClick={() => handleBookProvider(provider.id, provider.name)}
                     disabled={provider.availability === "busy" || selectedProvider === provider.id}
-                    className="sm:w-auto w-full shadow-medium hover:shadow-strong"
+                    className="sm:w-auto w-full shadow-medium hover:shadow-strong bg-gradient-to-r from-primary to-primary-glow"
+                    size="lg"
                   >
                     {selectedProvider === provider.id 
                       ? t("serviceDetails.booked")
                       : provider.availability === "busy"
                       ? t("serviceDetails.unavailable") 
-                      : t("serviceDetails.bookNow")
+                      : t("serviceDetails.bookInstant")
                     }
                   </Button>
                 </div>
