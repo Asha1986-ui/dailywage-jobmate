@@ -39,7 +39,7 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
-            <Link to="/worker-dashboard" className="w-full sm:w-auto">
+            <Link to="/jobs" className="w-full sm:w-auto">
               <Button size="lg" variant="secondary" className="w-full text-lg py-6 px-8 shadow-medium">
                 <Users className="mr-3 h-6 w-6" />
                 {t('header.findJobs')}

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
+import Jobs from "./pages/Jobs";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import Auth from "./pages/Auth";
@@ -24,6 +25,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/jobs" element={<Jobs />} />
             <Route path="/service/:serviceKey" element={<ServiceDetails />} />
             <Route path="/worker-dashboard" element={<WorkerDashboard />} />
             <Route path="/employer-dashboard" element={<EmployerDashboard />} />
