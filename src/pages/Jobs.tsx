@@ -48,6 +48,7 @@ const Jobs = () => {
         rating: 4.2,
         reviews: 18,
         postedTime: "2 hours ago",
+        phoneNumber: "+91 9876543210",
         description: "Looking for reliable cleaning staff for residential apartments",
         requirements: ["Experience in house cleaning", "Own cleaning supplies preferred"]
       },
@@ -61,6 +62,7 @@ const Jobs = () => {
         rating: 4.5,
         reviews: 32,
         postedTime: "4 hours ago",
+        phoneNumber: "+91 9876543211",
         description: "Cook South Indian meals for small family",
         requirements: ["South Indian cooking", "Vegetarian meals", "2+ years experience"]
       },
@@ -74,6 +76,7 @@ const Jobs = () => {
         rating: 4.1,
         reviews: 15,
         postedTime: "6 hours ago",
+        phoneNumber: "+91 9876543212",
         description: "Handle washing, drying and ironing of clothes",
         requirements: ["Machine operation", "Ironing skills", "Quality focus"]
       }
@@ -89,6 +92,7 @@ const Jobs = () => {
         rating: 4.3,
         reviews: 25,
         postedTime: "1 hour ago",
+        phoneNumber: "+91 9876543213",
         description: "Assist senior plumber with residential repairs and installations",
         requirements: ["Basic plumbing knowledge", "Tool handling", "Physical fitness"]
       },
@@ -102,6 +106,7 @@ const Jobs = () => {
         rating: 4.4,
         reviews: 41,
         postedTime: "3 hours ago",
+        phoneNumber: "+91 9876543214",
         description: "Support electrician with wiring and appliance installations",
         requirements: ["Electrical basics", "Safety awareness", "Tool familiarity"]
       },
@@ -115,6 +120,7 @@ const Jobs = () => {
         rating: 4.0,
         reviews: 12,
         postedTime: "5 hours ago",
+        phoneNumber: "+91 9876543215",
         description: "Help with furniture repair and woodwork projects",
         requirements: ["Basic carpentry", "Measuring skills", "Hand tools experience"]
       }
@@ -130,6 +136,7 @@ const Jobs = () => {
         rating: 4.2,
         reviews: 89,
         postedTime: "30 minutes ago",
+        phoneNumber: "+91 9876543216",
         description: "Fast delivery of packages and documents across the city",
         requirements: ["Own vehicle", "License", "Mobile phone", "Local area knowledge"]
       },
@@ -142,7 +149,8 @@ const Jobs = () => {
         type: "Daily",
         rating: 4.6,
         reviews: 156,
-        postedTime: "1 hour ago", 
+        postedTime: "1 hour ago",
+        phoneNumber: "+91 9876543217",
         description: "Emergency and on-demand driving services",
         requirements: ["Valid driving license", "Clean record", "Vehicle available", "24/7 availability"]
       }
@@ -158,6 +166,7 @@ const Jobs = () => {
         rating: 4.3,
         reviews: 67,
         postedTime: "2 hours ago",
+        phoneNumber: "+91 9876543218",
         description: "Setup and manage wedding and corporate events",
         requirements: ["Physical fitness", "Team work", "Event experience preferred"]
       },
@@ -171,6 +180,7 @@ const Jobs = () => {
         rating: 4.1,
         reviews: 33,
         postedTime: "4 hours ago",
+        phoneNumber: "+91 9876543219",
         description: "Assist in food preparation and serving at events",
         requirements: ["Food handling", "Serving experience", "Hygiene awareness"]
       }
@@ -186,6 +196,7 @@ const Jobs = () => {
         rating: 4.7,
         reviews: 94,
         postedTime: "3 hours ago",
+        phoneNumber: "+91 9876543220",
         description: "Provide personal training sessions at home and gym",
         requirements: ["Fitness certification", "Training experience", "Nutrition knowledge"]
       },
@@ -199,6 +210,7 @@ const Jobs = () => {
         rating: 4.4,
         reviews: 28,
         postedTime: "5 hours ago",
+        phoneNumber: "+91 9876543221",
         description: "Take care of pets including walking, feeding and grooming", 
         requirements: ["Love for animals", "Basic pet care", "Reliable schedule"]
       }
@@ -237,10 +249,13 @@ const Jobs = () => {
     });
   };
 
-  const handleCall = (jobTitle: string) => {
+  const handleCall = (jobTitle: string, phoneNumber: string) => {
+    // Initiate actual phone call
+    window.location.href = `tel:${phoneNumber}`;
+    
     toast({
       title: "Calling Employer",
-      description: `Connecting you with the employer for ${jobTitle}`,
+      description: `Calling ${jobTitle} employer at ${phoneNumber}`,
     });
   };
 
@@ -387,7 +402,7 @@ const Jobs = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => handleCall(job.title)}
+                      onClick={() => handleCall(job.title, job.phoneNumber)}
                       className="flex items-center gap-2 flex-1"
                     >
                       <Phone className="w-4 h-4" />
