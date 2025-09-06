@@ -433,7 +433,11 @@ const Jobs = () => {
               <p className="text-muted-foreground mb-4">
                 Contact our support team for personalized job recommendations
               </p>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+              <Button 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                onClick={() => window.location.href = 'tel:+918904051999'}
+              >
                 Get Job Assistance
               </Button>
             </div>
