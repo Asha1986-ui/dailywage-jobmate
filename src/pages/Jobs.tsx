@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
+import VoiceSearch from "@/components/VoiceSearch";
 import {
   MapPin,
   Clock,
@@ -243,6 +244,10 @@ const Jobs = () => {
     });
   };
 
+  const handleVoiceResult = (text: string) => {
+    setSearchTerm(text);
+  };
+
   const filteredJobs = getFilteredJobs();
 
   return (
@@ -275,13 +280,19 @@ const Jobs = () => {
         {/* Search and Filters */}
         <div className="mb-8 space-y-4">
           {/* Search Bar */}
-          <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder={t("worker.searchPlaceholder")}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-12 text-base"
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder={t("worker.searchPlaceholder")}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 h-12 text-base"
+              />
+            </div>
+            <VoiceSearch 
+              onVoiceResult={handleVoiceResult}
+              className="flex-shrink-0"
             />
           </div>
 
