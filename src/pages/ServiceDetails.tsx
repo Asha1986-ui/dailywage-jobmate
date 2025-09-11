@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
+import LanguageSelector from "@/components/LanguageSelector";
 import {
   Star,
   MapPin,
@@ -165,6 +166,7 @@ const ServiceDetails = () => {
             <ArrowLeft className="w-4 h-4" />
             {t("common.back")}
           </Button>
+          <LanguageSelector />
         </div>
 
         {/* Instant Service Banner */}

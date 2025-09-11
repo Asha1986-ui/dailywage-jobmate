@@ -7,6 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { Mail, Shield } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const Auth = () => {
   const [step, setStep] = useState<'email' | 'otp'>('email');
@@ -16,6 +18,7 @@ const Auth = () => {
   const [resendTimer, setResendTimer] = useState(0);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Check if user is already logged in
@@ -56,20 +59,20 @@ const Auth = () => {
       setStep('otp');
       setResendTimer(30); // Start 30-second countdown
       toast({
-        title: "Check your email!",
-        description: "We've sent you a 6-digit verification code.",
+        title: t('auth.checkEmail'),
+        description: t('auth.codeSent'),
       });
     } catch (error: any) {
-      let errorMessage = "Failed to send verification code. Please try again.";
+      let errorMessage = t('auth.sendCodeError');
       
       if (error.message.includes("Invalid email")) {
-        errorMessage = "Please enter a valid email address.";
+        errorMessage = t('auth.invalidEmail');
       } else if (error.message.includes("Email not authorized")) {
-        errorMessage = "This email address is not authorized. Please contact support.";
+        errorMessage = t('auth.emailNotAuthorized');
       }
       
       toast({
-        title: "Error",
+        title: t('auth.error'),
         description: errorMessage,
         variant: "destructive",
       });
@@ -92,14 +95,14 @@ const Auth = () => {
       if (error) throw error;
 
       toast({
-        title: "Welcome!",
-        description: "You have successfully logged in.",
+        title: t('auth.welcome'),
+        description: t('auth.loginSuccess'),
       });
       navigate("/");
     } catch (error: any) {
       toast({
-        title: "Verification Failed",
-        description: "Invalid or expired OTP. Please try again.",
+        title: t('auth.verificationFailed'),
+        description: t('auth.invalidOtp'),
         variant: "destructive",
       });
     } finally {
@@ -121,13 +124,13 @@ const Auth = () => {
 
       setResendTimer(30); // Reset countdown
       toast({
-        title: "Code sent!",
-        description: "A new 6-digit verification code has been sent to your email.",
+        title: t('auth.codeSent'),
+        description: t('auth.newCodeSent'),
       });
     } catch (error: any) {
       toast({
-        title: "Error",
-        description: "Failed to resend verification code. Please try again.",
+        title: t('auth.error'),
+        description: t('auth.resendFailed'),
         variant: "destructive",
       });
     } finally {
@@ -137,15 +140,18 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="absolute top-4 right-4 z-10">
+        <LanguageSelector />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">
-            {step === 'email' ? "Enter Email Address" : "Verify Code"}
+            {step === 'email' ? t('auth.enterEmail') : t('auth.verifyCode')}
           </CardTitle>
           <CardDescription>
             {step === 'email' 
-              ? "We'll send you a 6-digit verification code" 
-              : `Enter the 6-digit code sent to ${email}`
+              ? t('auth.codeSendDescription')
+              : t('auth.enterCodeDescription').replace('{email}', email)
             }
           </CardDescription>
         </CardHeader>
@@ -153,7 +159,7 @@ const Auth = () => {
           {step === 'email' ? (
             <form onSubmit={handleSendOTP} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">{t('auth.emailAddress')}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -161,22 +167,22 @@ const Auth = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address"
+                    placeholder={t('auth.emailPlaceholder')}
                     className="pl-10"
                     required
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  You'll receive a 6-digit verification code via email
+                  {t('auth.emailNote')}
                 </p>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? (
-                  "Sending..."
+                  t('auth.sending')
                 ) : (
                   <>
                     <Mail className="mr-2 h-4 w-4" />
-                    Send Verification Code
+                    {t('auth.sendCode')}
                   </>
                 )}
               </Button>
@@ -184,7 +190,7 @@ const Auth = () => {
           ) : (
             <form onSubmit={handleVerifyOTP} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="otp">Verification Code</Label>
+                <Label htmlFor="otp">{t('auth.verificationCode')}</Label>
                 <div className="relative">
                   <Shield className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -197,7 +203,7 @@ const Auth = () => {
                         setOtp(value);
                       }
                     }}
-                    placeholder="Enter 6-digit code"
+                    placeholder={t('auth.codePlaceholder')}
                     className="pl-10 text-center text-lg tracking-widest"
                     maxLength={6}
                     pattern="[0-9]{6}"
@@ -206,16 +212,16 @@ const Auth = () => {
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Enter the 6-digit code from your email to continue
+                  {t('auth.codeNote')}
                 </p>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? (
-                  "Verifying..."
+                  t('auth.verifying')
                 ) : (
                   <>
                     <Shield className="mr-2 h-4 w-4" />
-                    Verify & Login
+                    {t('auth.verifyLogin')}
                   </>
                 )}
               </Button>
@@ -226,7 +232,7 @@ const Auth = () => {
                   onClick={() => setStep('email')}
                   className="text-sm"
                 >
-                  Change Email Address
+                  {t('auth.changeEmail')}
                 </Button>
                 <Button
                   type="button"
@@ -235,7 +241,7 @@ const Auth = () => {
                   disabled={loading || resendTimer > 0}
                   className="text-sm"
                 >
-                  {resendTimer > 0 ? `Resend Code (${resendTimer}s)` : "Resend Code"}
+                  {resendTimer > 0 ? t('auth.resendTimer').replace('{seconds}', resendTimer.toString()) : t('auth.resendCode')}
                 </Button>
               </div>
             </form>
