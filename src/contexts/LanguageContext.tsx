@@ -359,7 +359,8 @@ const translations = {
       }
     },
 
-    auth: {
+    // Common
+    'common.back': 'ಹಿಂದೆ',
       loginTitle: "ನಿಮ್ಮ ಖಾತೆಗೆ ಲಾಗಿನ್ ಆಗಿ",
       signupTitle: "ಹೊಸ ಖಾತೆ ರಚಿಸಿ", 
       email: "ಇಮೇಲ್ ವಿಳಾಸ",
@@ -575,8 +576,6 @@ const translations = {
     'voiceSearch.title': 'ಸೇವೆಯನ್ನು ಹುಡುಕಲು ತಟ್ಟಿ ಮತ್ತು ಮಾತನಾಡಿ',
     'voiceSearch.subtitle': 'ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ಸೇವೆಯ ವಿನಂತಿಯನ್ನು ಮಾತನಾಡಿ',
     'voiceSearch.searchAlternative': 'ಅಥವಾ ಕೆಳಗೆ ಹಸ್ತಚಾಲಿತವಾಗಿ ಹುಡುಕಿ',
-    
-    // Service Categories
     'services.household': 'ಮನೆಯ ಸೇವೆಗಳು',
     'services.repair': 'ದುರಸ್ತಿ ಮತ್ತು ನಿರ್ವಹಣೆ',
     'services.emergency': 'ತ್ವರಿತ ತುರ್ತು ಸೇವೆಗಳು',
@@ -644,10 +643,7 @@ const translations = {
     'services.instanthelp.title': 'ತ್ವರಿತ ಮನೆ ಸಹಾಯ',
     'services.instanthelp.desc': '10 ನಿಮಿಷದಲ್ಲಿ ಯಾವುದೇ ಸೇವೆ',
     
-    // Auth translations
-    'auth.enterEmail': 'ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ',
-    'auth.verifyCode': 'ಕೋಡ್ ಪರಿಶೀಲಿಸಿ',
-    'auth.codeSendDescription': 'ನಾವು ನಿಮಗೆ 6-ಅಂಕಿಯ ಪರಿಶೀಲನೆ ಕೋಡ್ ಕಳುಹಿಸುತ್ತೇವೆ',
+    // Voice Search
     'auth.enterCodeDescription': '{email} ಗೆ ಕಳುಹಿಸಿದ 6-ಅಂಕಿಯ ಕೋಡ್ ನಮೂದಿಸಿ',
     'auth.emailAddress': 'ಇಮೇಲ್ ವಿಳಾಸ',
     'auth.emailPlaceholder': 'ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ',

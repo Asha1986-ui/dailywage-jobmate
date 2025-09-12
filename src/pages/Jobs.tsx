@@ -40,20 +40,17 @@ const Jobs = () => {
     household: [
       {
         id: "h1",
-        title: t("jobs.household.houseCleaningAssistant.title"),
-        company: t("jobs.household.houseCleaningAssistant.company"),
-        location: t("jobs.locations.koramangala"),
+        title: "ಮನೆ ಶುಚಿಗೊಳಿಸುವ ಸಹಾಯಕ",
+        company: "ಕ್ಲೀನ್ ಹೋಮ್ ಸರ್ವೀಸಸ್",
+        location: "ಕೋರಮಂಗಲ, ಬೆಂಗಳೂರು",
         salary: 400,
-        type: t("jobs.types.daily"),
+        type: "ದೈನಂದಿನ",
         rating: 4.2,
         reviews: 18,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "2"),
+        postedTime: "2 ಗಂಟೆಗಳ ಹಿಂದೆ",
         phoneNumber: "+91 9876543210",
-        description: t("jobs.household.houseCleaningAssistant.description"),
-        requirements: [
-          t("jobs.household.houseCleaningAssistant.req1"),
-          t("jobs.household.houseCleaningAssistant.req2")
-        ]
+        description: "ವಸತಿ ಅಪಾರ್ಟ್‌ಮೆಂಟ್‌ಗಳಿಗಾಗಿ ವಿಶ್ವಾಸಯೋಗ್ಯ ಶುಚಿಗೊಳಿಸುವ ಸಿಬ್ಬಂದಿಯನ್ನು ಹುಡುಕುತ್ತಿದ್ದೇವೆ",
+        requirements: ["ಮನೆ ಶುಚಿಗೊಳಿಸುವ ಅನುಭವ", "ಸ್ವಂತ ಶುಚಿಗೊಳಿಸುವ ಸಾಮಗ್ರಿಗಳು ಆದ್ಯತೆ"]
       },
       {
         id: "h2", 
@@ -337,7 +334,7 @@ const Jobs = () => {
             {t("worker.title")}
           </h1>
           <p className="text-muted-foreground text-lg">
-            {t("jobs.subtitle")}
+            ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ದೈನಂದಿನ ವೇತನದ ಅವಕಾಶಗಳನ್ನು ಕಂಡುಕೊಳ್ಳಿ
           </p>
         </div>
 
@@ -389,8 +386,8 @@ const Jobs = () => {
             <Card className="p-8 text-center">
               <CardContent>
                 <Briefcase className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                <h3 className="text-lg font-semibold mb-2">{t("jobs.noJobsFound")}</h3>
-                <p className="text-muted-foreground">{t("jobs.noJobsMessage")}</p>
+                <h3 className="text-lg font-semibold mb-2">ಯಾವುದೇ ಕೆಲಸ ಸಿಗಲಿಲ್ಲ</h3>
+                <p className="text-muted-foreground">ನಿಮ್ಮ ಹುಡುಕಾಟ ಮಾನದಂಡಗಳನ್ನು ಸರಿಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಎಲ್ಲಾ ವರ್ಗಗಳನ್ನು ವೀಕ್ಷಿಸಿ.</p>
               </CardContent>
             </Card>
           ) : (
@@ -414,7 +411,7 @@ const Jobs = () => {
                         <div className="flex items-center gap-1">
                           <Star className="w-4 h-4 fill-accent text-accent" />
                           <span>{job.rating}</span>
-                          <span>({job.reviews} {t("jobs.reviews")})</span>
+                          <span>({job.reviews} ವಿಮರ್ಶೆಗಳು)</span>
                         </div>
                       </div>
 
@@ -477,17 +474,17 @@ const Jobs = () => {
           <CardContent className="p-6">
             <div className="text-center">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                {t("jobs.helpTitle")}
+                ಸರಿಯಾದ ಕೆಲಸವನ್ನು ಕಂಡುಹಿಡಿಯಲು ಸಹಾಯ ಬೇಕೇ?
               </h3>
               <p className="text-muted-foreground mb-4">
-                {t("jobs.helpDescription")}
+                ವೈಯಕ್ತಿಕ ಕೆಲಸದ ಶಿಫಾರಸುಗಳಿಗಾಗಿ ನಮ್ಮ ಬೆಂಬಲ ತಂಡವನ್ನು ಸಂಪರ್ಕಿಸಿ
               </p>
               <Button 
                 variant="outline" 
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 onClick={() => window.location.href = 'tel:+918904051999'}
               >
-                {t("jobs.getAssistance")}
+                ಕೆಲಸದ ಸಹಾಯ ಪಡೆಯಿರಿ
               </Button>
             </div>
           </CardContent>
