@@ -207,6 +207,214 @@ const translations = {
     'services.instanthelp.title': 'Instant Home Help',
     'services.instanthelp.desc': 'Any service in 10 minutes',
     
+    auth: {
+      loginTitle: "Login to Your Account",
+      signupTitle: "Create New Account", 
+      email: "Email Address",
+      password: "Password",
+      confirmPassword: "Confirm Password",
+      loginButton: "Login",
+      signupButton: "Sign Up",
+      forgotPassword: "Forgot Password?",
+      switchToSignup: "Don't have an account? Sign up",
+      switchToLogin: "Already have an account? Login",
+      resetPassword: "Reset Password",
+      resetButton: "Send Reset Link",
+      backToLogin: "Back to Login"
+    },
+    jobs: {
+      subtitle: "Discover daily wage opportunities in your area",
+      noJobsFound: "No Jobs Found",
+      noJobsMessage: "Try adjusting your search criteria or browse all categories.",
+      reviews: "reviews",
+      helpTitle: "Need Help Finding the Right Job?",
+      helpDescription: "Contact our support team for personalized job recommendations",
+      getAssistance: "Get Job Assistance",
+      types: {
+        daily: "Daily",
+        perDelivery: "Per delivery"
+      },
+      time: {
+        hoursAgo: "{{hours}} hours ago",
+        minutesAgo: "{{minutes}} minutes ago"
+      },
+      locations: {
+        koramangala: "Koramangala, Bengaluru",
+        indiranagar: "Indiranagar, Bengaluru",
+        hsrLayout: "HSR Layout, Bengaluru",
+        whitefield: "Whitefield, Bengaluru",
+        jayanagar: "Jayanagar, Bengaluru",
+        marathahalli: "Marathahalli, Bengaluru",
+        bangaloreCentral: "Bangalore Central",
+        allBangalore: "All Bangalore",
+        palaceGrounds: "Palace Grounds, Bengaluru",
+        jpNagar: "JP Nagar, Bengaluru"
+      },
+      household: {
+        houseCleaningAssistant: {
+          title: "House Cleaning Assistant",
+          company: "Clean Home Services",
+          description: "Looking for reliable cleaning staff for residential apartments",
+          req1: "Experience in house cleaning",
+          req2: "Own cleaning supplies preferred"
+        },
+        partTimeCook: {
+          title: "Part-time Cook",
+          company: "Family Kitchen",
+          description: "Cook South Indian meals for small family",
+          req1: "South Indian cooking",
+          req2: "Vegetarian meals",
+          req3: "2+ years experience"
+        },
+        laundryAssistant: {
+          title: "Laundry Assistant",
+          company: "Fresh Clean Laundry",
+          description: "Handle washing, drying and ironing of clothes",
+          req1: "Machine operation",
+          req2: "Ironing skills",
+          req3: "Quality focus"
+        }
+      },
+      repair: {
+        plumberAssistant: {
+          title: "Plumber Assistant",
+          company: "Fix-It Solutions",
+          description: "Assist senior plumber with residential repairs and installations",
+          req1: "Basic plumbing knowledge",
+          req2: "Tool handling",
+          req3: "Physical fitness"
+        },
+        electricianHelper: {
+          title: "Electrician Helper",
+          company: "PowerTech Services",
+          description: "Support electrician with wiring and appliance installations",
+          req1: "Electrical basics",
+          req2: "Safety awareness",
+          req3: "Tool familiarity"
+        },
+        carpenterAssistant: {
+          title: "Carpenter Assistant",
+          company: "Wood Craft Co.",
+          description: "Help with furniture repair and woodwork projects",
+          req1: "Basic carpentry",
+          req2: "Measuring skills",
+          req3: "Hand tools experience"
+        }
+      },
+      emergency: {
+        deliveryExecutive: {
+          title: "Delivery Executive",
+          company: "Quick Delivery",
+          description: "Fast delivery of packages and documents across the city",
+          req1: "Own vehicle",
+          req2: "License",
+          req3: "Mobile phone",
+          req4: "Local area knowledge"
+        },
+        emergencyDriver: {
+          title: "Emergency Driver",
+          company: "City Cabs",
+          description: "Emergency and on-demand driving services",
+          req1: "Valid driving license",
+          req2: "Clean record",
+          req3: "Vehicle available",
+          req4: "24/7 availability"
+        }
+      },
+      event: {
+        eventSetupAssistant: {
+          title: "Event Setup Assistant",
+          company: "Grand Events",
+          description: "Setup and manage wedding and corporate events",
+          req1: "Physical fitness",
+          req2: "Team work",
+          req3: "Event experience preferred"
+        },
+        cateringHelper: {
+          title: "Catering Helper",
+          company: "Tasty Bites Catering",
+          description: "Assist in food preparation and serving at events",
+          req1: "Food handling",
+          req2: "Serving experience",
+          req3: "Hygiene awareness"
+        }
+      },
+      personal: {
+        personalFitnessTrainer: {
+          title: "Personal Fitness Trainer",
+          company: "FitLife Gym",
+          description: "Provide personal training sessions at home and gym",
+          req1: "Fitness certification",
+          req2: "Training experience",
+          req3: "Nutrition knowledge"
+        },
+        petCareAssistant: {
+          title: "Pet Care Assistant",
+          company: "Happy Paws",
+          description: "Take care of pets including walking, feeding and grooming",
+          req1: "Love for animals",
+          req2: "Basic pet care",
+          req3: "Reliable schedule"
+        }
+      }
+    },
+
+    auth: {
+      loginTitle: "ನಿಮ್ಮ ಖಾತೆಗೆ ಲಾಗಿನ್ ಆಗಿ",
+      signupTitle: "ಹೊಸ ಖಾತೆ ರಚಿಸಿ", 
+      email: "ಇಮೇಲ್ ವಿಳಾಸ",
+      password: "ಪಾಸ್‌ವರ್ಡ್",
+      confirmPassword: "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
+      loginButton: "ಲಾಗಿನ್",
+      signupButton: "ಸೈನ್ ಅಪ್",
+      forgotPassword: "ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿದ್ದೀರಾ?",
+      switchToSignup: "ಖಾತೆ ಇಲ್ಲವೇ? ಸೈನ್ ಅಪ್ ಮಾಡಿ",
+      switchToLogin: "ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೇ? ಲಾಗಿನ್ ಮಾಡಿ",
+      resetPassword: "ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸಿ",
+      resetButton: "ರೀಸೆಟ್ ಲಿಂಕ್ ಕಳುಹಿಸಿ",
+      backToLogin: "ಲಾಗಿನ್‌ಗೆ ಹಿಂತಿರುಗಿ"
+    },
+    jobs: {
+      subtitle: "ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ದೈನಂದಿನ ವೇತನದ ಅವಕಾಶಗಳನ್ನು ಕಂಡುಕೊಳ್ಳಿ",
+      noJobsFound: "ಯಾವುದೇ ಕೆಲಸ ಸಿಗಲಿಲ್ಲ",
+      noJobsMessage: "ನಿಮ್ಮ ಹುಡುಕಾಟ ಮಾನದಂಡಗಳನ್ನು ಸರಿಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಎಲ್ಲಾ ವರ್ಗಗಳನ್ನು ವೀಕ್ಷಿಸಿ.",
+      reviews: "ವಿಮರ್ಶೆಗಳು",
+      helpTitle: "ಸರಿಯಾದ ಕೆಲಸವನ್ನು ಕಂಡುಹಿಡಿಯಲು ಸಹಾಯ ಬೇಕೇ?",
+      helpDescription: "ವೈಯಕ್ತಿಕ ಕೆಲಸದ ಶಿಫಾರಸುಗಳಿಗಾಗಿ ನಮ್ಮ ಬೆಂಬಲ ತಂಡವನ್ನು ಸಂಪರ್ಕಿಸಿ",
+      getAssistance: "ಕೆಲಸದ ಸಹಾಯ ಪಡೆಯಿರಿ",
+      types: { daily: "ದೈನಂದಿನ", perDelivery: "ಪ್ರತಿ ವಿತರಣೆಗೆ" },
+      time: { hoursAgo: "{{hours}} ಗಂಟೆಗಳ ಹಿಂದೆ", minutesAgo: "{{minutes}} ನಿಮಿಷಗಳ ಹಿಂದೆ" },
+      locations: {
+        koramangala: "ಕೋರಮಂಗಲ, ಬೆಂಗಳೂರು", indiranagar: "ಇಂದಿರಾನಗರ, ಬೆಂಗಳೂರು",
+        hsrLayout: "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್, ಬೆಂಗಳೂರು", whitefield: "ವೈಟ್‌ಫೀಲ್ಡ್, ಬೆಂಗಳೂರು",
+        jayanagar: "ಜಯನಗರ, ಬೆಂಗಳೂರು", marathahalli: "ಮರಾಠಹಳ್ಳಿ, ಬೆಂಗಳೂರು",
+        bangaloreCentral: "ಬೆಂಗಳೂರು ಸೆಂಟ್ರಲ್", allBangalore: "ಎಲ್ಲಾ ಬೆಂಗಳೂರು",
+        palaceGrounds: "ಪ್ಯಾಲೇಸ್ ಗ್ರೌಂಡ್ಸ್, ಬೆಂಗಳೂರು", jpNagar: "ಜೆ.ಪಿ. ನಗರ, ಬೆಂಗಳೂರು"
+      },
+      household: {
+        houseCleaningAssistant: { title: "ಮನೆ ಶುಚಿಗೊಳಿಸುವ ಸಹಾಯಕ", company: "ಕ್ಲೀನ್ ಹೋಮ್ ಸರ್ವೀಸಸ್", description: "ವಸತಿ ಅಪಾರ್ಟ್‌ಮೆಂಟ್‌ಗಳಿಗಾಗಿ ವಿಶ್ವಾಸಯೋಗ್ಯ ಶುಚಿಗೊಳಿಸುವ ಸಿಬ್ಬಂದಿಯನ್ನು ಹುಡುಕುತ್ತಿದ್ದೇವೆ", req1: "ಮನೆ ಶುಚಿಗೊಳಿಸುವ ಅನುಭವ", req2: "ಸ್ವಂತ ಶುಚಿಗೊಳಿಸುವ ಸಾಮಗ್ರಿಗಳು ಆದ್ಯತೆ" },
+        partTimeCook: { title: "ಅರ್ಧಾವಧಿ ಅಡುಗೆಯವರು", company: "ಫ್ಯಾಮಿಲಿ ಕಿಚನ್", description: "ಸಣ್ಣ ಕುಟುಂಬಕ್ಕೆ ದಕ್ಷಿಣ ಭಾರತೀಯ ಊಟ ಬಿಸಿ ಮಾಡಿ", req1: "ದಕ್ಷಿಣ ಭಾರತೀಯ ಅಡುಗೆ", req2: "ಸಸ್ಯಾಹಾರಿ ಊಟ", req3: "2+ ವರ್ಷಗಳ ಅನುಭವ" },
+        laundryAssistant: { title: "ಲಾಂಡ್ರಿ ಸಹಾಯಕ", company: "ಫ್ರೆಶ್ ಕ್ಲೀನ್ ಲಾಂಡ್ರಿ", description: "ಬಟ್ಟೆಗಳನ್ನು ತೊಳೆಯುವುದು, ಒಣಗಿಸುವುದು ಮತ್ತು ಇಸ್ತ್ರಿ ಮಾಡುವುದು", req1: "ಯಂತ್ರ ಕಾರ್ಯಾಚರಣೆ", req2: "ಇಸ್ತ್ರಿ ಕೌಶಲ್ಯ", req3: "ಗುಣಮಟ್ಟದ ಗಮನ" }
+      },
+      repair: {
+        plumberAssistant: { title: "ಪ್ಲಂಬರ್ ಸಹಾಯಕ", company: "ಫಿಕ್ಸ್-ಇಟ್ ಸೊಲ್ಯೂಷನ್ಸ್", description: "ವಸತಿ ದುರಸ್ತಿ ಮತ್ತು ಸ್ಥಾಪನೆಗಳಲ್ಲಿ ಹಿರಿಯ ಪ್ಲಂಬರ್‌ಗೆ ಸಹಾಯ ಮಾಡಿ", req1: "ಮೂಲಭೂತ ಪ್ಲಂಬಿಂಗ್ ಜ್ಞಾನ", req2: "ಉಪಕರಣ ನಿರ್ವಹಣೆ", req3: "ದೈಹಿಕ ಸಾಮರ್ಥ್ಯ" },
+        electricianHelper: { title: "ಎಲೆಕ್ಟ್ರಿಷಿಯನ್ ಸಹಾಯಕ", company: "ಪವರ್‌ಟೆಕ್ ಸರ್ವೀಸಸ್", description: "ವೈರಿಂಗ್ ಮತ್ತು ಉಪಕರಣ ಸ್ಥಾಪನೆಗಳೊಂದಿಗೆ ಎಲೆಕ್ಟ್ರಿಷಿಯನ್‌ಗೆ ಬೆಂಬಲ", req1: "ವಿದ್ಯುತ್ ಮೂಲಭೂತ ತತ್ವಗಳು", req2: "ಸುರಕ್ಷತಾ ಅರಿವು", req3: "ಉಪಕರಣ ಪರಿಚಯ" },
+        carpenterAssistant: { title: "ಬಡಗಿ ಸಹಾಯಕ", company: "ವುಡ್ ಕ್ರಾಫ್ಟ್ ಕಂಪನಿ", description: "ಪೀಠೋಪಕರಣ ದುರಸ್ತಿ ಮತ್ತು ಮರದ ಕೆಲಸದ ಯೋಜನೆಗಳಲ್ಲಿ ಸಹಾಯ ಮಾಡಿ", req1: "ಮೂಲಭೂತ ಬಡಗಿತನ", req2: "ಅಳತೆ ಕೌಶಲ್ಯ", req3: "ಕೈ ಉಪಕರಣಗಳ ಅನುಭವ" }
+      },
+      emergency: {
+        deliveryExecutive: { title: "ವಿತರಣಾ ಕಾರ್ಯನಿರ್ವಾಹಕ", company: "ಕ್ವಿಕ್ ಡೆಲಿವರಿ", description: "ನಗರದಾದ್ಯಂತ ಪ್ಯಾಕೆಟ್‌ಗಳು ಮತ್ತು ದಾಖಲೆಗಳ ವೇಗದ ವಿತರಣೆ", req1: "ಸ್ವಂತ ವಾಹನ", req2: "ಪರವಾನಗಿ", req3: "ಮೊಬೈಲ್ ಫೋನ್", req4: "ಸ್ಥಳೀಯ ಪ್ರದೇಶ ಜ್ಞಾನ" },
+        emergencyDriver: { title: "ತುರ್ತು ಚಾಲಕ", company: "ಸಿಟಿ ಕ್ಯಾಬ್ಸ್", description: "ತುರ್ತು ಮತ್ತು ಆನ್-ಡಿಮಾಂಡ್ ಚಾಲನಾ ಸೇವೆಗಳು", req1: "ಮಾನ್ಯ ಚಾಲನಾ ಪರವಾನಗಿ", req2: "ಶುಭ್ರ ದಾಖಲೆ", req3: "ವಾಹನ ಲಭ್ಯ", req4: "24/7 ಲಭ್ಯತೆ" }
+      },
+      event: {
+        eventSetupAssistant: { title: "ಈವೆಂಟ್ ಸೆಟಪ್ ಸಹಾಯಕ", company: "ಗ್ರಾಂಡ್ ಇವೆಂಟ್ಸ್", description: "ವಿವಾಹ ಮತ್ತು ಕಾರ್ಪೊರೇಟ್ ಇವೆಂಟ್‌ಗಳನ್ನು ಸೆಟಪ್ ಮತ್ತು ನಿರ್ವಹಿಸಿ", req1: "ದೈಹಿಕ ಸಾಮರ್ಥ್ಯ", req2: "ತಂಡದ ಕೆಲಸ", req3: "ಈವೆಂಟ್ ಅನುಭವ ಆದ್ಯತೆ" },
+        cateringHelper: { title: "ಕ್ಯಾಟರಿಂಗ್ ಸಹಾಯಕ", company: "ಟೇಸ್ಟಿ ಬೈಟ್ಸ್ ಕ್ಯಾಟರಿಂಗ್", description: "ಈವೆಂಟ್‌ಗಳಲ್ಲಿ ಆಹಾರ ತಯಾರಿಕೆ ಮತ್ತು ಬಡಿಸುವಲ್ಲಿ ಸಹಾಯ ಮಾಡಿ", req1: "ಆಹಾರ ನಿರ್ವಹಣೆ", req2: "ಬಡಿಸುವ ಅನುಭವ", req3: "ನೈರ್ಮಲ್ಯ ಅರಿವು" }
+      },
+      personal: {
+        personalFitnessTrainer: { title: "ವೈಯಕ್ತಿಕ ಫಿಟ್‌ನೆಸ್ ತರಬೇತುದಾರ", company: "ಫಿಟ್‌ಲೈಫ್ ಜಿಮ್", description: "ಮನೆ ಮತ್ತು ಜಿಮ್‌ನಲ್ಲಿ ವೈಯಕ್ತಿಕ ತರಬೇತಿ ಸೆಷನ್‌ಗಳನ್ನು ಒದಗಿಸಿ", req1: "ಫಿಟ್‌ನೆಸ್ ಪ್ರಮಾಣೀಕರಣ", req2: "ತರಬೇತಿ ಅನುಭವ", req3: "ಪೋಷಣೆ ಜ್ಞಾನ" },
+        petCareAssistant: { title: "ಸಾಕು ಪ್ರಾಣಿ ಆರೈಕೆ ಸಹಾಯಕ", company: "ಹ್ಯಾಪಿ ಪಾಸ್", description: "ನಡಿಗೆ, ಆಹಾರ ಮತ್ತು ಗ್ರೂಮಿಂಗ್ ಸೇರಿದಂತೆ ಸಾಕುಪ್ರಾಣಿಗಳನ್ನು ನೋಡಿಕೊಳ್ಳಿ", req1: "ಪ್ರಾಣಿಗಳ ಪ್ರೀತಿ", req2: "ಮೂಲಭೂತ ಪೆಟ್ ಕೇರ್", req3: "ವಿಶ್ವಾಸಯೋಗ್ಯ ವೇಳಾಪಟ್ಟಿ" }
+      }
+    },
+
     // Auth translations
     'auth.enterEmail': 'Enter Email Address',
     'auth.verifyCode': 'Verify Code',
