@@ -15,11 +15,11 @@ const translations = {
     'header.postJobs': 'Post Jobs',
     
     // Hero Section
-    'hero.tagline': 'Connecting daily wage workers with job opportunities near them',
+    'hero.tagline': 'Welcome to WorkXpress – Daily Wage Job Platform',
     
     // How WorkXpress Works
-    'features.title': 'How WorkXpress Works',
-    'features.findJobs.title': 'Find Jobs Nearby',
+    'features.title': 'Our Key Features',
+    'features.findJobs.title': 'Find Jobs Near You',
     'features.findJobs.description': 'Discover daily wage opportunities in your area. Location-based matching ensures you find work close to home.',
     'features.postJobs.title': 'Easy Job Posting',
     'features.postJobs.description': 'Employers can quickly post jobs with details, location, and payment information. Simple and efficient.',
@@ -74,7 +74,10 @@ const translations = {
     'employer.jobPosted': 'Job posted successfully!',
     
     // Services
-    'services.title': 'Our Services',
+    'services.title': 'Available Services',
+    
+    // Contact Section
+    'contact.title': 'Contact Us',
     'services.searchPlaceholder': 'Search for services...',
     'services.bookNow': 'Book Now',
     'services.household': 'Household Services',
@@ -158,11 +161,11 @@ const translations = {
     'header.postJobs': 'ಕೆಲಸ ಪ್ರಕಟಿಸಿ',
     
     // Hero Section
-    'hero.tagline': 'ದೈನಂದಿನ ಕೂಲಿ ಕಾರ್ಮಿಕರನ್ನು ಅವರ ಹತ್ತಿರದ ಉದ್ಯೋಗ ಅವಕಾಶಗಳೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ',
+    'hero.tagline': 'WorkXpress ಗೆ ಸುಸ್ವಾಗತ – ದೈನಂದಿನ ಕೂಲಿ ಉದ್ಯೋಗ ವೇದಿಕೆ',
     
     // How WorkXpress Works
-    'features.title': 'ವರ್ಕ್‌ಎಕ್ಸ್‌ಪ್ರೆಸ್ ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ',
-    'features.findJobs.title': 'ಹತ್ತಿರದ ಕೆಲಸ ಹುಡುಕಿ',
+    'features.title': 'ನಮ್ಮ ಪ್ರಮುಖ ವೈಶಿಷ್ಟ್ಯಗಳು',
+    'features.findJobs.title': 'ನಿಮ್ಮ ಹತ್ತಿರದ ಉದ್ಯೋಗಗಳನ್ನು ಹುಡುಕಿ',
     'features.findJobs.description': 'ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ದೈನಂದಿನ ಕೂಲಿ ಅವಕಾಶಗಳನ್ನು ಕಂಡುಹಿಡಿಯಿರಿ. ಸ್ಥಳ-ಆಧಾರಿತ ಹೊಂದಾಣಿಕೆಯು ಮನೆಯ ಹತ್ತಿರ ಕೆಲಸ ಕಂಡುಕೊಳ್ಳಲು ಖಾತ್ರಿ ನೀಡುತ್ತದೆ.',
     'features.postJobs.title': 'ಸುಲಭ ಕೆಲಸ ಪ್ರಕಟಣೆ',
     'features.postJobs.description': 'ಉದ್ಯೋಗದಾತರು ವಿವರಗಳು, ಸ್ಥಳ ಮತ್ತು ಪಾವತಿ ಮಾಹಿತಿಯೊಂದಿಗೆ ತ್ವರಿತವಾಗಿ ಕೆಲಸಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡಬಹುದು. ಸರಳ ಮತ್ತು ಪರಿಣಾಮಕಾರಿ.',
@@ -217,7 +220,10 @@ const translations = {
     'employer.jobPosted': 'ಕೆಲಸ ಯಶಸ್ವಿಯಾಗಿ ಪೋಸ್ಟ್ ಮಾಡಲಾಗಿದೆ!',
     
     // Services
-    'services.title': 'ನಮ್ಮ ಸೇವೆಗಳು',
+    'services.title': 'ಲಭ್ಯವಿರುವ ಸೇವೆಗಳು',
+    
+    // Contact Section  
+    'contact.title': 'ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ',
     'services.searchPlaceholder': 'ಸೇವೆಗಳಿಗಾಗಿ ಹುಡುಕಿ...',
     'services.bookNow': 'ಈಗ ಬುಕ್ ಮಾಡಿ',
     'services.household': 'ಮನೆಯ ಸೇವೆಗಳು',
@@ -301,11 +307,11 @@ const translations = {
     'header.postJobs': 'नौकरी पोस्ट करें',
     
     // Hero Section
-    'hero.tagline': 'दैनिक वेतन श्रमिकों को उनके नज़दीकी नौकरी के अवसरों से जोड़ना',
+    'hero.tagline': 'WorkXpress में आपका स्वागत है – दैनिक मजदूरी नौकरी प्लेटफ़ॉर्म',
     
     // How WorkXpress Works
-    'features.title': 'WorkXpress कैसे काम करता है',
-    'features.findJobs.title': 'नज़दीकी नौकरियां खोजें',
+    'features.title': 'हमारी प्रमुख विशेषताएँ',
+    'features.findJobs.title': 'अपने आस-पास नौकरियाँ खोजें',
     'features.findJobs.description': 'अपने क्षेत्र में दैनिक मजदूरी के अवसर खोजें। स्थान-आधारित मैचिंग सुनिश्चित करती है कि आपको घर के पास काम मिले।',
     'features.postJobs.title': 'आसान नौकरी पोस्टिंग',
     'features.postJobs.description': 'नियोक्ता विवरण, स्थान और भुगतान जानकारी के साथ तुरंत नौकरियां पोस्ट कर सकते हैं। सरल और कुशल।',
@@ -360,7 +366,10 @@ const translations = {
     'employer.jobPosted': 'नौकरी सफलतापूर्वक पोस्ट की गई!',
     
     // Services
-    'services.title': 'हमारी सेवाएं',
+    'services.title': 'उपलब्ध सेवाएँ',
+    
+    // Contact Section
+    'contact.title': 'संपर्क करें',
     'services.searchPlaceholder': 'सेवाओं के लिए खोजें...',
     'services.bookNow': 'अभी बुक करें',
     'services.household': 'घरेलू सेवाएं',
