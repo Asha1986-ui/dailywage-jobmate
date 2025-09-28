@@ -75,17 +75,77 @@ const translations = {
     
     // Services
     'services.title': 'Available Services',
-    
-    // Contact Section
-    'contact.title': 'Contact Us',
     'services.searchPlaceholder': 'Search for services...',
     'services.bookNow': 'Book Now',
     'services.household': 'Household Services',
     'services.repair': 'Repair & Maintenance',
-    'services.emergency': 'Quick Emergency Services',
+    'services.emergency': 'Emergency Services',
     'services.event': 'Event Support',
     'services.personal': 'Personal Services',
-    'services.special': 'Special Anytime Anywhere',
+    'services.special': 'Special Services',
+    
+    // Household Services
+    'services.maid.title': 'House Cleaning',
+    'services.maid.desc': 'Professional home cleaning services',
+    'services.cook.title': 'Cook/Chef',
+    'services.cook.desc': 'Skilled cooking services for your home',
+    'services.laundry.title': 'Laundry Service',
+    'services.laundry.desc': 'Complete washing and ironing services',
+    'services.babysitting.title': 'Babysitting',
+    'services.babysitting.desc': 'Trusted childcare services',
+    'services.elderly.title': 'Elderly Care',
+    'services.elderly.desc': 'Compassionate care for elderly',
+    
+    // Repair Services
+    'services.plumber.title': 'Plumber',
+    'services.plumber.desc': 'Expert plumbing repairs and installations',
+    'services.electrician.title': 'Electrician',
+    'services.electrician.desc': 'Safe electrical work and repairs',
+    'services.carpenter.title': 'Carpenter',
+    'services.carpenter.desc': 'Quality woodwork and furniture repair',
+    'services.painter.title': 'Painter',
+    'services.painter.desc': 'Professional painting services',
+    'services.appliance.title': 'Appliance Repair',
+    'services.appliance.desc': 'Fix all types of home appliances',
+    
+    // Emergency Services
+    'services.delivery.title': 'Quick Delivery',
+    'services.delivery.desc': 'Fast delivery services',
+    'services.bikemechanic.title': 'Bike Repair',
+    'services.bikemechanic.desc': 'Motorcycle and bicycle repairs',
+    'services.towing.title': 'Vehicle Towing',
+    'services.towing.desc': 'Emergency vehicle towing service',
+    'services.watertanker.title': 'Water Tanker',
+    'services.watertanker.desc': 'Emergency water supply',
+    
+    // Event Services
+    'services.catering.title': 'Catering',
+    'services.catering.desc': 'Professional event catering',
+    'services.decoration.title': 'Decoration',
+    'services.decoration.desc': 'Event decoration and setup',
+    'services.cleaning.title': 'Event Cleaning',
+    'services.cleaning.desc': 'Post-event cleanup services',
+    
+    // Personal Services
+    'services.salon.title': 'Beauty Services',
+    'services.salon.desc': 'Home salon and grooming services',
+    'services.fitness.title': 'Personal Trainer',
+    'services.fitness.desc': 'Home fitness training',
+    'services.petcare.title': 'Pet Care',
+    'services.petcare.desc': 'Pet grooming and care services',
+    
+    // Special Services
+    'services.driver.title': 'Personal Driver',
+    'services.driver.desc': 'Professional driving services',
+    'services.grocery.title': 'Grocery Shopping',
+    'services.grocery.desc': 'Complete grocery shopping service',
+    'services.pickdrop.title': 'Pick & Drop',
+    'services.pickdrop.desc': 'Convenient pick and drop services',
+    'services.instanthelp.title': 'Instant Help',
+    'services.instanthelp.desc': 'Quick assistance for any task',
+    
+    // Contact Section
+    'contact.title': 'Contact Us',
     
     // Service Details
     'serviceDetails.serviceTitle': 'Service Details',
@@ -221,17 +281,77 @@ const translations = {
     
     // Services
     'services.title': 'ಲಭ್ಯವಿರುವ ಸೇವೆಗಳು',
-    
-    // Contact Section  
-    'contact.title': 'ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ',
     'services.searchPlaceholder': 'ಸೇವೆಗಳಿಗಾಗಿ ಹುಡುಕಿ...',
     'services.bookNow': 'ಈಗ ಬುಕ್ ಮಾಡಿ',
     'services.household': 'ಮನೆಯ ಸೇವೆಗಳು',
     'services.repair': 'ದುರಸ್ತಿ ಮತ್ತು ನಿರ್ವಹಣೆ',
-    'services.emergency': 'ತ್ವರಿತ ತುರ್ತು ಸೇವೆಗಳು',
+    'services.emergency': 'ತುರ್ತು ಸೇವೆಗಳು',
     'services.event': 'ಕಾರ್ಯಕ್ರಮ ಬೆಂಬಲ',
     'services.personal': 'ವೈಯಕ್ತಿಕ ಸೇವೆಗಳು',
-    'services.special': 'ವಿಶೇಷ ಯಾವಾಗ ವೇಳೆ ಎಲ್ಲಿಯಾದರೂ',
+    'services.special': 'ವಿಶೇಷ ಸೇವೆಗಳು',
+    
+    // Household Services
+    'services.maid.title': 'ಮನೆ ಸ್ವಚ್ಛತೆ',
+    'services.maid.desc': 'ವೃತ್ತಿಪರ ಮನೆ ಸ್ವಚ್ಛತಾ ಸೇವೆಗಳು',
+    'services.cook.title': 'ಅಡುಗೆಯವರು/ಬಾಣಸಿಗ',
+    'services.cook.desc': 'ನಿಮ್ಮ ಮನೆಗೆ ನುರಿತ ಅಡುಗೆ ಸೇವೆಗಳು',
+    'services.laundry.title': 'ಲಾಂಡ್ರಿ ಸೇವೆ',
+    'services.laundry.desc': 'ಸಂಪೂರ್ಣ ತೊಳೆಯುವ ಮತ್ತು ಇಸ್ತ್ರಿ ಸೇವೆಗಳು',
+    'services.babysitting.title': 'ಮಕ್ಕಳ ಆರೈಕೆ',
+    'services.babysitting.desc': 'ವಿಶ್ವಾಸಾರ್ಹ ಮಕ್ಕಳ ಆರೈಕೆ ಸೇವೆಗಳು',
+    'services.elderly.title': 'ವಯಸ್ಸಾದವರ ಆರೈಕೆ',
+    'services.elderly.desc': 'ವಯಸ್ಸಾದವರಿಗೆ ಸಹಾನುಭೂತಿಯ ಆರೈಕೆ',
+    
+    // Repair Services
+    'services.plumber.title': 'ಪ್ಲಂಬರ್',
+    'services.plumber.desc': 'ತಜ್ಞ ಪ್ಲಂಬಿಂಗ್ ದುರಸ್ತಿ ಮತ್ತು ಸ್ಥಾಪನೆಗಳು',
+    'services.electrician.title': 'ಎಲೆಕ್ಟ್ರಿಷಿಯನ್',
+    'services.electrician.desc': 'ಸುರಕ್ಷಿತ ವಿದ್ಯುತ್ ಕೆಲಸ ಮತ್ತು ದುರಸ್ತಿಗಳು',
+    'services.carpenter.title': 'ಬಡಗಿ',
+    'services.carpenter.desc': 'ಗುಣಮಟ್ಟದ ಮರದ ಕೆಲಸ ಮತ್ತು ಪೀಠೋಪಕರಣ ದುರಸ್ತಿ',
+    'services.painter.title': 'ಪೇಂಟರ್',
+    'services.painter.desc': 'ವೃತ್ತಿಪರ ಚಿತ್ರಕಲೆ ಸೇವೆಗಳು',
+    'services.appliance.title': 'ಉಪಕರಣ ದುರಸ್ತಿ',
+    'services.appliance.desc': 'ಎಲ್ಲಾ ರೀತಿಯ ಮನೆಯ ಉಪಕರಣಗಳನ್ನು ಸರಿಪಡಿಸಿ',
+    
+    // Emergency Services
+    'services.delivery.title': 'ತ್ವರಿತ ವಿತರಣೆ',
+    'services.delivery.desc': 'ವೇಗದ ವಿತರಣಾ ಸೇವೆಗಳು',
+    'services.bikemechanic.title': 'ಬೈಕ್ ದುರಸ್ತಿ',
+    'services.bikemechanic.desc': 'ಮೋಟಾರ್ ಸೈಕಲ್ ಮತ್ತು ಸೈಕಲ್ ದುರಸ್ತಿಗಳು',
+    'services.towing.title': 'ವಾಹನ ಎಳೆಯುವುದು',
+    'services.towing.desc': 'ತುರ್ತು ವಾಹನ ಎಳೆಯುವ ಸೇವೆ',
+    'services.watertanker.title': 'ನೀರಿನ ಟ್ಯಾಂಕರ್',
+    'services.watertanker.desc': 'ತುರ್ತು ನೀರು ಪೂರೈಕೆ',
+    
+    // Event Services
+    'services.catering.title': 'ಆಹಾರ ಪೂರೈಕೆ',
+    'services.catering.desc': 'ವೃತ್ತಿಪರ ಕಾರ್ಯಕ್ರಮ ಆಹಾರ ಪೂರೈಕೆ',
+    'services.decoration.title': 'ಅಲಂಕಾರ',
+    'services.decoration.desc': 'ಕಾರ್ಯಕ್ರಮ ಅಲಂಕಾರ ಮತ್ತು ಸೆಟಪ್',
+    'services.cleaning.title': 'ಕಾರ್ಯಕ್ರಮ ಸ್ವಚ್ಛತೆ',
+    'services.cleaning.desc': 'ಕಾರ್ಯಕ್ರಮದ ನಂತರದ ಸ್ವಚ್ಛತಾ ಸೇವೆಗಳು',
+    
+    // Personal Services
+    'services.salon.title': 'ಸೌಂದರ್ಯ ಸೇವೆಗಳು',
+    'services.salon.desc': 'ಮನೆಯ ಸಲೂನ್ ಮತ್ತು ಅಂದಗೊಳಿಸುವ ಸೇವೆಗಳು',
+    'services.fitness.title': 'ವೈಯಕ್ತಿಕ ತರಬೇತುದಾರ',
+    'services.fitness.desc': 'ಮನೆಯ ಫಿಟ್‌ನೆಸ್ ತರಬೇತಿ',
+    'services.petcare.title': 'ಪೆಟ್ ಆರೈಕೆ',
+    'services.petcare.desc': 'ಪೆಟ್ ಅಂದಗೊಳಿಸುವಿಕೆ ಮತ್ತು ಆರೈಕೆ ಸೇವೆಗಳು',
+    
+    // Special Services
+    'services.driver.title': 'ವೈಯಕ್ತಿಕ ಚಾಲಕ',
+    'services.driver.desc': 'ವೃತ್ತಿಪರ ಚಾಲನಾ ಸೇವೆಗಳು',
+    'services.grocery.title': 'ದಿನಸಿ ಶಾಪಿಂಗ್',
+    'services.grocery.desc': 'ಸಂಪೂರ್ಣ ದಿನಸಿ ಶಾಪಿಂಗ್ ಸೇವೆ',
+    'services.pickdrop.title': 'ಪಿಕ್ & ಡ್ರಾಪ್',
+    'services.pickdrop.desc': 'ಅನುಕೂಲಕರ ಪಿಕ್ ಮತ್ತು ಡ್ರಾಪ್ ಸೇವೆಗಳು',
+    'services.instanthelp.title': 'ತತ್ಕ್ಷಣ ಸಹಾಯ',
+    'services.instanthelp.desc': 'ಯಾವುದೇ ಕಾರ್ಯಕ್ಕೆ ತ್ವರಿತ ಸಹಾಯ',
+    
+    // Contact Section  
+    'contact.title': 'ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ',
     
     // Service Details
     'serviceDetails.serviceTitle': 'ಸೇವೆಯ ವಿವರಗಳು',
@@ -367,17 +487,77 @@ const translations = {
     
     // Services
     'services.title': 'उपलब्ध सेवाएँ',
-    
-    // Contact Section
-    'contact.title': 'संपर्क करें',
     'services.searchPlaceholder': 'सेवाओं के लिए खोजें...',
     'services.bookNow': 'अभी बुक करें',
     'services.household': 'घरेलू सेवाएं',
     'services.repair': 'मरम्मत और रखरखाव',
-    'services.emergency': 'त्वरित आपातकालीन सेवाएं',
+    'services.emergency': 'आपातकालीन सेवाएं',
     'services.event': 'इवेंट सपोर्ट',
     'services.personal': 'व्यक्तिगत सेवाएं',
-    'services.special': 'विशेष कभी भी कहीं भी',
+    'services.special': 'विशेष सेवाएं',
+    
+    // Household Services
+    'services.maid.title': 'घर की सफाई',
+    'services.maid.desc': 'पेशेवर घरेलू सफाई सेवाएं',
+    'services.cook.title': 'रसोइया/शेफ',
+    'services.cook.desc': 'आपके घर के लिए कुशल खाना पकाने की सेवाएं',
+    'services.laundry.title': 'लॉन्ड्री सेवा',
+    'services.laundry.desc': 'पूर्ण धुलाई और प्रेसिंग सेवाएं',
+    'services.babysitting.title': 'बेबीसिटिंग',
+    'services.babysitting.desc': 'भरोसेमंद बाल देखभाल सेवाएं',
+    'services.elderly.title': 'बुजुर्गों की देखभाल',
+    'services.elderly.desc': 'बुजुर्गों के लिए दयालु देखभाल',
+    
+    // Repair Services
+    'services.plumber.title': 'प्लंबर',
+    'services.plumber.desc': 'विशेषज्ञ प्लंबिंग मरम्मत और स्थापना',
+    'services.electrician.title': 'इलेक्ट्रीशियन',
+    'services.electrician.desc': 'सुरक्षित विद्युत कार्य और मरम्मत',
+    'services.carpenter.title': 'बढ़ई',
+    'services.carpenter.desc': 'गुणवत्तापूर्ण लकड़ी का काम और फर्नीचर मरम्मत',
+    'services.painter.title': 'पेंटर',
+    'services.painter.desc': 'पेशेवर पेंटिंग सेवाएं',
+    'services.appliance.title': 'एप्लायंस रिपेयर',
+    'services.appliance.desc': 'सभी प्रकार के घरेलू उपकरणों की मरम्मत',
+    
+    // Emergency Services
+    'services.delivery.title': 'त्वरित डिलीवरी',
+    'services.delivery.desc': 'तेज़ डिलीवरी सेवाएं',
+    'services.bikemechanic.title': 'बाइक मरम्मत',
+    'services.bikemechanic.desc': 'मोटरसाइकिल और साइकिल मरम्मत',
+    'services.towing.title': 'वाहन टोइंग',
+    'services.towing.desc': 'आपातकालीन वाहन टोइंग सेवा',
+    'services.watertanker.title': 'वॉटर टैंकर',
+    'services.watertanker.desc': 'आपातकालीन पानी की आपूर्ति',
+    
+    // Event Services
+    'services.catering.title': 'कैटरिंग',
+    'services.catering.desc': 'पेशेवर इवेंट कैटरिंग',
+    'services.decoration.title': 'सजावट',
+    'services.decoration.desc': 'इवेंट सजावट और सेटअप',
+    'services.cleaning.title': 'इवेंट सफाई',
+    'services.cleaning.desc': 'इवेंट के बाद सफाई सेवाएं',
+    
+    // Personal Services
+    'services.salon.title': 'ब्यूटी सेवाएं',
+    'services.salon.desc': 'घर पर सैलून और ग्रूमिंग सेवाएं',
+    'services.fitness.title': 'पर्सनल ट्रेनर',
+    'services.fitness.desc': 'घर पर फिटनेस ट्रेनिंग',
+    'services.petcare.title': 'पेट केयर',
+    'services.petcare.desc': 'पेट ग्रूमिंग और देखभाल सेवाएं',
+    
+    // Special Services
+    'services.driver.title': 'व्यक्तिगत ड्राइवर',
+    'services.driver.desc': 'पेशेवर ड्राइविंग सेवाएं',
+    'services.grocery.title': 'ग्रॉसरी शॉपिंग',
+    'services.grocery.desc': 'पूर्ण ग्रॉसरी शॉपिंग सेवा',
+    'services.pickdrop.title': 'पिक & ड्रॉप',
+    'services.pickdrop.desc': 'सुविधाजनक पिक और ड्रॉप सेवाएं',
+    'services.instanthelp.title': 'तत्काल सहायता',
+    'services.instanthelp.desc': 'किसी भी काम के लिए त्वरित सहायता',
+    
+    // Contact Section
+    'contact.title': 'संपर्क करें',
     
     // Service Details  
     'serviceDetails.serviceTitle': 'सेवा विवरण',
