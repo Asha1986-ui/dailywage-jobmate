@@ -6,65 +6,62 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Clock, DollarSign, Search, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLanguage } from "@/contexts/LanguageContext";
-import LanguageSelector from "@/components/LanguageSelector";
 
-// Mock job data with translation keys
+// Mock job data
 const mockJobs = [
   {
     id: 1,
-    titleKey: 'jobs.constructionHelper',
-    employerKey: 'employers.buildRight',
+    title: 'Construction Helper',
+    employer: 'BuildRight Constructions',
     location: 'Koramangala, Bangalore',
     distance: '2.3 km',
     payment: '₹800/day',
-    jobTypeKey: 'jobTypes.construction',
-    descriptionKey: 'jobs.constructionHelperDesc',
+    jobType: 'Construction',
+    description: 'Need 2 helpers for concrete work and material handling',
     contact: '+91 98765 43210',
     postedHours: 2
   },
   {
     id: 2,
-    titleKey: 'jobs.plumberAssistant',
-    employerKey: 'employers.quickFix',
+    title: 'Plumber Assistant',
+    employer: 'Quick Fix Services',
     location: 'Whitefield, Bangalore',
     distance: '5.1 km',
     payment: '₹600/day',
-    jobTypeKey: 'jobTypes.plumbing',
-    descriptionKey: 'jobs.plumberAssistantDesc',
+    jobType: 'Plumbing',
+    description: 'Assist with plumbing repairs and installations',
     contact: '+91 87654 32109',
     postedHours: 4
   },
   {
     id: 3,
-    titleKey: 'jobs.painter',
-    employerKey: 'employers.homeMakeover',
+    title: 'Painter',
+    employer: 'Home Makeover',
     location: 'Indiranagar, Bangalore',
     distance: '3.7 km',
     payment: '₹700/day',
-    jobTypeKey: 'jobTypes.painting',
-    descriptionKey: 'jobs.painterDesc',
+    jobType: 'Painting',
+    description: 'Interior wall painting for residential apartment',
     contact: '+91 76543 21098',
     postedHours: 6
   },
   {
     id: 4,
-    titleKey: 'jobs.electricianHelper',
-    employerKey: 'employers.powerTech',
+    title: 'Electrician Helper',
+    employer: 'Power Tech Solutions',
     location: 'HSR Layout, Bangalore',
     distance: '4.2 km',
     payment: '₹650/day',
-    jobTypeKey: 'jobTypes.electrical',
-    descriptionKey: 'jobs.electricianHelperDesc',
+    jobType: 'Electrical',
+    description: 'Assist with electrical wiring and fixture installation',
     contact: '+91 65432 10987',
     postedHours: 24
   }
 ];
 
-const jobTypeKeys = ['jobTypes.construction', 'jobTypes.plumbing', 'jobTypes.electrical', 'jobTypes.painting', 'jobTypes.carpentry', 'jobTypes.masonry'];
+const jobTypes = ['Construction', 'Plumbing', 'Electrical', 'Painting', 'Carpentry', 'Masonry'];
 
 const WorkerDashboard = () => {
-  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJobType, setSelectedJobType] = useState("All");
   const [filteredJobs, setFilteredJobs] = useState(mockJobs);
@@ -72,10 +69,10 @@ const WorkerDashboard = () => {
   // Helper function to format posted time
   const formatPostedTime = (hours: number) => {
     if (hours < 24) {
-      return `${hours} ${t('worker.hoursAgo')}`;
+      return `${hours} hours ago`;
     } else {
       const days = Math.floor(hours / 24);
-      return days === 1 ? `1 ${t('worker.dayAgo')}` : `${days} ${t('worker.daysAgo')}`;
+      return days === 1 ? `1 day ago` : `${days} days ago`;
     }
   };
 
@@ -84,21 +81,21 @@ const WorkerDashboard = () => {
     
     if (searchTerm) {
       filtered = filtered.filter(job => 
-        t(job.titleKey).toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        t(job.employerKey).toLowerCase().includes(searchTerm.toLowerCase())
+        job.employer.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     
     if (selectedJobType !== "All") {
-      filtered = filtered.filter(job => t(job.jobTypeKey) === selectedJobType);
+      filtered = filtered.filter(job => job.jobType === selectedJobType);
     }
     
     setFilteredJobs(filtered);
   };
 
   const handleApply = (jobId: number) => {
-    alert(t('worker.applicationSent'));
+    alert('Application sent successfully!');
   };
 
   return (
@@ -111,18 +108,17 @@ const WorkerDashboard = () => {
               Work<span className="text-accent">Xpress</span>
             </Link>
             <div className="flex items-center gap-4">
-              <LanguageSelector />
               <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-                {t('worker.profile')}
+                Profile
               </Button>
             </div>
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            {t('worker.title')}
+            Worker Dashboard
           </h1>
           <p className="text-white/90 text-lg">
-            {t('hero.tagline')}
+            Find daily wage jobs near you
           </p>
         </div>
       </header>
@@ -133,7 +129,7 @@ const WorkerDashboard = () => {
           <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
             <div className="flex-1">
               <Input
-                placeholder={t('worker.searchPlaceholder')}
+                placeholder="Search jobs, employers, locations..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="h-12 text-lg shadow-soft"
@@ -142,13 +138,13 @@ const WorkerDashboard = () => {
             
             <Select value={selectedJobType} onValueChange={setSelectedJobType}>
               <SelectTrigger className="md:w-48 h-12 shadow-soft">
-                <SelectValue placeholder={t('worker.allJobTypes')} />
+                <SelectValue placeholder="All Job Types" />
               </SelectTrigger>
               <SelectContent className="bg-background border border-border shadow-lg z-50">
-                <SelectItem value="All">{t('worker.allJobTypes')}</SelectItem>
-                {jobTypeKeys.map((typeKey) => (
-                  <SelectItem key={typeKey} value={t(typeKey)}>
-                    {t(typeKey)}
+                <SelectItem value="All">All Job Types</SelectItem>
+                {jobTypes.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -156,7 +152,7 @@ const WorkerDashboard = () => {
             
             <Button onClick={handleSearch} className="h-12 px-6 shadow-soft">
               <Search className="mr-2 h-5 w-5" />
-              {t('worker.search')}
+              Search
             </Button>
           </div>
         </div>
@@ -167,11 +163,11 @@ const WorkerDashboard = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">
-              {t('worker.availableJobs')} ({filteredJobs.length})
+              Available Jobs ({filteredJobs.length})
             </h2>
             <Button variant="outline" size="sm">
               <Filter className="mr-2 h-4 w-4" />
-              {t('worker.moreFilters')}
+              More Filters
             </Button>
           </div>
           
@@ -182,11 +178,11 @@ const WorkerDashboard = () => {
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-xl font-semibold mb-1">{t(job.titleKey)}</h3>
-                        <p className="text-muted-foreground font-medium">{t(job.employerKey)}</p>
+                        <h3 className="text-xl font-semibold mb-1">{job.title}</h3>
+                        <p className="text-muted-foreground font-medium">{job.employer}</p>
                       </div>
                       <Badge variant="secondary" className="ml-2">
-                        {t(job.jobTypeKey)}
+                        {job.jobType}
                       </Badge>
                     </div>
                     
@@ -202,7 +198,7 @@ const WorkerDashboard = () => {
                       </div>
                     </div>
                     
-                    <p className="text-foreground mb-4">{t(job.descriptionKey)}</p>
+                    <p className="text-foreground mb-4">{job.description}</p>
                     
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2 text-lg font-semibold text-primary">
@@ -221,7 +217,7 @@ const WorkerDashboard = () => {
                       onClick={() => handleApply(job.id)}
                       className="w-full shadow-soft"
                     >
-                      {t('worker.applyNow')}
+                      Apply Now
                     </Button>
                     <Button 
                       variant="outline" 
@@ -230,7 +226,7 @@ const WorkerDashboard = () => {
                       onClick={() => window.open(`tel:${job.contact}`, '_self')}
                     >
                       <Phone className="mr-1 h-4 w-4" />
-                      {t('worker.call')}
+                      Call
                     </Button>
                   </div>
                 </div>

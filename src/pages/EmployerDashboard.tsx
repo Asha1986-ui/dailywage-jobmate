@@ -8,8 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { PlusCircle, MapPin, DollarSign, Eye, Edit, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLanguage } from "@/contexts/LanguageContext";
-import LanguageSelector from "@/components/LanguageSelector";
 
 const jobTypes = ["Construction", "Plumbing", "Electrical", "Painting", "Carpentry", "Masonry"];
 
@@ -40,7 +38,6 @@ const mockPostedJobs = [
 ];
 
 const EmployerDashboard = () => {
-  const { t } = useLanguage();
   const [showJobForm, setShowJobForm] = useState(false);
   const [postedJobs, setPostedJobs] = useState(mockPostedJobs);
   
@@ -63,7 +60,7 @@ const EmployerDashboard = () => {
     e.preventDefault();
     
     // For now, just show success message
-    alert(t('employer.jobPosted'));
+    alert('Job posted successfully!');
     
     // Add to posted jobs (mock)
     const newJob = {
@@ -104,7 +101,6 @@ const EmployerDashboard = () => {
               Work<span className="text-accent">Xpress</span>
             </Link>
             <div className="flex items-center gap-4">
-              <LanguageSelector />
               <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                 Profile
               </Button>
@@ -112,7 +108,7 @@ const EmployerDashboard = () => {
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            {t('employer.title')}
+            Employer Dashboard
           </h1>
           <p className="text-white/90 text-lg">
             Post jobs and find skilled workers
@@ -121,7 +117,6 @@ const EmployerDashboard = () => {
       </header>
 
       <div className="container mx-auto py-8 px-4">
-        {/* Quick Actions */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <Button 
             onClick={() => setShowJobForm(!showJobForm)}
@@ -129,24 +124,24 @@ const EmployerDashboard = () => {
             className="shadow-medium"
           >
             <PlusCircle className="mr-2 h-5 w-5" />
-            {showJobForm ? t('employer.cancel') : t('employer.postNew')}
+            {showJobForm ? 'Cancel' : 'Post New Job'}
           </Button>
           
           <Button variant="outline" size="lg" className="shadow-soft">
             <Eye className="mr-2 h-5 w-5" />
-            {t('employer.viewApplications')}
+            View Applications
           </Button>
         </div>
 
         {/* Job Posting Form */}
         {showJobForm && (
           <Card className="p-6 mb-8 shadow-medium bg-gradient-card border-0">
-            <h2 className="text-2xl font-bold mb-6">{t('employer.postNew')}</h2>
+            <h2 className="text-2xl font-bold mb-6">Post New Job</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">{t('employer.jobTitle')}</label>
+                  <label className="block text-sm font-medium mb-2">Job Title</label>
                   <Input
                     placeholder="e.g., Construction Helper"
                     value={formData.title}
@@ -157,10 +152,10 @@ const EmployerDashboard = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium mb-2">{t('employer.jobType')}</label>
+                  <label className="block text-sm font-medium mb-2">Job Type</label>
                   <Select value={formData.jobType} onValueChange={(value) => handleInputChange("jobType", value)}>
                     <SelectTrigger className="shadow-soft">
-                      <SelectValue placeholder={`Select ${t('employer.jobType')}`} />
+                      <SelectValue placeholder="Select Job Type" />
                     </SelectTrigger>
                     <SelectContent className="bg-background border border-border shadow-lg z-50">
                       {jobTypes.map((type) => (
@@ -174,7 +169,7 @@ const EmployerDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">{t('employer.jobDescription')}</label>
+                <label className="block text-sm font-medium mb-2">Job Description</label>
                 <Textarea
                   placeholder="Describe the work that needs to be done..."
                   value={formData.description}
@@ -187,7 +182,7 @@ const EmployerDashboard = () => {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">{t('employer.location')}</label>
+                  <label className="block text-sm font-medium mb-2">Location</label>
                   <Input
                     placeholder="e.g., Koramangala, Bangalore"
                     value={formData.location}
@@ -198,7 +193,7 @@ const EmployerDashboard = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium mb-2">{t('employer.payment')}</label>
+                  <label className="block text-sm font-medium mb-2">Payment</label>
                   <Input
                     placeholder="e.g., ₹800"
                     value={formData.payment}
@@ -210,7 +205,7 @@ const EmployerDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">{t('employer.contact')}</label>
+                <label className="block text-sm font-medium mb-2">Contact Number</label>
                 <Input
                   placeholder="Your phone number"
                   value={formData.contact}
@@ -221,7 +216,7 @@ const EmployerDashboard = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">{t('employer.requirements')}</label>
+                <label className="block text-sm font-medium mb-2">Requirements</label>
                 <Textarea
                   placeholder="Any specific skills or experience required..."
                   value={formData.requirements}
@@ -233,7 +228,7 @@ const EmployerDashboard = () => {
 
               <div className="flex gap-4">
                 <Button type="submit" size="lg" className="shadow-medium">
-                  {t('employer.postJob')}
+                  Post Job
                 </Button>
                 <Button 
                   type="button" 
@@ -242,16 +237,15 @@ const EmployerDashboard = () => {
                   onClick={() => setShowJobForm(false)}
                   className="shadow-soft"
                 >
-                  {t('employer.cancel')}
+                  Cancel
                 </Button>
               </div>
             </form>
           </Card>
         )}
 
-        {/* Posted Jobs */}
         <div>
-          <h2 className="text-2xl font-bold mb-6">{t('employer.postedJobs')}</h2>
+          <h2 className="text-2xl font-bold mb-6">Posted Jobs</h2>
           
           <div className="grid gap-6">
             {postedJobs.map((job) => (
@@ -274,7 +268,7 @@ const EmployerDashboard = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <Badge variant={job.status === "Active" ? "default" : "secondary"}>
-                          {job.status === "Active" ? t('employer.active') : job.status}
+                          {job.status}
                         </Badge>
                         <Badge variant="outline">
                           {job.jobType}
@@ -286,22 +280,22 @@ const EmployerDashboard = () => {
                     
                     <div className="flex items-center gap-6 text-sm text-muted-foreground">
                       <span>Posted: {job.postedDate}</span>
-                      <span className="font-medium text-primary">{job.applications} {t('employer.applications')}</span>
+                      <span className="font-medium text-primary">{job.applications} Applications</span>
                     </div>
                   </div>
                   
                   <div className="flex flex-col gap-2 md:w-40">
                     <Button variant="outline" size="sm" className="w-full">
                       <Eye className="mr-1 h-4 w-4" />
-                      {t('employer.viewApplications')}
+                      View Applications
                     </Button>
                     <Button variant="outline" size="sm" className="w-full">
                       <Edit className="mr-1 h-4 w-4" />
-                      {t('employer.edit')}
+                      Edit
                     </Button>
                     <Button variant="outline" size="sm" className="w-full text-destructive hover:text-destructive">
                       <Trash2 className="mr-1 h-4 w-4" />
-                      {t('employer.delete')}
+                      Delete
                     </Button>
                   </div>
                 </div>

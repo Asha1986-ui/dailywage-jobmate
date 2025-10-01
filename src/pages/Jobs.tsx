@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import VoiceSearch from "@/components/VoiceSearch";
 import {
@@ -20,19 +19,18 @@ import {
 
 const Jobs = () => {
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Job categories
   const jobCategories = [
-    { id: "all", name: t("worker.allJobTypes") },
-    { id: "household", name: t("services.household") },
-    { id: "repair", name: t("services.repair") },
-    { id: "emergency", name: t("services.emergency") },
-    { id: "event", name: t("services.event") },
-    { id: "personal", name: t("services.personal") },
+    { id: "all", name: "All Jobs" },
+    { id: "household", name: "Household Services" },
+    { id: "repair", name: "Repair & Maintenance" },
+    { id: "emergency", name: "Emergency Services" },
+    { id: "event", name: "Event Services" },
+    { id: "personal", name: "Personal Services" },
   ];
 
   // Available jobs data organized by categories
@@ -40,224 +38,224 @@ const Jobs = () => {
     household: [
       {
         id: "h1",
-        title: "ಮನೆ ಶುಚಿಗೊಳಿಸುವ ಸಹಾಯಕ",
-        company: "ಕ್ಲೀನ್ ಹೋಮ್ ಸರ್ವೀಸಸ್",
-        location: "ಕೋರಮಂಗಲ, ಬೆಂಗಳೂರು",
+        title: "House Cleaning Assistant",
+        company: "Clean Home Services",
+        location: "Koramangala, Bengaluru",
         salary: 400,
-        type: "ದೈನಂದಿನ",
+        type: "Daily",
         rating: 4.2,
         reviews: 18,
-        postedTime: "2 ಗಂಟೆಗಳ ಹಿಂದೆ",
+        postedTime: "2 hours ago",
         phoneNumber: "+91 9876543210",
-        description: "ವಸತಿ ಅಪಾರ್ಟ್‌ಮೆಂಟ್‌ಗಳಿಗಾಗಿ ವಿಶ್ವಾಸಯೋಗ್ಯ ಶುಚಿಗೊಳಿಸುವ ಸಿಬ್ಬಂದಿಯನ್ನು ಹುಡುಕುತ್ತಿದ್ದೇವೆ",
-        requirements: ["ಮನೆ ಶುಚಿಗೊಳಿಸುವ ಅನುಭವ", "ಸ್ವಂತ ಶುಚಿಗೊಳಿಸುವ ಸಾಮಗ್ರಿಗಳು ಆದ್ಯತೆ"]
+        description: "Looking for reliable cleaning staff for residential apartments",
+        requirements: ["House cleaning experience", "Own cleaning supplies preferred"]
       },
       {
         id: "h2", 
-        title: t("jobs.household.partTimeCook.title"),
-        company: t("jobs.household.partTimeCook.company"),
-        location: t("jobs.locations.indiranagar"),
+        title: "Part-Time Cook",
+        company: "HomeMeals Service",
+        location: "Indiranagar, Bengaluru",
         salary: 600,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.5,
         reviews: 32,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "4"),
+        postedTime: "4 hours ago",
         phoneNumber: "+91 9876543211",
-        description: t("jobs.household.partTimeCook.description"),
+        description: "Need experienced cook for preparing daily meals for family of 4",
         requirements: [
-          t("jobs.household.partTimeCook.req1"),
-          t("jobs.household.partTimeCook.req2"),
-          t("jobs.household.partTimeCook.req3")
+          "South Indian cuisine expertise",
+          "2+ years experience",
+          "Food hygiene certification"
         ]
       },
       {
         id: "h3",
-        title: t("jobs.household.laundryAssistant.title"),
-        company: t("jobs.household.laundryAssistant.company"),
-        location: t("jobs.locations.hsrLayout"),
+        title: "Laundry Assistant",
+        company: "Fresh Laundry Co",
+        location: "HSR Layout, Bengaluru",
         salary: 350,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.1,
         reviews: 15,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "6"),
+        postedTime: "6 hours ago",
         phoneNumber: "+91 9876543212",
-        description: t("jobs.household.laundryAssistant.description"),
+        description: "Washing and ironing services required for laundry business",
         requirements: [
-          t("jobs.household.laundryAssistant.req1"),
-          t("jobs.household.laundryAssistant.req2"),
-          t("jobs.household.laundryAssistant.req3")
+          "Experience with washing machines",
+          "Ironing skills required",
+          "Attention to detail"
         ]
       }
     ],
     repair: [
       {
         id: "r1",
-        title: t("jobs.repair.plumberAssistant.title"),
-        company: t("jobs.repair.plumberAssistant.company"),
-        location: t("jobs.locations.whitefield"),
+        title: "Plumber Assistant",
+        company: "Fix-It Plumbing",
+        location: "Whitefield, Bengaluru",
         salary: 500,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.3,
         reviews: 25,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "1"),
+        postedTime: "1 hour ago",
         phoneNumber: "+91 9876543213",
-        description: t("jobs.repair.plumberAssistant.description"),
+        description: "Assist with plumbing repairs and installations",
         requirements: [
-          t("jobs.repair.plumberAssistant.req1"),
-          t("jobs.repair.plumberAssistant.req2"),
-          t("jobs.repair.plumberAssistant.req3")
+          "Basic plumbing knowledge",
+          "Own tools preferred",
+          "Physically fit"
         ]
       },
       {
         id: "r2",
-        title: t("jobs.repair.electricianHelper.title"),
-        company: t("jobs.repair.electricianHelper.company"), 
-        location: t("jobs.locations.jayanagar"),
+        title: "Electrician Helper",
+        company: "PowerTech Solutions", 
+        location: "Jayanagar, Bengaluru",
         salary: 550,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.4,
         reviews: 41,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "3"),
+        postedTime: "3 hours ago",
         phoneNumber: "+91 9876543214",
-        description: t("jobs.repair.electricianHelper.description"),
+        description: "Help with electrical installations and repairs",
         requirements: [
-          t("jobs.repair.electricianHelper.req1"),
-          t("jobs.repair.electricianHelper.req2"),
-          t("jobs.repair.electricianHelper.req3")
+          "Understanding of electrical work",
+          "Safety conscious",
+          "Willing to learn"
         ]
       },
       {
         id: "r3",
-        title: t("jobs.repair.carpenterAssistant.title"),
-        company: t("jobs.repair.carpenterAssistant.company"),
-        location: t("jobs.locations.marathahalli"), 
+        title: "Carpenter Assistant",
+        company: "WoodCraft Services",
+        location: "Marathahalli, Bengaluru", 
         salary: 450,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.0,
         reviews: 12,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "5"),
+        postedTime: "5 hours ago",
         phoneNumber: "+91 9876543215",
-        description: t("jobs.repair.carpenterAssistant.description"),
+        description: "Assist in furniture making and wood repairs",
         requirements: [
-          t("jobs.repair.carpenterAssistant.req1"),
-          t("jobs.repair.carpenterAssistant.req2"),
-          t("jobs.repair.carpenterAssistant.req3")
+          "Basic carpentry skills",
+          "Attention to detail",
+          "Team player"
         ]
       }
     ],
     emergency: [
       {
         id: "e1",
-        title: t("jobs.emergency.deliveryExecutive.title"),
-        company: t("jobs.emergency.deliveryExecutive.company"),
-        location: t("jobs.locations.bangaloreCentral"),
+        title: "Delivery Executive",
+        company: "QuickDeliver Services",
+        location: "Bangalore Central",
         salary: 300,
-        type: t("jobs.types.perDelivery"),
+        type: "Per Delivery",
         rating: 4.2,
         reviews: 89,
-        postedTime: t("jobs.time.minutesAgo").replace("{{minutes}}", "30"),
+        postedTime: "30 minutes ago",
         phoneNumber: "+91 9876543216",
-        description: t("jobs.emergency.deliveryExecutive.description"),
+        description: "Fast delivery service for packages and documents",
         requirements: [
-          t("jobs.emergency.deliveryExecutive.req1"),
-          t("jobs.emergency.deliveryExecutive.req2"),
-          t("jobs.emergency.deliveryExecutive.req3"),
-          t("jobs.emergency.deliveryExecutive.req4")
+          "Own vehicle (bike/scooter)",
+          "Smartphone required",
+          "Know local routes",
+          "Good communication"
         ]
       },
       {
         id: "e2",
-        title: t("jobs.emergency.emergencyDriver.title"),
-        company: t("jobs.emergency.emergencyDriver.company"),
-        location: t("jobs.locations.allBangalore"),
+        title: "Emergency Driver",
+        company: "RoadAssist 24/7",
+        location: "All Bangalore",
         salary: 800,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.6,
         reviews: 156,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "1"),
+        postedTime: "1 hour ago",
         phoneNumber: "+91 9876543217",
-        description: t("jobs.emergency.emergencyDriver.description"),
+        description: "Provide emergency driving services for urgent trips",
         requirements: [
-          t("jobs.emergency.emergencyDriver.req1"),
-          t("jobs.emergency.emergencyDriver.req2"),
-          t("jobs.emergency.emergencyDriver.req3"),
-          t("jobs.emergency.emergencyDriver.req4")
+          "Valid driving license",
+          "Clean driving record",
+          "Available 24/7",
+          "Professional attitude"
         ]
       }
     ],
     event: [
       {
         id: "v1",
-        title: t("jobs.event.eventSetupAssistant.title"),
-        company: t("jobs.event.eventSetupAssistant.company"),
-        location: t("jobs.locations.palaceGrounds"),
+        title: "Event Setup Assistant",
+        company: "PartyPerfect Events",
+        location: "Palace Grounds, Bengaluru",
         salary: 600,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.3,
         reviews: 67,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "2"),
+        postedTime: "2 hours ago",
         phoneNumber: "+91 9876543218",
-        description: t("jobs.event.eventSetupAssistant.description"),
+        description: "Help with event setup, decoration, and arrangements",
         requirements: [
-          t("jobs.event.eventSetupAssistant.req1"),
-          t("jobs.event.eventSetupAssistant.req2"),
-          t("jobs.event.eventSetupAssistant.req3")
+          "Event setup experience",
+          "Physically active",
+          "Team coordination"
         ]
       },
       {
         id: "v2",
-        title: t("jobs.event.cateringHelper.title"),
-        company: t("jobs.event.cateringHelper.company"),
-        location: t("jobs.locations.jpNagar"),
+        title: "Catering Helper",
+        company: "Feast Masters Catering",
+        location: "JP Nagar, Bengaluru",
         salary: 400,
-        type: t("jobs.types.daily"), 
+        type: "Daily", 
         rating: 4.1,
         reviews: 33,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "4"),
+        postedTime: "4 hours ago",
         phoneNumber: "+91 9876543219",
-        description: t("jobs.event.cateringHelper.description"),
+        description: "Assist in food preparation and serving at events",
         requirements: [
-          t("jobs.event.cateringHelper.req1"),
-          t("jobs.event.cateringHelper.req2"),
-          t("jobs.event.cateringHelper.req3")
+          "Food handling experience",
+          "Hygiene conscious",
+          "Customer service skills"
         ]
       }
     ],
     personal: [
       {
         id: "p1",
-        title: t("jobs.personal.personalFitnessTrainer.title"),
-        company: t("jobs.personal.personalFitnessTrainer.company"),
-        location: t("jobs.locations.koramangala"), 
+        title: "Personal Fitness Trainer",
+        company: "FitLife Training",
+        location: "Koramangala, Bengaluru", 
         salary: 800,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.7,
         reviews: 94,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "3"),
+        postedTime: "3 hours ago",
         phoneNumber: "+91 9876543220",
-        description: t("jobs.personal.personalFitnessTrainer.description"),
+        description: "Provide personalized fitness training to clients",
         requirements: [
-          t("jobs.personal.personalFitnessTrainer.req1"),
-          t("jobs.personal.personalFitnessTrainer.req2"),
-          t("jobs.personal.personalFitnessTrainer.req3")
+          "Certified fitness trainer",
+          "Experience in personal training",
+          "Nutrition knowledge"
         ]
       },
       {
         id: "p2",
-        title: t("jobs.personal.petCareAssistant.title"),
-        company: t("jobs.personal.petCareAssistant.company"),
-        location: t("jobs.locations.indiranagar"),
+        title: "Pet Care Assistant",
+        company: "PawPals Pet Services",
+        location: "Indiranagar, Bengaluru",
         salary: 350,
-        type: t("jobs.types.daily"),
+        type: "Daily",
         rating: 4.4,
         reviews: 28,
-        postedTime: t("jobs.time.hoursAgo").replace("{{hours}}", "5"),
+        postedTime: "5 hours ago",
         phoneNumber: "+91 9876543221",
-        description: t("jobs.personal.petCareAssistant.description"), 
+        description: "Pet walking, feeding, and basic care services", 
         requirements: [
-          t("jobs.personal.petCareAssistant.req1"),
-          t("jobs.personal.petCareAssistant.req2"),
-          t("jobs.personal.petCareAssistant.req3")
+          "Love for animals",
+          "Pet handling experience",
+          "Reliable and punctual"
         ]
       }
     ]
@@ -290,7 +288,7 @@ const Jobs = () => {
 
   const handleApply = (jobId: string, jobTitle: string) => {
     toast({
-      title: t("worker.applicationSent"),
+      title: "Application Sent",
       description: `Applied for ${jobTitle}. Employer will contact you soon.`,
     });
   };
@@ -323,18 +321,17 @@ const Jobs = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t("common.back")}
+            Back
           </Button>
         </div>
 
-        {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2 flex items-center justify-center gap-3">
             <Briefcase className="w-8 h-8 text-primary" />
-            {t("worker.title")}
+            Find Jobs Near You
           </h1>
           <p className="text-muted-foreground text-lg">
-            ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ದೈನಂದಿನ ವೇತನದ ಅವಕಾಶಗಳನ್ನು ಕಂಡುಕೊಳ್ಳಿ
+            Discover daily wage opportunities in your area
           </p>
         </div>
 
@@ -345,7 +342,7 @@ const Jobs = () => {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder={t("worker.searchPlaceholder")}
+                placeholder="Search for jobs, companies, locations..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 h-12 text-base"
@@ -373,10 +370,9 @@ const Jobs = () => {
           </div>
         </div>
 
-        {/* Jobs Results */}
         <div className="mb-4">
           <p className="text-muted-foreground">
-            {filteredJobs.length} {t("worker.availableJobs")} {selectedCategory !== "all" && `in ${jobCategories.find(c => c.id === selectedCategory)?.name}`}
+            {filteredJobs.length} Jobs Available {selectedCategory !== "all" && `in ${jobCategories.find(c => c.id === selectedCategory)?.name}`}
           </p>
         </div>
 
@@ -386,8 +382,8 @@ const Jobs = () => {
             <Card className="p-8 text-center">
               <CardContent>
                 <Briefcase className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                <h3 className="text-lg font-semibold mb-2">ಯಾವುದೇ ಕೆಲಸ ಸಿಗಲಿಲ್ಲ</h3>
-                <p className="text-muted-foreground">ನಿಮ್ಮ ಹುಡುಕಾಟ ಮಾನದಂಡಗಳನ್ನು ಸರಿಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಎಲ್ಲಾ ವರ್ಗಗಳನ್ನು ವೀಕ್ಷಿಸಿ.</p>
+                <h3 className="text-lg font-semibold mb-2">No Jobs Found</h3>
+                <p className="text-muted-foreground">Try adjusting your search criteria or view all categories.</p>
               </CardContent>
             </Card>
           ) : (
@@ -411,7 +407,7 @@ const Jobs = () => {
                         <div className="flex items-center gap-1">
                           <Star className="w-4 h-4 fill-accent text-accent" />
                           <span>{job.rating}</span>
-                          <span>({job.reviews} ವಿಮರ್ಶೆಗಳು)</span>
+                          <span>({job.reviews} reviews)</span>
                         </div>
                       </div>
 
@@ -436,7 +432,7 @@ const Jobs = () => {
                         <span>{job.salary}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {t("worker.perDay")}
+                        per day
                       </p>
                     </div>
                   </div>
@@ -445,23 +441,23 @@ const Jobs = () => {
                 <CardContent className="pt-0">
                   <div className="flex flex-col sm:flex-row gap-3">
                     {/* Contact Button */}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleCall(job.title, job.phoneNumber)}
-                      className="flex items-center gap-2 flex-1"
-                    >
-                      <Phone className="w-4 h-4" />
-                      {t("worker.call")}
-                    </Button>
-                    
-                    {/* Apply Button */}
-                    <Button
-                      onClick={() => handleApply(job.id, job.title)}
-                      className="sm:w-auto w-full shadow-medium hover:shadow-strong"
-                    >
-                      {t("worker.applyNow")}
-                    </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleCall(job.title, job.phoneNumber)}
+                        className="flex items-center gap-2 flex-1"
+                      >
+                        <Phone className="w-4 h-4" />
+                        Call
+                      </Button>
+                      
+                      {/* Apply Button */}
+                      <Button
+                        onClick={() => handleApply(job.id, job.title)}
+                        className="sm:w-auto w-full shadow-medium hover:shadow-strong"
+                      >
+                        Apply Now
+                      </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -469,22 +465,21 @@ const Jobs = () => {
           )}
         </div>
 
-        {/* Call to Action */}
         <Card className="mt-12 bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
           <CardContent className="p-6">
             <div className="text-center">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                ಸರಿಯಾದ ಕೆಲಸವನ್ನು ಕಂಡುಹಿಡಿಯಲು ಸಹಾಯ ಬೇಕೇ?
+                Need Help Finding the Right Job?
               </h3>
               <p className="text-muted-foreground mb-4">
-                ವೈಯಕ್ತಿಕ ಕೆಲಸದ ಶಿಫಾರಸುಗಳಿಗಾಗಿ ನಮ್ಮ ಬೆಂಬಲ ತಂಡವನ್ನು ಸಂಪರ್ಕಿಸಿ
+                Contact our support team for personalized job recommendations
               </p>
               <Button 
                 variant="outline" 
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 onClick={() => window.location.href = 'tel:+918904051999'}
               >
-                ಕೆಲಸದ ಸಹಾಯ ಪಡೆಯಿರಿ
+                Get Job Assistance
               </Button>
             </div>
           </CardContent>

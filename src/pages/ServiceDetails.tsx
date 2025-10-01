@@ -3,9 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
-import LanguageSelector from "@/components/LanguageSelector";
 import {
   Star,
   MapPin,
@@ -20,7 +18,6 @@ import {
 const ServiceDetails = () => {
   const { serviceKey } = useParams();
   const navigate = useNavigate();
-  const { t } = useLanguage();
   const { toast } = useToast();
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
 
@@ -110,15 +107,15 @@ const ServiceDetails = () => {
   const handleBookProvider = (providerId: string, providerName: string) => {
     setSelectedProvider(providerId);
     toast({
-      title: t("serviceDetails.bookingConfirmed"),
-      description: `${t("serviceDetails.bookingWith")} ${providerName}. ${t("serviceDetails.contactSoon")}`,
+      title: "Booking Confirmed",
+      description: `Booking confirmed with ${providerName}. They will contact you soon.`,
     });
   };
 
   const handleContactProvider = (providerName: string, method: string) => {
     toast({
-      title: t("serviceDetails.contactInitiated"),
-      description: `${t("serviceDetails.contacting")} ${providerName} ${t("serviceDetails.via")} ${method}`,
+      title: "Contact Initiated",
+      description: `Contacting ${providerName} via ${method}`,
     });
   };
 
@@ -127,7 +124,7 @@ const ServiceDetails = () => {
       return (
         <Badge className="bg-success text-success-foreground animate-pulse">
           <CheckCircle className="w-3 h-3 mr-1" />
-          {t("serviceDetails.availableNow")}
+          Available Now
         </Badge>
       );
     }
@@ -137,14 +134,14 @@ const ServiceDetails = () => {
         return (
           <Badge className="bg-success text-success-foreground">
             <CheckCircle className="w-3 h-3 mr-1" />
-            {t("serviceDetails.available")}
+            Available
           </Badge>
         );
       case "busy":
         return (
           <Badge variant="secondary" className="bg-warning text-warning-foreground">
             <Clock className="w-3 h-3 mr-1" />
-            {t("serviceDetails.busy")}
+            Busy
           </Badge>
         );
       default:
@@ -164,35 +161,34 @@ const ServiceDetails = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t("common.back")}
+            Back
           </Button>
-          <LanguageSelector />
         </div>
 
         {/* Instant Service Banner */}
         <div className="bg-gradient-to-r from-primary to-primary-glow rounded-xl p-6 text-center mb-6 shadow-glow">
           <h2 className="text-xl md:text-2xl font-bold text-primary-foreground mb-2">
-            {t("serviceDetails.instantService")}
+            Instant Service Available
           </h2>
           <p className="text-primary-foreground/90">
-            {t("serviceDetails.fastDelivery")}
+            Fast and reliable service delivered to your location
           </p>
         </div>
 
         {/* Service Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            {serviceKey ? t(`services.${serviceKey}.title`) : t("serviceDetails.serviceTitle")}
+            {serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) + " Services" : "Service Details"}
           </h1>
           <p className="text-muted-foreground text-lg">
-            {serviceKey ? t(`services.${serviceKey}.desc`) : t("serviceDetails.serviceDescription")}
+            Professional and verified service providers
           </p>
         </div>
 
         {/* Service Providers List */}
         <div className="space-y-6">
           <h2 className="text-xl font-semibold text-foreground mb-4">
-            {t("serviceDetails.availableProviders")}
+            Available Service Providers
           </h2>
           
           {serviceProviders.map((provider) => (
@@ -212,7 +208,7 @@ const ServiceDetails = () => {
                         {getAvailabilityBadge(provider.availability, provider.estimatedArrival)}
                         <Badge variant="outline" className="text-xs font-medium">
                           <Clock className="w-3 h-3 mr-1" />
-                          {t("serviceDetails.arrivesIn")} {provider.estimatedArrival} {t("serviceDetails.mins")}
+                          Arrives in {provider.estimatedArrival} mins
                         </Badge>
                       </div>
                     </div>
@@ -221,7 +217,7 @@ const ServiceDetails = () => {
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-accent text-accent" />
                         <span>{provider.rating}</span>
-                        <span>({provider.reviews} {t("serviceDetails.reviews")})</span>
+                        <span>({provider.reviews} reviews)</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <MapPin className="w-4 h-4" />
@@ -245,7 +241,7 @@ const ServiceDetails = () => {
                       <span>{provider.price}</span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {t("serviceDetails.per")} {t(`serviceDetails.${provider.priceUnit}`)}
+                      per {provider.priceUnit}
                     </p>
                   </div>
                 </div>
@@ -258,24 +254,23 @@ const ServiceDetails = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => handleContactProvider(provider.name, t("serviceDetails.phone"))}
+                      onClick={() => handleContactProvider(provider.name, "phone")}
                       className="flex items-center gap-2 flex-1"
                     >
                       <Phone className="w-4 h-4" />
-                      {t("serviceDetails.call")}
+                      Call
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => handleContactProvider(provider.name, t("serviceDetails.message"))}
+                      onClick={() => handleContactProvider(provider.name, "message")}
                       className="flex items-center gap-2 flex-1"
                     >
                       <MessageCircle className="w-4 h-4" />
-                      {t("serviceDetails.message")}
+                      Message
                     </Button>
                   </div>
                   
-                  {/* Book Button */}
                   <Button
                     onClick={() => handleBookProvider(provider.id, provider.name)}
                     disabled={provider.availability === "busy" || selectedProvider === provider.id}
@@ -283,10 +278,10 @@ const ServiceDetails = () => {
                     size="lg"
                   >
                     {selectedProvider === provider.id 
-                      ? t("serviceDetails.booked")
+                      ? "Booked"
                       : provider.availability === "busy"
-                      ? t("serviceDetails.unavailable") 
-                      : t("serviceDetails.bookInstant")
+                      ? "Unavailable" 
+                      : "Book Instantly"
                     }
                   </Button>
                 </div>
@@ -295,18 +290,17 @@ const ServiceDetails = () => {
           ))}
         </div>
 
-        {/* Emergency Contact */}
         <Card className="mt-8 bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
           <CardContent className="p-6">
             <div className="text-center">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                {t("serviceDetails.needHelp")}
+                Need Help?
               </h3>
               <p className="text-muted-foreground mb-4">
-                {t("serviceDetails.contactSupport")}
+                Contact our support team for assistance
               </p>
               <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                {t("serviceDetails.contactUs")}
+                Contact Us
               </Button>
             </div>
           </CardContent>
