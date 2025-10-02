@@ -101,6 +101,11 @@ const EmployerDashboard = () => {
               Work<span className="text-accent">Xpress</span>
             </Link>
             <div className="flex items-center gap-4">
+              <Link to="/user-booking-history">
+                <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                  Booking History
+                </Button>
+              </Link>
               <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                 Profile
               </Button>
