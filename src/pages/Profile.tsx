@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, DollarSign, User, Briefcase, MapPin, Plus, Clock } from "lucide-react";
+import { Calendar, DollarSign, User, Briefcase, MapPin, Plus, Clock, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -135,6 +135,14 @@ const Profile = () => {
       {/* Header */}
       <header className="bg-gradient-primary py-6 px-4 shadow-medium">
         <div className="container mx-auto">
+          <div className="mb-4">
+            <Link to="/">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
             My Profile
           </h1>

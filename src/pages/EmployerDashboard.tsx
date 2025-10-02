@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { PlusCircle, MapPin, DollarSign, Eye, Edit, Trash2 } from "lucide-react";
+import { PlusCircle, MapPin, DollarSign, Eye, Edit, Trash2, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const jobTypes = ["Construction", "Plumbing", "Electrical", "Painting", "Carpentry", "Masonry"];
@@ -96,10 +96,18 @@ const EmployerDashboard = () => {
       {/* Header */}
       <header className="bg-gradient-primary py-6 px-4 shadow-medium">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <Link to="/" className="text-2xl font-bold text-white">
-              Work<span className="text-accent">Xpress</span>
+          <div className="mb-4">
+            <Link to="/">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Home
+              </Button>
             </Link>
+          </div>
+          <div className="flex items-center justify-between mb-6">
+            <div className="text-2xl font-bold text-white">
+              Work<span className="text-accent">Xpress</span>
+            </div>
             <div className="flex items-center gap-4">
               <Link to="/user-booking-history">
                 <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">

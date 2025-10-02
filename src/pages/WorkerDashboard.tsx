@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Phone, Clock, DollarSign, Search, Filter } from "lucide-react";
+import { MapPin, Phone, Clock, DollarSign, Search, Filter, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Mock job data
@@ -103,10 +103,18 @@ const WorkerDashboard = () => {
       {/* Header */}
       <header className="bg-gradient-primary py-6 px-4 shadow-medium">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <Link to="/" className="text-2xl font-bold text-white">
-              Work<span className="text-accent">Xpress</span>
+          <div className="mb-4">
+            <Link to="/">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Home
+              </Button>
             </Link>
+          </div>
+          <div className="flex items-center justify-between mb-6">
+            <div className="text-2xl font-bold text-white">
+              Work<span className="text-accent">Xpress</span>
+            </div>
             <div className="flex items-center gap-4">
               <Link to="/worker-booking-history">
                 <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">

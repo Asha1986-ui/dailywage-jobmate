@@ -73,10 +73,10 @@ const UserBookingHistory = () => {
       <header className="bg-gradient-primary py-6 px-4 shadow-medium">
         <div className="container mx-auto">
           <div className="flex items-center gap-4 mb-4">
-            <Link to="/employer-dashboard">
+            <Link to="/">
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
+                Back to Home
               </Button>
             </Link>
           </div>
