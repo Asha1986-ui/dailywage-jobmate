@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Users, Briefcase, MapPin, Star } from "lucide-react";
+import { Users, Briefcase, MapPin, Star, UserCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import ServicesSection from "@/components/ServicesSection";
 import VoiceSearch from "@/components/VoiceSearch";
@@ -20,6 +20,26 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Navigation Header */}
+      <div className="bg-gradient-primary py-3 px-4 shadow-medium sticky top-0 z-50">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-xl font-bold text-white">WorkXpress</h1>
+          <div className="flex gap-2">
+            <Link to="/profile">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                <UserCircle className="h-4 w-4 mr-2" />
+                Profile
+              </Button>
+            </Link>
+            <Link to="/auth">
+              <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                Sign In
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <header className="relative overflow-hidden bg-gradient-hero py-20 px-4">
         
