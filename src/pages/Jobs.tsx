@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import VoiceSearch from "@/components/VoiceSearch";
 import {
@@ -14,13 +17,17 @@ import {
   ArrowLeft,
   Briefcase,
   Phone,
-  Star
+  Star,
+  Filter
 } from "lucide-react";
 
 const Jobs = () => {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedLocation, setSelectedLocation] = useState("all");
+  const [priceSort, setPriceSort] = useState("none");
+  const [showAvailableOnly, setShowAvailableOnly] = useState(false);
 
   // Job categories
   const jobCategories = [
@@ -30,6 +37,20 @@ const Jobs = () => {
     { id: "emergency", name: "Emergency Services" },
     { id: "event", name: "Event Services" },
     { id: "personal", name: "Personal Services" },
+  ];
+
+  // Location options
+  const locations = [
+    "All Locations",
+    "Koramangala, Bengaluru",
+    "Indiranagar, Bengaluru",
+    "HSR Layout, Bengaluru",
+    "Whitefield, Bengaluru",
+    "Jayanagar, Bengaluru",
+    "Marathahalli, Bengaluru",
+    "Bangalore Central",
+    "Palace Grounds, Bengaluru",
+    "JP Nagar, Bengaluru",
   ];
 
   // Available jobs data organized by categories
@@ -47,7 +68,8 @@ const Jobs = () => {
         postedTime: "2 hours ago",
         phoneNumber: "+91 9876543210",
         description: "Looking for reliable cleaning staff for residential apartments",
-        requirements: ["House cleaning experience", "Own cleaning supplies preferred"]
+        requirements: ["House cleaning experience", "Own cleaning supplies preferred"],
+        available: true
       },
       {
         id: "h2", 
@@ -65,7 +87,8 @@ const Jobs = () => {
           "South Indian cuisine expertise",
           "2+ years experience",
           "Food hygiene certification"
-        ]
+        ],
+        available: true
       },
       {
         id: "h3",
@@ -83,7 +106,8 @@ const Jobs = () => {
           "Experience with washing machines",
           "Ironing skills required",
           "Attention to detail"
-        ]
+        ],
+        available: false
       }
     ],
     repair: [
@@ -103,7 +127,8 @@ const Jobs = () => {
           "Basic plumbing knowledge",
           "Own tools preferred",
           "Physically fit"
-        ]
+        ],
+        available: true
       },
       {
         id: "r2",
@@ -121,7 +146,8 @@ const Jobs = () => {
           "Understanding of electrical work",
           "Safety conscious",
           "Willing to learn"
-        ]
+        ],
+        available: true
       },
       {
         id: "r3",
@@ -139,7 +165,8 @@ const Jobs = () => {
           "Basic carpentry skills",
           "Attention to detail",
           "Team player"
-        ]
+        ],
+        available: false
       }
     ],
     emergency: [
@@ -160,7 +187,8 @@ const Jobs = () => {
           "Smartphone required",
           "Know local routes",
           "Good communication"
-        ]
+        ],
+        available: true
       },
       {
         id: "e2",
@@ -179,7 +207,8 @@ const Jobs = () => {
           "Clean driving record",
           "Available 24/7",
           "Professional attitude"
-        ]
+        ],
+        available: true
       }
     ],
     event: [
@@ -199,7 +228,8 @@ const Jobs = () => {
           "Event setup experience",
           "Physically active",
           "Team coordination"
-        ]
+        ],
+        available: true
       },
       {
         id: "v2",
@@ -217,7 +247,8 @@ const Jobs = () => {
           "Food handling experience",
           "Hygiene conscious",
           "Customer service skills"
-        ]
+        ],
+        available: false
       }
     ],
     personal: [
@@ -237,7 +268,8 @@ const Jobs = () => {
           "Certified fitness trainer",
           "Experience in personal training",
           "Nutrition knowledge"
-        ]
+        ],
+        available: true
       },
       {
         id: "p2",
@@ -255,12 +287,13 @@ const Jobs = () => {
           "Love for animals",
           "Pet handling experience",
           "Reliable and punctual"
-        ]
+        ],
+        available: true
       }
     ]
   };
 
-  // Get filtered jobs based on category and search
+  // Get filtered jobs based on category, search, location, and availability
   const getFilteredJobs = () => {
     let allJobs: any[] = [];
     
@@ -280,6 +313,23 @@ const Jobs = () => {
         job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.location.toLowerCase().includes(searchTerm.toLowerCase())
       );
+    }
+
+    // Filter by location
+    if (selectedLocation !== "all" && selectedLocation !== "All Locations") {
+      allJobs = allJobs.filter(job => job.location === selectedLocation);
+    }
+
+    // Filter by availability
+    if (showAvailableOnly) {
+      allJobs = allJobs.filter(job => job.available);
+    }
+
+    // Sort by price
+    if (priceSort === "low-to-high") {
+      allJobs.sort((a, b) => a.salary - b.salary);
+    } else if (priceSort === "high-to-low") {
+      allJobs.sort((a, b) => b.salary - a.salary);
     }
 
     return allJobs;
@@ -368,6 +418,65 @@ const Jobs = () => {
               </Button>
             ))}
           </div>
+
+          {/* Advanced Filters */}
+          <Card className="bg-card/50 border-border/50">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Filter className="w-4 h-4 text-muted-foreground" />
+                <h3 className="font-semibold text-sm">Filters</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Location Filter */}
+                <div className="space-y-2">
+                  <Label htmlFor="location" className="text-xs text-muted-foreground">Location</Label>
+                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                    <SelectTrigger id="location" className="h-9">
+                      <SelectValue placeholder="All Locations" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover">
+                      <SelectItem value="all">All Locations</SelectItem>
+                      {locations.slice(1).map((location) => (
+                        <SelectItem key={location} value={location}>
+                          {location}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Price Sort */}
+                <div className="space-y-2">
+                  <Label htmlFor="price-sort" className="text-xs text-muted-foreground">Sort by Price</Label>
+                  <Select value={priceSort} onValueChange={setPriceSort}>
+                    <SelectTrigger id="price-sort" className="h-9">
+                      <SelectValue placeholder="None" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover">
+                      <SelectItem value="none">None</SelectItem>
+                      <SelectItem value="low-to-high">Low to High</SelectItem>
+                      <SelectItem value="high-to-low">High to Low</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Availability Filter */}
+                <div className="space-y-2">
+                  <Label htmlFor="availability" className="text-xs text-muted-foreground">Availability</Label>
+                  <div className="flex items-center space-x-2 h-9">
+                    <Switch
+                      id="availability"
+                      checked={showAvailableOnly}
+                      onCheckedChange={setShowAvailableOnly}
+                    />
+                    <Label htmlFor="availability" className="text-sm cursor-pointer">
+                      Available Only
+                    </Label>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="mb-4">
@@ -422,6 +531,9 @@ const Jobs = () => {
                             {req}
                           </Badge>
                         ))}
+                        <Badge variant={job.available ? "default" : "destructive"} className="text-xs">
+                          {job.available ? "Available" : "Not Available"}
+                        </Badge>
                       </div>
                     </div>
 
