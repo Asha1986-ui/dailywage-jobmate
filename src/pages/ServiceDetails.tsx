@@ -278,9 +278,9 @@ const ServiceDetails = () => {
         description: `Booking confirmed with ${providerName}. They will contact you soon.`,
       });
 
-      // Redirect to booking history after 1.5 seconds
+      // Redirect to profile page after 1.5 seconds
       setTimeout(() => {
-        navigate("/booking-history");
+        navigate("/profile");
       }, 1500);
     } catch (error: any) {
       toast({

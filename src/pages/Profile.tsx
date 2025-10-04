@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,40 +7,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, DollarSign, User, Briefcase, MapPin, Plus, Clock, ArrowLeft } from "lucide-react";
+import { Calendar, DollarSign, User, Briefcase, MapPin, Plus, Clock, ArrowLeft, IndianRupee } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
 
-// Mock user bookings
-const mockUserBookings = [
-  {
-    id: 1,
-    serviceName: "Maid Services",
-    providerName: "Kavitha R.",
-    date: "2024-01-15",
-    time: "09:00 AM",
-    price: "₹600",
-    status: "Completed"
-  },
-  {
-    id: 2,
-    serviceName: "Plumber Services",
-    providerName: "Ramesh Kumar",
-    date: "2024-01-18",
-    time: "02:00 PM",
-    price: "₹850",
-    status: "Completed"
-  },
-  {
-    id: 3,
-    serviceName: "Cook Services",
-    providerName: "Lakshmi S.",
-    date: "2024-01-20",
-    time: "06:00 PM",
-    price: "₹700",
-    status: "Pending"
-  }
-];
+interface Booking {
+  id: string;
+  user_name: string;
+  service_id: string;
+  service_name: string;
+  location: string;
+  price: number;
+  status: string;
+  created_at: string;
+}
 
 // Mock worker jobs
 const mockWorkerJobs = [
@@ -75,6 +57,8 @@ const mockWorkerJobs = [
 
 const Profile = () => {
   const [showServiceForm, setShowServiceForm] = useState(false);
+  const [userBookings, setUserBookings] = useState<Booking[]>([]);
+  const [loadingBookings, setLoadingBookings] = useState(true);
   const [myServices, setMyServices] = useState([
     {
       id: 1,
@@ -85,6 +69,29 @@ const Profile = () => {
       description: "Expert plumbing services for residential and commercial properties"
     }
   ]);
+
+  useEffect(() => {
+    fetchUserBookings();
+  }, []);
+
+  const fetchUserBookings = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (error) throw error;
+
+      setUserBookings(data || []);
+    } catch (error: any) {
+      console.error("Error fetching bookings:", error);
+      toast.error("Failed to load booking history");
+    } finally {
+      setLoadingBookings(false);
+    }
+  };
 
   const [newService, setNewService] = useState({
     name: "",
@@ -182,48 +189,61 @@ const Profile = () => {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-2xl font-semibold">Booking History</h2>
-                  <Link to="/user-booking-history">
+                  <Link to="/booking-history">
                     <Button variant="outline" size="sm">
                       View All
                     </Button>
                   </Link>
                 </div>
 
-                <div className="grid gap-4">
-                  {mockUserBookings.map((booking) => (
-                    <Card key={booking.id} className="p-4 shadow-soft bg-gradient-card border-0 hover:shadow-medium transition-all duration-300">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between mb-2">
-                            <div>
-                              <h3 className="text-lg font-semibold mb-1">
-                                {booking.serviceName}
-                              </h3>
-                              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <User className="h-4 w-4" />
-                                <span>{booking.providerName}</span>
+                {loadingBookings ? (
+                  <Card className="p-8 text-center shadow-soft bg-gradient-card border-0">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                  </Card>
+                ) : userBookings.length === 0 ? (
+                  <Card className="p-8 text-center shadow-soft bg-gradient-card border-0">
+                    <p className="text-muted-foreground mb-4">No bookings yet</p>
+                    <Link to="/">
+                      <Button size="sm">Browse Services</Button>
+                    </Link>
+                  </Card>
+                ) : (
+                  <div className="grid gap-4">
+                    {userBookings.map((booking) => (
+                      <Card key={booking.id} className="p-4 shadow-soft bg-gradient-card border-0 hover:shadow-medium transition-all duration-300">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <h3 className="text-lg font-semibold mb-1">
+                                  {booking.service_name}
+                                </h3>
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <MapPin className="h-4 w-4" />
+                                  <span>{booking.location}</span>
+                                </div>
                               </div>
+                              <Badge className="bg-success text-success-foreground">
+                                {booking.status}
+                              </Badge>
                             </div>
-                            <Badge className={getStatusColor(booking.status)}>
-                              {booking.status}
-                            </Badge>
-                          </div>
 
-                          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                            <div className="flex items-center gap-2">
-                              <Calendar className="h-4 w-4" />
-                              <span>{booking.date} at {booking.time}</span>
-                            </div>
-                            <div className="flex items-center gap-2 font-semibold text-primary">
-                              <DollarSign className="h-4 w-4" />
-                              {booking.price}
+                            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-2">
+                                <Calendar className="h-4 w-4" />
+                                <span>{format(new Date(booking.created_at), "MMM dd, yyyy 'at' hh:mm a")}</span>
+                              </div>
+                              <div className="flex items-center gap-2 font-semibold text-primary">
+                                <IndianRupee className="h-4 w-4" />
+                                <span>₹{booking.price}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             </TabsContent>
 
