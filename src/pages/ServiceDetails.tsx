@@ -1,6 +1,7 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -22,8 +23,10 @@ import {
 
 const ServiceDetails = () => {
   const { serviceKey } = useParams();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
+  const [bookingInProgress, setBookingInProgress] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [priceFilter, setPriceFilter] = useState("all");
@@ -252,12 +255,43 @@ const ServiceDetails = () => {
 
   const serviceProviders = getFilteredProviders();
 
-  const handleBookProvider = (providerId: string, providerName: string) => {
+  const handleBookProvider = async (providerId: string, providerName: string, providerLocation: string, providerPrice: number) => {
+    if (bookingInProgress) return;
+    
+    setBookingInProgress(true);
     setSelectedProvider(providerId);
-    toast({
-      title: "Booking Confirmed",
-      description: `Booking confirmed with ${providerName}. They will contact you soon.`,
-    });
+    
+    try {
+      const { error } = await supabase.from("bookings").insert({
+        user_name: "Guest User",
+        service_id: providerId,
+        service_name: `${serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) : "Service"} - ${providerName}`,
+        location: providerLocation,
+        price: providerPrice,
+        status: "Booked",
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "✅ Service booked successfully!",
+        description: `Booking confirmed with ${providerName}. They will contact you soon.`,
+      });
+
+      // Redirect to booking history after 1.5 seconds
+      setTimeout(() => {
+        navigate("/booking-history");
+      }, 1500);
+    } catch (error: any) {
+      toast({
+        title: "Booking Failed",
+        description: error.message || "Failed to create booking. Please try again.",
+        variant: "destructive",
+      });
+      setSelectedProvider(null);
+    } finally {
+      setBookingInProgress(false);
+    }
   };
 
   const handleContactProvider = (providerName: string, method: string) => {
@@ -530,12 +564,14 @@ const ServiceDetails = () => {
                   </div>
                   
                   <Button
-                    onClick={() => handleBookProvider(provider.id, provider.name)}
-                    disabled={provider.availability === "busy" || selectedProvider === provider.id}
+                    onClick={() => handleBookProvider(provider.id, provider.name, provider.location, provider.price)}
+                    disabled={provider.availability === "busy" || selectedProvider === provider.id || bookingInProgress}
                     className="sm:w-auto w-full shadow-medium hover:shadow-strong bg-gradient-to-r from-primary to-primary-glow"
                     size="lg"
                   >
-                    {selectedProvider === provider.id 
+                    {bookingInProgress && selectedProvider === provider.id
+                      ? "Booking..."
+                      : selectedProvider === provider.id 
                       ? "Booked"
                       : provider.availability === "busy"
                       ? "Unavailable" 

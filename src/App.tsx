@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserBookingHistory from "./pages/UserBookingHistory";
 import WorkerBookingHistory from "./pages/WorkerBookingHistory";
 import Profile from "./pages/Profile";
+import BookingHistory from "./pages/BookingHistory";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/user-booking-history" element={<UserBookingHistory />} />
             <Route path="/worker-booking-history" element={<WorkerBookingHistory />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/booking-history" element={<BookingHistory />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
