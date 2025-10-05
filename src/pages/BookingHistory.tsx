@@ -30,9 +30,19 @@ const BookingHistory = () => {
 
   const fetchBookings = async () => {
     try {
+      // Get authenticated user
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        setBookings([]);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from("bookings")
         .select("*")
+        .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
       if (error) throw error;

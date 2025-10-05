@@ -262,7 +262,21 @@ const ServiceDetails = () => {
     setSelectedProvider(providerId);
     
     try {
+      // Get authenticated user
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        toast({
+          title: "Authentication Required",
+          description: "Please log in to book services",
+          variant: "destructive",
+        });
+        navigate("/auth");
+        return;
+      }
+
       const { error } = await supabase.from("bookings").insert({
+        user_id: user.id,
         user_name: "Guest User",
         service_id: providerId,
         service_name: `${serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) : "Service"} - ${providerName}`,

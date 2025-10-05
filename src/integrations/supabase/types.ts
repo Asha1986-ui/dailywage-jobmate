@@ -24,6 +24,7 @@ export type Database = {
           service_name: string
           status: string
           updated_at: string
+          user_id: string | null
           user_name: string
         }
         Insert: {
@@ -35,6 +36,7 @@ export type Database = {
           service_name: string
           status?: string
           updated_at?: string
+          user_id?: string | null
           user_name?: string
         }
         Update: {
@@ -46,6 +48,7 @@ export type Database = {
           service_name?: string
           status?: string
           updated_at?: string
+          user_id?: string | null
           user_name?: string
         }
         Relationships: []
