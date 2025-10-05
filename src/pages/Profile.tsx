@@ -7,11 +7,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, DollarSign, User, Briefcase, MapPin, Plus, Clock, ArrowLeft, IndianRupee } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Calendar, DollarSign, User, Briefcase, MapPin, Plus, Clock, ArrowLeft, IndianRupee, LogOut, Mail } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
+
+interface UserProfile {
+  display_name: string | null;
+  city: string | null;
+  user_id: string;
+}
 
 interface Booking {
   id: string;
@@ -56,9 +62,13 @@ const mockWorkerJobs = [
 ];
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [userBookings, setUserBookings] = useState<Booking[]>([]);
   const [loadingBookings, setLoadingBookings] = useState(true);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [loadingProfile, setLoadingProfile] = useState(true);
   const [myServices, setMyServices] = useState([
     {
       id: 1,
@@ -71,12 +81,41 @@ const Profile = () => {
   ]);
 
   useEffect(() => {
+    fetchUserProfile();
     fetchUserBookings();
   }, []);
 
+  const fetchUserProfile = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        setLoadingProfile(false);
+        navigate("/auth");
+        return;
+      }
+
+      setUserEmail(user.email || "");
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("display_name, city, user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      setUserProfile(data);
+    } catch (error: any) {
+      console.error("Error fetching profile:", error);
+      toast.error("Failed to load profile");
+    } finally {
+      setLoadingProfile(false);
+    }
+  };
+
   const fetchUserBookings = async () => {
     try {
-      // Get authenticated user
       const { data: { user } } = await supabase.auth.getUser();
       
       if (!user) {
@@ -100,6 +139,18 @@ const Profile = () => {
       toast.error("Failed to load booking history");
     } finally {
       setLoadingBookings(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+
+      toast.success("Logged out successfully");
+      navigate("/auth");
+    } catch (error: any) {
+      toast.error("Failed to logout");
     }
   };
 
@@ -152,13 +203,22 @@ const Profile = () => {
       {/* Header */}
       <header className="bg-gradient-primary py-6 px-4 shadow-medium">
         <div className="container mx-auto">
-          <div className="mb-4">
+          <div className="flex items-center justify-between mb-4">
             <Link to="/">
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Home
               </Button>
             </Link>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleLogout}
+              className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </Button>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
             My Profile
@@ -180,6 +240,42 @@ const Profile = () => {
 
             {/* User Tab */}
             <TabsContent value="user" className="space-y-8">
+              {/* User Profile Information */}
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Profile Information</h2>
+                {loadingProfile ? (
+                  <Card className="p-8 text-center shadow-soft bg-gradient-card border-0">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                  </Card>
+                ) : (
+                  <Card className="p-6 shadow-soft bg-gradient-card border-0">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <User className="h-5 w-5 text-primary" />
+                        <div>
+                          <p className="text-sm text-muted-foreground">Full Name</p>
+                          <p className="text-lg font-semibold">{userProfile?.display_name || "Not set"}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <MapPin className="h-5 w-5 text-primary" />
+                        <div>
+                          <p className="text-sm text-muted-foreground">City</p>
+                          <p className="text-lg font-semibold">{userProfile?.city || "Not set"}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Mail className="h-5 w-5 text-primary" />
+                        <div>
+                          <p className="text-sm text-muted-foreground">Email</p>
+                          <p className="text-lg font-semibold">{userEmail}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                )}
+              </div>
+
               {/* Find & Book Services Section */}
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Find & Book Services</h2>
