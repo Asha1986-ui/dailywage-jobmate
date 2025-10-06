@@ -17,6 +17,7 @@ interface UserProfile {
   display_name: string | null;
   city: string | null;
   user_id: string;
+  role: 'user' | 'worker' | null;
 }
 
 interface Booking {
@@ -99,7 +100,7 @@ const Profile = () => {
 
       const { data, error } = await supabase
         .from("profiles")
-        .select("display_name, city, user_id")
+        .select("display_name, city, user_id, role")
         .eq("user_id", user.id)
         .maybeSingle();
 
@@ -269,6 +270,13 @@ const Profile = () => {
                         <div>
                           <p className="text-sm text-muted-foreground">Email</p>
                           <p className="text-lg font-semibold">{userEmail}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Briefcase className="h-5 w-5 text-primary" />
+                        <div>
+                          <p className="text-sm text-muted-foreground">Role</p>
+                          <p className="text-lg font-semibold capitalize">{userProfile?.role || "Not set"}</p>
                         </div>
                       </div>
                     </div>

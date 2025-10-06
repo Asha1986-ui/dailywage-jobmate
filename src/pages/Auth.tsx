@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock, User, MapPin } from "lucide-react";
+import { Mail, Lock, User, MapPin, Briefcase } from "lucide-react";
 
 const Auth = () => {
   const [mode, setMode] = useState<'login' | 'signup'>('login');
@@ -14,6 +15,7 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [city, setCity] = useState("");
+  const [role, setRole] = useState<'user' | 'worker'>('user');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -62,6 +64,7 @@ const Auth = () => {
           data: {
             display_name: fullName.trim(),
             city: city.trim(),
+            role: role,
           }
         }
       });
@@ -80,12 +83,16 @@ const Auth = () => {
 
       toast({
         title: "✅ Account created successfully!",
-        description: "Redirecting to home page...",
+        description: `Redirecting to ${role === 'worker' ? 'Worker' : 'User'} Dashboard...`,
       });
 
-      // Redirect after 2 seconds
+      // Redirect based on role after 2 seconds
       setTimeout(() => {
-        navigate("/");
+        if (role === 'worker') {
+          navigate("/worker-dashboard");
+        } else {
+          navigate("/user-booking-history");
+        }
       }, 2000);
     } catch (error: any) {
       let errorMessage = "⚠️ Signup failed. Try again.";
@@ -122,12 +129,26 @@ const Auth = () => {
 
       if (authError) throw authError;
 
+      // Fetch user profile to get role
+      const { data: profileData } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("user_id", authData.user.id)
+        .single();
+
+      const userRole = profileData?.role || 'user';
+
       toast({
         title: "✅ Logged in successfully!",
         description: "Welcome back!",
       });
 
-      navigate("/");
+      // Redirect based on role
+      if (userRole === 'worker') {
+        navigate("/worker-dashboard");
+      } else {
+        navigate("/user-booking-history");
+      }
     } catch (error: any) {
       let errorMessage = "⚠️ Invalid email or password.";
       
@@ -198,6 +219,36 @@ const Auth = () => {
                 </div>
               </div>
 
+              <div className="space-y-3">
+                <Label>Role *</Label>
+                <RadioGroup value={role} onValueChange={(value) => setRole(value as 'user' | 'worker')}>
+                  <div className="flex items-center space-x-2 p-3 rounded-lg border border-input hover:bg-accent/50 transition-colors">
+                    <RadioGroupItem value="user" id="user" />
+                    <Label htmlFor="user" className="flex-1 cursor-pointer">
+                      <div className="flex items-center gap-2">
+                        <User className="h-4 w-4 text-primary" />
+                        <div>
+                          <p className="font-medium">User (Customer)</p>
+                          <p className="text-sm text-muted-foreground">Book services and hire workers</p>
+                        </div>
+                      </div>
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-2 p-3 rounded-lg border border-input hover:bg-accent/50 transition-colors">
+                    <RadioGroupItem value="worker" id="worker" />
+                    <Label htmlFor="worker" className="flex-1 cursor-pointer">
+                      <div className="flex items-center gap-2">
+                        <Briefcase className="h-4 w-4 text-primary" />
+                        <div>
+                          <p className="font-medium">Worker (Service Provider)</p>
+                          <p className="text-sm text-muted-foreground">Offer services and find jobs</p>
+                        </div>
+                      </div>
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="signup-email">Email *</Label>
                 <div className="relative">
@@ -243,6 +294,7 @@ const Auth = () => {
                     setMode('login');
                     setFullName("");
                     setCity("");
+                    setRole('user');
                     setPassword("");
                   }}
                   className="text-sm"
