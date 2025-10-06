@@ -68,6 +68,16 @@ const Auth = () => {
 
       if (authError) throw authError;
 
+      // Check if email confirmation is required
+      if (authData.user && !authData.session) {
+        toast({
+          title: "✅ Account created!",
+          description: "Please check your email to confirm your account before logging in.",
+        });
+        setMode('login');
+        return;
+      }
+
       toast({
         title: "✅ Account created successfully!",
         description: "Redirecting to home page...",
@@ -78,12 +88,15 @@ const Auth = () => {
         navigate("/");
       }, 2000);
     } catch (error: any) {
-      let errorMessage = "Failed to create account";
+      let errorMessage = "⚠️ Signup failed. Try again.";
       
-      if (error.message.includes("already registered")) {
+      if (error.message.includes("already registered") || error.message.includes("User already registered")) {
         errorMessage = "This email is already registered. Please login instead.";
+        setMode('login');
       } else if (error.message.includes("Invalid email")) {
         errorMessage = "Please enter a valid email address";
+      } else if (error.message.includes("Password")) {
+        errorMessage = "Password must be at least 6 characters long";
       }
       
       toast({
@@ -116,12 +129,14 @@ const Auth = () => {
 
       navigate("/");
     } catch (error: any) {
-      let errorMessage = "Failed to login";
+      let errorMessage = "⚠️ Invalid email or password.";
       
       if (error.message.includes("Invalid login credentials")) {
-        errorMessage = "Invalid email or password";
+        errorMessage = "Invalid email or password. Please check your credentials.";
       } else if (error.message.includes("Email not confirmed")) {
-        errorMessage = "Please verify your email first";
+        errorMessage = "Please verify your email first. Check your inbox for the confirmation link.";
+      } else if (error.message.includes("Invalid email")) {
+        errorMessage = "Please enter a valid email address";
       }
       
       toast({
