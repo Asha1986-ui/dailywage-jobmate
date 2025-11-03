@@ -38,11 +38,6 @@ const Index = () => {
     { name: "Painter", icon: "🎨", count: "180+ Workers" },
   ];
 
-  const topProviders = [
-    { name: "Rajesh Kumar", role: "Electrician", rating: 4.9, jobs: 250, image: "👨" },
-    { name: "Priya Singh", role: "Cook", rating: 4.8, jobs: 180, image: "👩" },
-    { name: "Amit Sharma", role: "Plumber", rating: 4.7, jobs: 220, image: "👨‍🔧" },
-  ];
 
   const whyChooseUs = [
     { icon: Clock, title: "30-Min Fast Service", desc: "Get connected with workers in under 30 minutes" },
@@ -172,43 +167,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Top Service Providers */}
-      <section className="py-20 px-4 bg-gradient-to-br from-background via-secondary/5 to-background">
-        <div className="container mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Top-Rated Service Providers
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Meet our most trusted and highly-rated professionals
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {topProviders.map((provider, index) => (
-              <Card key={index} className="p-8 text-center shadow-elegant hover-lift border-0 bg-gradient-card group">
-                <div className="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {provider.image}
-                </div>
-                <h3 className="text-2xl font-semibold mb-2">{provider.name}</h3>
-                <p className="text-muted-foreground mb-4 text-lg">{provider.role}</p>
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <div className="flex items-center">
-                    <Star className="h-5 w-5 text-accent fill-accent mr-1" />
-                    <span className="font-semibold text-lg">{provider.rating}</span>
-                  </div>
-                  <div className="text-muted-foreground">
-                    {provider.jobs} jobs completed
-                  </div>
-                </div>
-                <Button variant="outline" className="w-full hover:bg-primary hover:text-primary-foreground transition-all">
-                  View Profile
-                </Button>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Voice Search Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
