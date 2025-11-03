@@ -38,6 +38,14 @@ const Index = () => {
     { name: "Painter", icon: "🎨", count: "180+ Workers" },
   ];
 
+  const handleCategoryClick = (categoryName: string) => {
+    setVoiceSearchTerm(categoryName);
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
 
   const whyChooseUs = [
     { icon: Clock, title: "30-Min Fast Service", desc: "Get connected with workers in under 30 minutes" },
@@ -123,7 +131,10 @@ const Index = () => {
             <CarouselContent>
               {jobCategories.map((category, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <Card className="p-8 text-center shadow-elegant hover-lift border-0 bg-gradient-card cursor-pointer group">
+                  <Card 
+                    className="p-8 text-center shadow-elegant hover-lift border-0 bg-gradient-card cursor-pointer group"
+                    onClick={() => handleCategoryClick(category.name)}
+                  >
                     <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
                       {category.icon}
                     </div>
