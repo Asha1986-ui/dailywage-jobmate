@@ -17,8 +17,11 @@ export type Database = {
       bookings: {
         Row: {
           created_at: string
+          date_time: string | null
+          email: string | null
           id: string
           location: string
+          payment_mode: string | null
           price: number
           service_id: string
           service_name: string
@@ -29,8 +32,11 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          date_time?: string | null
+          email?: string | null
           id?: string
           location: string
+          payment_mode?: string | null
           price: number
           service_id: string
           service_name: string
@@ -41,8 +47,11 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          date_time?: string | null
+          email?: string | null
           id?: string
           location?: string
+          payment_mode?: string | null
           price?: number
           service_id?: string
           service_name?: string
@@ -50,6 +59,33 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
           user_name?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          booking_id: string
+          created_at: string
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          booking_id: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          booking_id?: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
