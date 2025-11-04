@@ -10,6 +10,8 @@ import WorkerDashboard from "./pages/WorkerDashboard";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import Auth from "./pages/Auth";
 import ServiceDetails from "./pages/ServiceDetails";
+import Booking from "./pages/Booking";
+import Payment from "./pages/Payment";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserBookingHistory from "./pages/UserBookingHistory";
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/service/:serviceKey" element={<ServiceDetails />} />
+          <Route path="/booking/:serviceKey" element={<Booking />} />
+          <Route path="/payment/:bookingId" element={<Payment />} />
           <Route path="/worker-dashboard" element={<WorkerDashboard />} />
           <Route path="/employer-dashboard" element={<EmployerDashboard />} />
           <Route path="/user-booking-history" element={<UserBookingHistory />} />
