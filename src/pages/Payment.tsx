@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Smartphone, Laptop, CheckCircle } from "lucide-react";
-import QRCode from "react-qr-code";
 
 const Payment = () => {
   const { bookingId } = useParams();
@@ -181,17 +180,23 @@ const Payment = () => {
                 ) : (
                   <div className="text-center space-y-4">
                     <h3 className="text-xl font-semibold">
-                      📱 Scan QR Code to Pay
+                      📱 Pay via UPI
                     </h3>
-                    <div className="bg-white p-6 rounded-lg inline-block">
-                      <QRCode value={upiString} size={200} />
-                    </div>
-                    <p className="text-muted-foreground">
-                      Scan this QR with any UPI app (PhonePe / GPay / Paytm) to complete your payment
-                    </p>
-                    <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-sm font-medium">UPI ID: {upiId}</p>
-                      <p className="text-sm text-muted-foreground">Amount: ₹{amount}</p>
+                    <div className="p-6 bg-card rounded-lg space-y-4">
+                      <p className="text-muted-foreground">
+                        Use any UPI app to complete your payment:
+                      </p>
+                      <div className="p-4 bg-muted/50 rounded-lg">
+                        <p className="text-sm text-muted-foreground mb-2">UPI ID:</p>
+                        <p className="text-lg font-bold text-primary break-all">{upiId}</p>
+                      </div>
+                      <div className="p-4 bg-muted/50 rounded-lg">
+                        <p className="text-sm text-muted-foreground mb-2">Amount:</p>
+                        <p className="text-2xl font-bold text-primary">₹{amount}</p>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Open PhonePe, GPay, Paytm or any UPI app and send payment to the above UPI ID
+                      </p>
                     </div>
                   </div>
                 )}
