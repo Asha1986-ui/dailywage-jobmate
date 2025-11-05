@@ -1,7 +1,18 @@
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 import {
   Star,
   MapPin,
@@ -9,6 +20,9 @@ import {
   ArrowLeft,
   IndianRupee,
   Calendar,
+  Search,
+  Filter,
+  X,
 } from "lucide-react";
 
 const ServiceDetails = () => {
@@ -1278,8 +1292,42 @@ const ServiceDetails = () => {
     ],
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [locationFilter, setLocationFilter] = useState("all");
+  const [minRating, setMinRating] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000);
+  const [showFilters, setShowFilters] = useState(false);
+
   // Get providers for the current service, or use default
   const providers = providersByService[serviceKey || ""] || providersByService.default;
+
+  // Get unique locations for filter
+  const uniqueLocations = Array.from(new Set(providers.map(p => p.location)));
+
+  // Get max price for slider
+  const maxProviderPrice = Math.max(...providers.map(p => p.price));
+
+  // Filter providers based on search and filters
+  const filteredProviders = providers.filter(provider => {
+    const matchesSearch = 
+      provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      provider.location.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesLocation = locationFilter === "all" || provider.location === locationFilter;
+    const matchesRating = provider.rating >= minRating;
+    const matchesPrice = provider.price <= maxPrice;
+
+    return matchesSearch && matchesLocation && matchesRating && matchesPrice;
+  });
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setLocationFilter("all");
+    setMinRating(0);
+    setMaxPrice(100000);
+  };
+
+  const hasActiveFilters = searchTerm || locationFilter !== "all" || minRating > 0 || maxPrice < 100000;
 
   const handleCall = (phone: string) => {
     window.open(`tel:${phone}`);
@@ -1321,9 +1369,133 @@ const ServiceDetails = () => {
           </p>
         </div>
 
+        {/* Search and Filter Section */}
+        {providers.length > 1 && (
+          <Card className="mb-6 bg-gradient-card border-0 shadow-medium">
+            <CardContent className="pt-6">
+              {/* Search Bar */}
+              <div className="mb-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Search by name or location..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 h-12"
+                  />
+                </div>
+              </div>
+
+              {/* Filter Toggle Button */}
+              <div className="flex items-center justify-between mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="gap-2"
+                >
+                  <Filter className="w-4 h-4" />
+                  {showFilters ? "Hide Filters" : "Show Filters"}
+                </Button>
+                {hasActiveFilters && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={clearFilters}
+                    className="gap-2 text-muted-foreground"
+                  >
+                    <X className="w-4 h-4" />
+                    Clear All
+                  </Button>
+                )}
+              </div>
+
+              {/* Filter Controls */}
+              {showFilters && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-muted/30 rounded-lg">
+                  {/* Location Filter */}
+                  <div className="space-y-2">
+                    <Label htmlFor="location">Location</Label>
+                    <Select value={locationFilter} onValueChange={setLocationFilter}>
+                      <SelectTrigger id="location" className="bg-background">
+                        <SelectValue placeholder="All Locations" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background z-50">
+                        <SelectItem value="all">All Locations</SelectItem>
+                        {uniqueLocations.map((location) => (
+                          <SelectItem key={location} value={location}>
+                            {location}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Rating Filter */}
+                  <div className="space-y-2">
+                    <Label htmlFor="rating">Minimum Rating</Label>
+                    <Select value={minRating.toString()} onValueChange={(v) => setMinRating(Number(v))}>
+                      <SelectTrigger id="rating" className="bg-background">
+                        <SelectValue placeholder="Any Rating" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background z-50">
+                        <SelectItem value="0">Any Rating</SelectItem>
+                        <SelectItem value="4">4+ Stars</SelectItem>
+                        <SelectItem value="4.5">4.5+ Stars</SelectItem>
+                        <SelectItem value="4.7">4.7+ Stars</SelectItem>
+                        <SelectItem value="4.8">4.8+ Stars</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Price Filter */}
+                  <div className="space-y-2">
+                    <Label htmlFor="price">
+                      Max Price: ₹{maxPrice === 100000 ? "Any" : maxPrice}
+                    </Label>
+                    <Slider
+                      id="price"
+                      min={0}
+                      max={maxProviderPrice > 0 ? maxProviderPrice * 1.2 : 10000}
+                      step={10}
+                      value={[maxPrice]}
+                      onValueChange={(values) => setMaxPrice(values[0])}
+                      className="cursor-pointer"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Results Count */}
+              <div className="mt-4 text-sm text-muted-foreground text-center">
+                Showing {filteredProviders.length} of {providers.length} provider{providers.length !== 1 ? 's' : ''}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* No Results Message */}
+        {filteredProviders.length === 0 && (
+          <Card className="bg-gradient-card border-0 shadow-medium">
+            <CardContent className="py-12 text-center">
+              <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No providers found</h3>
+              <p className="text-muted-foreground mb-4">
+                Try adjusting your filters or search criteria
+              </p>
+              {hasActiveFilters && (
+                <Button onClick={clearFilters} variant="outline">
+                  Clear Filters
+                </Button>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
         {/* Provider Cards */}
         <div className="space-y-6">
-          {providers.map((provider, index) => (
+          {filteredProviders.map((provider, index) => (
             <Card 
               key={index}
               className={`bg-gradient-card border-0 shadow-elegant hover-lift ${
