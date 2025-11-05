@@ -15,23 +15,94 @@ const ServiceDetails = () => {
   const { serviceKey } = useParams();
   const navigate = useNavigate();
 
-  // Service provider details
-  const provider = {
-    name: "Asha",
-    phone: "8904051999",
-    rating: 4.8,
-    reviews: 127,
-    experience: "5+ years",
-    location: "Koramangala, Bangalore",
-    price: 300,
-    priceUnit: "hour",
+  // Provider data by service type
+  const providersByService: Record<string, Array<{
+    name: string;
+    phone: string;
+    rating: number;
+    reviews: number;
+    experience: string;
+    location: string;
+    price: number;
+    priceUnit: string;
+    verified?: boolean;
+  }>> = {
+    cook: [
+      {
+        name: "Asha",
+        phone: "8904051999",
+        rating: 4.9,
+        reviews: 156,
+        experience: "6+ years",
+        location: "Bengaluru",
+        price: 1,
+        priceUnit: "day",
+        verified: true,
+      },
+      {
+        name: "Kavitha",
+        phone: "9876543210",
+        rating: 4.6,
+        reviews: 89,
+        experience: "4 years",
+        location: "Koramangala, Bengaluru",
+        price: 550,
+        priceUnit: "day",
+      },
+      {
+        name: "Ramesh",
+        phone: "9988776655",
+        rating: 4.7,
+        reviews: 102,
+        experience: "5 years",
+        location: "Indiranagar, Bengaluru",
+        price: 600,
+        priceUnit: "day",
+      },
+      {
+        name: "Priya",
+        phone: "9123456789",
+        rating: 4.5,
+        reviews: 76,
+        experience: "3 years",
+        location: "Whitefield, Bengaluru",
+        price: 520,
+        priceUnit: "day",
+      },
+      {
+        name: "Manjunath",
+        phone: "9876012345",
+        rating: 4.8,
+        reviews: 118,
+        experience: "7 years",
+        location: "BTM Layout, Bengaluru",
+        price: 580,
+        priceUnit: "day",
+      },
+    ],
+    // Default provider for other services
+    default: [
+      {
+        name: "Service Provider",
+        phone: "9876543210",
+        rating: 4.8,
+        reviews: 127,
+        experience: "5+ years",
+        location: "Bengaluru",
+        price: 300,
+        priceUnit: "hour",
+      },
+    ],
   };
 
-  const handleCall = () => {
-    window.open(`tel:${provider.phone}`);
+  // Get providers for the current service, or use default
+  const providers = providersByService[serviceKey || ""] || providersByService.default;
+
+  const handleCall = (phone: string) => {
+    window.open(`tel:${phone}`);
   };
 
-  const handleBookNow = () => {
+  const handleBookNow = (provider: typeof providers[0]) => {
     navigate(`/booking/${serviceKey}`, {
       state: {
         serviceName: serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) : "Service",
@@ -63,90 +134,101 @@ const ServiceDetails = () => {
             {serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) + " Service" : "Service Details"}
           </h1>
           <p className="text-muted-foreground text-lg">
-            Professional and verified service provider
+            {providers.length > 1 ? "Choose from our verified service providers" : "Professional and verified service provider"}
           </p>
         </div>
 
-        {/* Provider Card */}
-        <Card className="bg-gradient-card border-0 shadow-elegant hover-lift">
-          <CardHeader className="space-y-4">
-            <div className="flex items-start justify-between">
-              <div>
-                <CardTitle className="text-2xl mb-2">{provider.name}</CardTitle>
-                <Badge className="bg-success text-success-foreground mb-3">
-                  Verified Provider
-                </Badge>
-              </div>
-              <div className="flex items-center gap-1">
-                <Star className="w-5 h-5 fill-warning text-warning" />
-                <span className="font-semibold">{provider.rating}</span>
-                <span className="text-muted-foreground text-sm">
-                  ({provider.reviews} reviews)
-                </span>
-              </div>
-            </div>
-          </CardHeader>
+        {/* Provider Cards */}
+        <div className="space-y-6">
+          {providers.map((provider, index) => (
+            <Card 
+              key={index}
+              className={`bg-gradient-card border-0 shadow-elegant hover-lift ${
+                provider.verified ? "ring-2 ring-primary/50" : ""
+              }`}
+            >
+              <CardHeader className="space-y-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <CardTitle className="text-2xl mb-2">{provider.name}</CardTitle>
+                    {provider.verified && (
+                      <Badge className="bg-primary text-primary-foreground mb-3">
+                        ⭐ Verified Provider
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-5 h-5 fill-warning text-warning" />
+                    <span className="font-semibold">{provider.rating}</span>
+                    <span className="text-muted-foreground text-sm">
+                      ({provider.reviews} reviews)
+                    </span>
+                  </div>
+                </div>
+              </CardHeader>
 
-          <CardContent className="space-y-6">
-            {/* Contact Number */}
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <Phone className="w-5 h-5 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Contact Number</p>
-                <p className="font-semibold text-lg">{provider.phone}</p>
-              </div>
-            </div>
+              <CardContent className="space-y-6">
+                {/* Contact Number */}
+                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
+                  <Phone className="w-5 h-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Contact Number</p>
+                    <p className="font-semibold text-lg">{provider.phone}</p>
+                  </div>
+                </div>
 
-            {/* Location */}
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <MapPin className="w-5 h-5 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Location</p>
-                <p className="font-semibold">{provider.location}</p>
-              </div>
-            </div>
+                {/* Location */}
+                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="font-semibold">{provider.location}</p>
+                  </div>
+                </div>
 
-            {/* Price */}
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <IndianRupee className="w-5 h-5 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Price</p>
-                <p className="font-semibold text-lg">
-                  ₹{provider.price}/{provider.priceUnit}
-                </p>
-              </div>
-            </div>
+                {/* Price */}
+                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
+                  <IndianRupee className="w-5 h-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Price</p>
+                    <p className="font-semibold text-lg">
+                      ₹{provider.price}/{provider.priceUnit}
+                    </p>
+                  </div>
+                </div>
 
-            {/* Experience */}
-            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-              <Calendar className="w-5 h-5 text-primary" />
-              <div>
-                <p className="text-sm text-muted-foreground">Experience</p>
-                <p className="font-semibold">{provider.experience}</p>
-              </div>
-            </div>
+                {/* Experience */}
+                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
+                  <Calendar className="w-5 h-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Experience</p>
+                    <p className="font-semibold">{provider.experience}</p>
+                  </div>
+                </div>
 
-            {/* Action Buttons */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <Button
-                onClick={handleCall}
-                variant="outline"
-                size="lg"
-                className="w-full"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Call
-              </Button>
-              <Button
-                onClick={handleBookNow}
-                size="lg"
-                className="w-full bg-gradient-primary hover:opacity-90"
-              >
-                Book Now
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-4 pt-4">
+                  <Button
+                    onClick={() => handleCall(provider.phone)}
+                    variant="outline"
+                    size="lg"
+                    className="w-full"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call
+                  </Button>
+                  <Button
+                    onClick={() => handleBookNow(provider)}
+                    size="lg"
+                    className="w-full bg-gradient-primary hover:opacity-90"
+                  >
+                    Book Now
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
