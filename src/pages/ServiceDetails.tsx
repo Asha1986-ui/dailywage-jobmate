@@ -1493,8 +1493,8 @@ const ServiceDetails = () => {
           </Card>
         )}
 
-        {/* Provider Cards - Compact Rectangular Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Provider Cards - Full Width Rectangular Layout */}
+        <div className="space-y-4">
           {filteredProviders.map((provider, index) => (
             <Card 
               key={index}
@@ -1503,54 +1503,63 @@ const ServiceDetails = () => {
               }`}
             >
               <CardContent className="p-4">
-                <div className="space-y-3">
-                  {/* Header */}
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-lg truncate">
+                {/* Desktop: Horizontal Layout | Mobile: Vertical Layout */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  {/* Left Side: Provider Details */}
+                  <div className="flex-1 space-y-2">
+                    {/* Provider Name and Badge */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="font-bold text-lg">
                         {provider.name}
                       </h3>
                       {provider.verified && (
-                        <Badge variant="secondary" className="text-xs mt-1">
+                        <Badge variant="secondary" className="text-xs">
                           ⭐ Verified
                         </Badge>
                       )}
                     </div>
-                    <div className="flex items-center gap-1 shrink-0">
-                      <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                      <span className="font-semibold text-sm">{provider.rating}</span>
+
+                    {/* Info Row */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                      {/* Rating */}
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                        <span className="font-semibold">{provider.rating}</span>
+                      </div>
+
+                      {/* Location */}
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <MapPin className="w-4 h-4" />
+                        <span>{provider.location}</span>
+                      </div>
+
+                      {/* Price */}
+                      <div className="flex items-center gap-1 font-semibold text-primary">
+                        <span>₹{provider.price}/{provider.priceUnit}</span>
+                      </div>
+
+                      {/* Experience */}
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <Calendar className="w-4 h-4" />
+                        <span>{provider.experience}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Info Grid */}
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div className="flex items-center gap-1.5 text-muted-foreground">
-                      <MapPin className="w-3.5 h-3.5 shrink-0" />
-                      <span className="truncate">{provider.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 font-semibold text-primary">
-                      <span>₹{provider.price}/{provider.priceUnit}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-muted-foreground col-span-2">
-                      <Calendar className="w-3.5 h-3.5 shrink-0" />
-                      <span>{provider.experience} experience</span>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
+                  {/* Right Side: Action Buttons */}
+                  <div className="flex gap-2 md:flex-shrink-0">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 h-9 text-xs"
+                      className="flex-1 md:flex-none md:w-24 h-9"
                       onClick={() => handleCall(provider.phone)}
                     >
-                      <Phone className="w-3.5 h-3.5 mr-1" />
-                      Call
+                      <Phone className="w-4 h-4 md:mr-1" />
+                      <span className="hidden md:inline">Call</span>
                     </Button>
                     <Button
                       size="sm"
-                      className="flex-1 h-9 text-xs bg-primary hover:bg-primary/90"
+                      className="flex-1 md:flex-none md:w-28 h-9 bg-primary hover:bg-primary/90"
                       onClick={() => handleBookNow(provider)}
                     >
                       Book Now
