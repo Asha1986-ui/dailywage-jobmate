@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, Smartphone, Laptop, CheckCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import paymentQR from "@/assets/payment-qr.jpeg";
 
 const Payment = () => {
   const { bookingId } = useParams();
@@ -17,9 +18,10 @@ const Payment = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [paymentInitiated, setPaymentInitiated] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  const upiId = "8904051999@ybl";
-  const providerName = provider?.name || "Asha";
+  const upiId = "manjunath.arjun1978-1@oksbi";
+  const providerName = provider?.name || "Service Provider";
 
   useEffect(() => {
     // Detect if user is on mobile
@@ -82,15 +84,17 @@ const Payment = () => {
         // Don't throw error, continue with success flow
       }
 
+      setPaymentSuccess(true);
+
       toast({
-        title: "✅ Payment Received Successfully",
-        description: "Your booking is confirmed!",
+        title: "Payment Confirmed",
+        description: "Your booking has been confirmed successfully!",
       });
 
       // Redirect to booking history
       setTimeout(() => {
         navigate("/booking-history");
-      }, 2000);
+      }, 3000);
     } catch (error: any) {
       toast({
         title: "Payment Failed",
@@ -109,113 +113,96 @@ const Payment = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       <div className="container mx-auto max-w-2xl px-4 py-6">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <Link to={`/booking/${bookingId}`}>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex items-center gap-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back
-            </Button>
-          </Link>
-        </div>
-
-        {/* Payment Card */}
-        <Card className="bg-gradient-card border-0 shadow-elegant">
+        <Card className="bg-card border shadow-elegant">
           <CardHeader>
             <CardTitle className="text-2xl">Complete Payment</CardTitle>
             <p className="text-muted-foreground">
-              Amount: <span className="text-primary font-bold text-xl">₹{amount}</span>
+              Service: {serviceName} - ₹{amount}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
-            {!paymentInitiated ? (
-              <>
-                {/* Device Type Indicator */}
-                <div className="flex items-center justify-center gap-2 p-4 bg-muted/50 rounded-lg">
-                  {isMobile ? (
-                    <>
-                      <Smartphone className="w-6 h-6 text-primary" />
-                      <span className="font-medium">Mobile Device Detected</span>
-                    </>
-                  ) : (
-                    <>
-                      <Laptop className="w-6 h-6 text-primary" />
-                      <span className="font-medium">Desktop Device Detected</span>
-                    </>
+            {paymentSuccess ? (
+              <div className="text-center space-y-4 py-8">
+                <div className="flex justify-center">
+                  <CheckCircle2 className="w-20 h-20 text-green-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-green-500">
+                  ✅ Payment Successful!
+                </h3>
+                <p className="text-lg font-medium">Booking Confirmed</p>
+                <p className="text-sm text-muted-foreground">
+                  Redirecting to your bookings...
+                </p>
+              </div>
+            ) : !paymentInitiated ? (
+              <div className="space-y-4">
+                <div className="p-4 bg-muted/50 rounded-lg space-y-2">
+                  <p className="text-sm font-medium">Booking Details:</p>
+                  <p className="text-sm text-muted-foreground">
+                    Service: {serviceName}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Amount: ₹{amount}
+                  </p>
+                  {provider && (
+                    <p className="text-sm text-muted-foreground">
+                      Provider: {provider.name}
+                    </p>
                   )}
                 </div>
 
-                {/* Pay Now Button */}
                 <Button
-                  onClick={handlePayNow}
                   size="lg"
-                  className="w-full bg-gradient-primary hover:opacity-90 text-lg py-6"
+                  className="w-full bg-primary hover:bg-primary/90"
+                  onClick={handlePayNow}
                 >
-                  Pay ₹{amount} Now
+                  Pay ₹{amount} via UPI
                 </Button>
-
-                <p className="text-center text-sm text-muted-foreground">
-                  {isMobile
-                    ? "You'll be redirected to your UPI app"
-                    : "A QR code will be displayed for payment"}
-                </p>
-              </>
+              </div>
             ) : (
-              <>
-                {/* Payment Instructions */}
+              <div className="space-y-6">
                 {isMobile ? (
                   <div className="text-center space-y-4">
-                    <CheckCircle className="w-16 h-16 text-success mx-auto" />
-                    <h3 className="text-xl font-semibold">
+                    <p className="text-lg font-medium">
                       Complete payment in your UPI app
-                    </h3>
-                    <p className="text-muted-foreground">
-                      If your UPI app didn't open automatically, please try again or use another UPI app.
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Choose PhonePe, Google Pay, or Paytm to complete the payment
                     </p>
                   </div>
                 ) : (
                   <div className="text-center space-y-4">
-                    <h3 className="text-xl font-semibold">
-                      📱 Pay via UPI
-                    </h3>
-                    <div className="p-6 bg-card rounded-lg space-y-4">
-                      <p className="text-muted-foreground">
-                        Use any UPI app to complete your payment:
+                    <p className="text-lg font-medium mb-4">Scan QR Code to Pay</p>
+                    <div className="flex justify-center">
+                      <img
+                        src={paymentQR}
+                        alt="Payment QR Code"
+                        className="w-64 h-64 object-contain border rounded-lg"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium">
+                        UPI ID: {upiId}
                       </p>
-                      <div className="p-4 bg-muted/50 rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-2">UPI ID:</p>
-                        <p className="text-lg font-bold text-primary break-all">{upiId}</p>
-                      </div>
-                      <div className="p-4 bg-muted/50 rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-2">Amount:</p>
-                        <p className="text-2xl font-bold text-primary">₹{amount}</p>
-                      </div>
                       <p className="text-sm text-muted-foreground">
-                        Open PhonePe, GPay, Paytm or any UPI app and send payment to the above UPI ID
+                        Amount: ₹{amount}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Scan to pay with any UPI app
                       </p>
                     </div>
                   </div>
                 )}
 
-                {/* Payment Confirmation */}
-                <div className="pt-6 border-t border-border">
-                  <p className="text-center text-sm text-muted-foreground mb-4">
-                    After completing the payment, click the button below:
-                  </p>
-                  <Button
-                    onClick={handlePaymentConfirm}
-                    size="lg"
-                    className="w-full bg-success text-success-foreground hover:bg-success/90"
-                    disabled={isProcessing}
-                  >
-                    {isProcessing ? "Processing..." : "✅ I've Paid"}
-                  </Button>
-                </div>
-              </>
+                <Button
+                  size="lg"
+                  className="w-full bg-primary hover:bg-primary/90"
+                  onClick={handlePaymentConfirm}
+                  disabled={isProcessing}
+                >
+                  {isProcessing ? "Processing..." : "I've Paid"}
+                </Button>
+              </div>
             )}
           </CardContent>
         </Card>

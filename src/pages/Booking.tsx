@@ -20,9 +20,11 @@ const Booking = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    phone: "",
+    address: "",
     city: "",
     dateTime: "",
-    paymentMode: "cash",
+    paymentMode: "online",
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -149,6 +151,50 @@ const Booking = () => {
                 />
               </div>
 
+              {/* Phone */}
+              <div className="space-y-2">
+                <Label htmlFor="phone">Contact Number</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  required
+                />
+              </div>
+
+              {/* Preferred Time */}
+              <div className="space-y-2">
+                <Label htmlFor="dateTime">Preferred Date & Time</Label>
+                <Input
+                  id="dateTime"
+                  type="datetime-local"
+                  value={formData.dateTime}
+                  onChange={(e) =>
+                    setFormData({ ...formData, dateTime: e.target.value })
+                  }
+                  required
+                />
+              </div>
+
+              {/* Address */}
+              <div className="space-y-2">
+                <Label htmlFor="address">Complete Address</Label>
+                <Input
+                  id="address"
+                  type="text"
+                  placeholder="House/Flat no, Street, Area"
+                  value={formData.address}
+                  onChange={(e) =>
+                    setFormData({ ...formData, address: e.target.value })
+                  }
+                  required
+                />
+              </div>
+
               {/* City */}
               <div className="space-y-2">
                 <Label htmlFor="city">City</Label>
@@ -159,20 +205,6 @@ const Booking = () => {
                   value={formData.city}
                   onChange={(e) =>
                     setFormData({ ...formData, city: e.target.value })
-                  }
-                  required
-                />
-              </div>
-
-              {/* Date & Time */}
-              <div className="space-y-2">
-                <Label htmlFor="dateTime">Date & Time</Label>
-                <Input
-                  id="dateTime"
-                  type="datetime-local"
-                  value={formData.dateTime}
-                  onChange={(e) =>
-                    setFormData({ ...formData, dateTime: e.target.value })
                   }
                   required
                 />

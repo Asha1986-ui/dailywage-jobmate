@@ -1493,92 +1493,69 @@ const ServiceDetails = () => {
           </Card>
         )}
 
-        {/* Provider Cards */}
-        <div className="space-y-6">
+        {/* Provider Cards - Compact Rectangular Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredProviders.map((provider, index) => (
             <Card 
               key={index}
-              className={`bg-gradient-card border-0 shadow-elegant hover-lift ${
+              className={`bg-card border shadow-sm hover:shadow-md transition-all ${
                 provider.verified ? "ring-2 ring-primary/50" : ""
               }`}
             >
-              <CardHeader className="space-y-4">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-2xl mb-2">{provider.name}</CardTitle>
-                    {provider.verified && (
-                      <Badge className="bg-primary text-primary-foreground mb-3">
-                        ⭐ Verified Provider
-                      </Badge>
-                    )}
+              <CardContent className="p-4">
+                <div className="space-y-3">
+                  {/* Header */}
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-lg truncate">
+                        {provider.name}
+                      </h3>
+                      {provider.verified && (
+                        <Badge variant="secondary" className="text-xs mt-1">
+                          ⭐ Verified
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                      <span className="font-semibold text-sm">{provider.rating}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-5 h-5 fill-warning text-warning" />
-                    <span className="font-semibold">{provider.rating}</span>
-                    <span className="text-muted-foreground text-sm">
-                      ({provider.reviews} reviews)
-                    </span>
-                  </div>
-                </div>
-              </CardHeader>
 
-              <CardContent className="space-y-6">
-                {/* Contact Number */}
-                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-                  <Phone className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Contact Number</p>
-                    <p className="font-semibold text-lg">{provider.phone}</p>
+                  {/* Info Grid */}
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div className="flex items-center gap-1.5 text-muted-foreground">
+                      <MapPin className="w-3.5 h-3.5 shrink-0" />
+                      <span className="truncate">{provider.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-semibold text-primary">
+                      <span>₹{provider.price}/{provider.priceUnit}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-muted-foreground col-span-2">
+                      <Calendar className="w-3.5 h-3.5 shrink-0" />
+                      <span>{provider.experience} experience</span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Location */}
-                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="font-semibold">{provider.location}</p>
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 h-9 text-xs"
+                      onClick={() => handleCall(provider.phone)}
+                    >
+                      <Phone className="w-3.5 h-3.5 mr-1" />
+                      Call
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="flex-1 h-9 text-xs bg-primary hover:bg-primary/90"
+                      onClick={() => handleBookNow(provider)}
+                    >
+                      Book Now
+                    </Button>
                   </div>
-                </div>
-
-                {/* Price */}
-                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-                  <IndianRupee className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Price</p>
-                    <p className="font-semibold text-lg">
-                      ₹{provider.price}/{provider.priceUnit}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Experience */}
-                <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-                  <Calendar className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Experience</p>
-                    <p className="font-semibold">{provider.experience}</p>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="grid grid-cols-2 gap-4 pt-4">
-                  <Button
-                    onClick={() => handleCall(provider.phone)}
-                    variant="outline"
-                    size="lg"
-                    className="w-full"
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    Call
-                  </Button>
-                  <Button
-                    onClick={() => handleBookNow(provider)}
-                    size="lg"
-                    className="w-full bg-gradient-primary hover:opacity-90"
-                  >
-                    Book Now
-                  </Button>
                 </div>
               </CardContent>
             </Card>
