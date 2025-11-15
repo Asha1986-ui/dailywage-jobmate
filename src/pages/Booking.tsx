@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft } from "lucide-react";
 
 const Booking = () => {
+  const { t } = useTranslation();
   const { serviceKey } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,8 +41,8 @@ const Booking = () => {
       
       if (!user) {
         toast({
-          title: "Authentication Required",
-          description: "Please log in to book services",
+          title: t('booking.loginRequired'),
+          description: t('booking.loginRequired'),
           variant: "destructive",
         });
         navigate("/auth");
@@ -68,8 +70,8 @@ const Booking = () => {
       if (error) throw error;
 
       toast({
-        title: "Booking Created",
-        description: "Redirecting to payment...",
+        title: t('booking.bookingSuccess'),
+        description: t('booking.processingPayment'),
       });
 
       // Redirect to payment page
@@ -85,8 +87,8 @@ const Booking = () => {
       }, 1000);
     } catch (error: any) {
       toast({
-        title: "Booking Failed",
-        description: error.message || "Failed to create booking. Please try again.",
+        title: t('booking.bookingError'),
+        description: error.message || t('booking.bookingError'),
         variant: "destructive",
       });
     } finally {
@@ -106,7 +108,7 @@ const Booking = () => {
               className="flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back
+              {t('common.backToHome')}
             </Button>
           </Link>
         </div>
@@ -114,9 +116,9 @@ const Booking = () => {
         {/* Booking Form */}
         <Card className="bg-gradient-card border-0 shadow-elegant">
           <CardHeader>
-            <CardTitle className="text-2xl">Book {serviceName} Service</CardTitle>
+            <CardTitle className="text-2xl">{t('booking.title')} - {serviceName}</CardTitle>
             <p className="text-muted-foreground">
-              Fill in your details to complete the booking
+              {t('booking.subtitle')}
             </p>
           </CardHeader>
           <CardContent>

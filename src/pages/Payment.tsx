@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -8,6 +9,7 @@ import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import paymentQR from "@/assets/payment-qr.jpeg";
 
 const Payment = () => {
+  const { t } = useTranslation();
   const { bookingId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -87,8 +89,8 @@ const Payment = () => {
       setPaymentSuccess(true);
 
       toast({
-        title: "Payment Confirmed",
-        description: "Your booking has been confirmed successfully!",
+        title: t('payment.paymentSuccess'),
+        description: t('payment.bookingConfirmed'),
       });
 
       // Redirect to booking history
@@ -97,8 +99,8 @@ const Payment = () => {
       }, 3000);
     } catch (error: any) {
       toast({
-        title: "Payment Failed",
-        description: error.message || "Failed to process payment. Please try again.",
+        title: t('payment.paymentSuccess'),
+        description: error.message || t('booking.bookingError'),
         variant: "destructive",
       });
     } finally {
