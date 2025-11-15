@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +21,7 @@ interface Booking {
 }
 
 const BookingHistory = () => {
+  const { t } = useTranslation();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
@@ -79,7 +81,7 @@ const BookingHistory = () => {
               className="flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Home
+              {t('common.backToHome')}
             </Button>
           </Link>
         </div>
@@ -87,10 +89,10 @@ const BookingHistory = () => {
         {/* Page Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            Booking History
+            {t('bookingHistory.title')}
           </h1>
           <p className="text-muted-foreground text-lg">
-            View all your service bookings
+            {t('bookingHistory.subtitle')}
           </p>
         </div>
 
