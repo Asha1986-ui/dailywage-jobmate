@@ -218,9 +218,43 @@
     "active": "ಸಕ್ರಿಯ",
     "closed": "ಮುಚ್ಚಲಾಗಿದೆ"
   },
+  "serviceDetails": {
+    "backToHome": "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+    "searchProvider": "ಸೇವಾ ಪೂರೈಕೆದಾರರನ್ನು ಹುಡುಕಿ...",
+    "filterBy": "ಫಿಲ್ಟರ್ ಮಾಡಿ",
+    "location": "ಸ್ಥಳ",
+    "allLocations": "ಎಲ್ಲಾ ಸ್ಥಳಗಳು",
+    "minimumRating": "ಕನಿಷ್ಠ ರೇಟಿಂಗ್",
+    "maxPrice": "ಗರಿಷ್ಠ ಬೆಲೆ",
+    "perDay": "ದಿನಕ್ಕೆ",
+    "applyFilters": "ಫಿಲ್ಟರ್ ಅನ್ವಯಿಸಿ",
+    "clearFilters": "ಫಿಲ್ಟರ್ ತೆರವುಗೊಳಿಸಿ",
+    "availableProviders": "ಲಭ್ಯವಿರುವ ಸೇವಾ ಪೂರೈಕೆದಾರರು",
+    "noProviders": "ನಿಮ್ಮ ಮಾನದಂಡಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುವ ಪೂರೈಕೆದಾರರು ಕಂಡುಬಂದಿಲ್ಲ",
+    "verified": "ಪರಿಶೀಲಿತ",
+    "rating": "ರೇಟಿಂಗ್",
+    "reviews": "ವಿಮರ್ಶೆಗಳು",
+    "experience": "ಅನುಭವ",
+    "call": "ಕರೆ ಮಾಡಿ",
+    "bookNow": "ಈಗ ಬುಕ್ ಮಾಡಿ"
+  },
+  "userBookingHistory": {
+    "backToHome": "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+    "title": "ಬುಕಿಂಗ್ ಇತಿಹಾಸ",
+    "subtitle": "ನಿಮ್ಮ ಎಲ್ಲಾ ಹಿಂದಿನ ಸೇವಾ ಬುಕಿಂಗ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+    "totalBookings": "ಒಟ್ಟು ಬುಕಿಂಗ್‌ಗಳು"
+  },
+  "workerBookingHistory": {
+    "backToHome": "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+    "title": "ಕೆಲಸದ ಇತಿಹಾಸ",
+    "subtitle": "ನಿಮ್ಮ ಎಲ್ಲಾ ಪೂರ್ಣಗೊಂಡ ಮತ್ತು ಬಾಕಿ ಇರುವ ಕೆಲಸಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+    "totalJobs": "ಒಟ್ಟು ಕೆಲಸಗಳು",
+    "totalEarnings": "ಒಟ್ಟು ಗಳಿಕೆ",
+    "serviceType": "ಸೇವೆಯ ವಿಧ"
+  },
   "notFound": {
-    "title": "404",
-    "message": "ಅಯ್ಯೋ! ಪುಟ ಕಂಡುಬಂದಿಲ್ಲ",
+    "title": "404 - ಪುಟ ಕಂಡುಬಂದಿಲ್ಲ",
+    "message": "ನೀವು ಹುಡುಕುತ್ತಿರುವ ಪುಟ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.",
     "returnHome": "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ"
   }
 }

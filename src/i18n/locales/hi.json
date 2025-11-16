@@ -218,9 +218,43 @@
     "active": "सक्रिय",
     "closed": "बंद"
   },
+  "serviceDetails": {
+    "backToHome": "होम पर वापस जाएं",
+    "searchProvider": "सेवा प्रदाता खोजें...",
+    "filterBy": "फ़िल्टर करें",
+    "location": "स्थान",
+    "allLocations": "सभी स्थान",
+    "minimumRating": "न्यूनतम रेटिंग",
+    "maxPrice": "अधिकतम मूल्य",
+    "perDay": "प्रति दिन",
+    "applyFilters": "फ़िल्टर लागू करें",
+    "clearFilters": "फ़िल्टर साफ़ करें",
+    "availableProviders": "उपलब्ध सेवा प्रदाता",
+    "noProviders": "आपके मानदंड से मेल खाने वाले कोई प्रदाता नहीं मिले",
+    "verified": "सत्यापित",
+    "rating": "रेटिंग",
+    "reviews": "समीक्षाएं",
+    "experience": "अनुभव",
+    "call": "कॉल करें",
+    "bookNow": "अभी बुक करें"
+  },
+  "userBookingHistory": {
+    "backToHome": "होम पर वापस जाएं",
+    "title": "बुकिंग इतिहास",
+    "subtitle": "अपनी सभी पिछली सेवा बुकिंग देखें",
+    "totalBookings": "कुल बुकिंग"
+  },
+  "workerBookingHistory": {
+    "backToHome": "होम पर वापस जाएं",
+    "title": "कार्य इतिहास",
+    "subtitle": "अपने सभी पूर्ण और लंबित कार्य देखें",
+    "totalJobs": "कुल कार्य",
+    "totalEarnings": "कुल कमाई",
+    "serviceType": "सेवा प्रकार"
+  },
   "notFound": {
-    "title": "404",
-    "message": "ओह! पृष्ठ नहीं मिला",
+    "title": "404 - पृष्ठ नहीं मिला",
+    "message": "आप जो पृष्ठ खोज रहे हैं वह मौजूद नहीं है।",
     "returnHome": "होम पर वापस जाएं"
   }
 }

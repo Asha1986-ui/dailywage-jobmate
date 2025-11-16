@@ -218,9 +218,43 @@
     "active": "Active",
     "closed": "Closed"
   },
+  "serviceDetails": {
+    "backToHome": "Back to Home",
+    "searchProvider": "Search provider...",
+    "filterBy": "Filter By",
+    "location": "Location",
+    "allLocations": "All Locations",
+    "minimumRating": "Minimum Rating",
+    "maxPrice": "Max Price",
+    "perDay": "per day",
+    "applyFilters": "Apply Filters",
+    "clearFilters": "Clear Filters",
+    "availableProviders": "Available Service Providers",
+    "noProviders": "No providers found matching your criteria",
+    "verified": "Verified",
+    "rating": "Rating",
+    "reviews": "reviews",
+    "experience": "Experience",
+    "call": "Call",
+    "bookNow": "Book Now"
+  },
+  "userBookingHistory": {
+    "backToHome": "Back to Home",
+    "title": "Booking History",
+    "subtitle": "View all your past service bookings",
+    "totalBookings": "Total Bookings"
+  },
+  "workerBookingHistory": {
+    "backToHome": "Back to Home",
+    "title": "Job History",
+    "subtitle": "View all your completed and pending jobs",
+    "totalJobs": "Total Jobs",
+    "totalEarnings": "Total Earnings",
+    "serviceType": "Service Type"
+  },
   "notFound": {
-    "title": "404",
-    "message": "Oops! Page not found",
+    "title": "404 - Page Not Found",
+    "message": "The page you're looking for doesn't exist.",
     "returnHome": "Return to Home"
   }
 }
