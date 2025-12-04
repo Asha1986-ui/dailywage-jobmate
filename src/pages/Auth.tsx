@@ -85,17 +85,11 @@ const Auth = () => {
 
       toast({
         title: "✅ Account created successfully!",
-        description: `Redirecting to ${role === 'worker' ? 'Worker' : 'User'} Dashboard...`,
+        description: "Welcome to WorkXpress!",
       });
 
-      // Redirect based on role after 2 seconds
-      setTimeout(() => {
-        if (role === 'worker') {
-          navigate("/worker-dashboard");
-        } else {
-          navigate("/user-booking-history");
-        }
-      }, 2000);
+      // Redirect to home page
+      navigate("/");
     } catch (error: any) {
       let errorMessage = "⚠️ Signup failed. Try again.";
       
@@ -145,12 +139,8 @@ const Auth = () => {
         description: "Welcome back!",
       });
 
-      // Redirect based on role
-      if (userRole === 'worker') {
-        navigate("/worker-dashboard");
-      } else {
-        navigate("/user-booking-history");
-      }
+      // Redirect to home page
+      navigate("/");
     } catch (error: any) {
       let errorMessage = "⚠️ Invalid email or password.";
       
