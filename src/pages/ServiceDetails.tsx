@@ -24,6 +24,7 @@ import {
   Filter,
   X,
 } from "lucide-react";
+import DiabetesMealPlan from "@/components/DiabetesMealPlan";
 
 const ServiceDetails = () => {
   const { serviceKey } = useParams();
@@ -1368,6 +1369,9 @@ const ServiceDetails = () => {
             {providers.length > 1 ? "Choose from our verified service providers" : "Professional and verified service provider"}
           </p>
         </div>
+
+        {/* Diabetes Meal Plan - Only for Cook Service */}
+        {serviceKey === "cook" && <DiabetesMealPlan />}
 
         {/* Search and Filter Section */}
         {providers.length > 1 && (
