@@ -281,15 +281,15 @@ const Index = () => {
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-background/80">
                   <Phone className="h-5 w-5 text-accent" />
-                  <span>+91 1800-XXX-XXXX</span>
+                  <span>8904051999</span>
                 </li>
                 <li className="flex items-center gap-3 text-background/80">
                   <Mail className="h-5 w-5 text-accent" />
-                  <span>support@workxpress.com</span>
+                  <span>ashamanju0408@gmail.com</span>
                 </li>
                 <li className="flex items-center gap-3 text-background/80">
                   <MapPin className="h-5 w-5 text-accent" />
-                  <span>Mumbai, India</span>
+                  <span>Karnataka, India</span>
                 </li>
               </ul>
             </div>
