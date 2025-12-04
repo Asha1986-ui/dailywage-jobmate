@@ -115,6 +115,10 @@ const Payment = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
       <div className="container mx-auto max-w-2xl px-4 py-6">
+        <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4 transition-colors">
+          <ArrowLeft className="w-4 h-4" />
+          Back to Home
+        </Link>
         <Card className="bg-card border shadow-elegant">
           <CardHeader>
             <CardTitle className="text-2xl">Complete Payment</CardTitle>
