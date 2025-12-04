@@ -1498,72 +1498,71 @@ const ServiceDetails = () => {
         )}
 
         {/* Provider Cards - Full Width Rectangular Layout */}
-        <div className="space-y-4">
+        <div className="space-y-5 md:space-y-6">
           {filteredProviders.map((provider, index) => (
             <Card 
               key={index}
-              className={`bg-card border shadow-sm hover:shadow-md transition-all ${
-                provider.verified ? "ring-2 ring-primary/50" : ""
+              className={`bg-card border border-border/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                provider.verified ? "ring-2 ring-primary/40 bg-gradient-to-br from-primary/5 to-transparent" : ""
               }`}
             >
-              <CardContent className="p-4">
+              <CardContent className="p-5 md:p-6">
                 {/* Desktop: Horizontal Layout | Mobile: Vertical Layout */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                   {/* Left Side: Provider Details */}
-                  <div className="flex-1 space-y-2">
+                  <div className="flex-1 space-y-3">
                     {/* Provider Name and Badge */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="font-bold text-lg">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h3 className="font-bold text-xl md:text-2xl">
                         {provider.name}
                       </h3>
                       {provider.verified && (
-                        <Badge variant="secondary" className="text-xs">
-                          ⭐ Verified
+                        <Badge className="text-sm px-3 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 border-0 font-medium">
+                          ✓ Verified
                         </Badge>
                       )}
                     </div>
 
                     {/* Info Row */}
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-base">
                       {/* Rating */}
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                        <span className="font-semibold">{provider.rating}</span>
+                      <div className="flex items-center gap-1.5">
+                        <Star className="w-5 h-5 fill-yellow-500 text-yellow-500" />
+                        <span className="font-bold text-lg">{provider.rating}</span>
+                        <span className="text-muted-foreground text-sm">({provider.reviews})</span>
                       </div>
 
                       {/* Location */}
-                      <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <MapPin className="w-4 h-4" />
-                        <span>{provider.location}</span>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <MapPin className="w-5 h-5" />
+                        <span className="text-base">{provider.location}</span>
                       </div>
 
                       {/* Price */}
-                      <div className="flex items-center gap-1 font-semibold text-primary">
+                      <div className="flex items-center gap-1.5 font-bold text-lg text-primary">
                         <span>₹{provider.price}/{provider.priceUnit}</span>
                       </div>
 
                       {/* Experience */}
-                      <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
-                        <span>{provider.experience}</span>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Calendar className="w-5 h-5" />
+                        <span className="text-base">{provider.experience}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Right Side: Action Buttons */}
-                  <div className="flex gap-2 md:flex-shrink-0">
+                  <div className="flex gap-3 md:flex-shrink-0">
                     <Button
                       variant="outline"
-                      size="sm"
-                      className="flex-1 md:flex-none md:w-24 h-9"
+                      className="flex-1 md:flex-none md:w-32 h-11 text-base font-medium rounded-xl"
                       onClick={() => handleCall(provider.phone)}
                     >
-                      <Phone className="w-4 h-4 md:mr-1" />
-                      <span className="hidden md:inline">Call</span>
+                      <Phone className="w-5 h-5 mr-2" />
+                      Call
                     </Button>
                     <Button
-                      size="sm"
-                      className="flex-1 md:flex-none md:w-28 h-9 bg-primary hover:bg-primary/90"
+                      className="flex-1 md:flex-none md:w-36 h-11 text-base font-medium bg-primary hover:bg-primary/90 rounded-xl"
                       onClick={() => handleBookNow(provider)}
                     >
                       Book Now
