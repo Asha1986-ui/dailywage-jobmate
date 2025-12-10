@@ -125,11 +125,11 @@ const Booking = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
+                <Label htmlFor="fullName">{t('booking.yourName')}</Label>
                 <Input
                   id="fullName"
                   type="text"
-                  placeholder="Enter your full name"
+                  placeholder={t('booking.namePlaceholder')}
                   value={formData.fullName}
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
@@ -140,11 +140,11 @@ const Booking = () => {
 
               {/* Email */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('booking.email')}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t('booking.emailPlaceholder')}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -155,11 +155,11 @@ const Booking = () => {
 
               {/* Phone */}
               <div className="space-y-2">
-                <Label htmlFor="phone">Contact Number</Label>
+                <Label htmlFor="phone">{t('booking.phone')}</Label>
                 <Input
                   id="phone"
                   type="tel"
-                  placeholder="Enter your phone number"
+                  placeholder={t('booking.phonePlaceholder')}
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
@@ -170,7 +170,7 @@ const Booking = () => {
 
               {/* Preferred Time */}
               <div className="space-y-2">
-                <Label htmlFor="dateTime">Preferred Date & Time</Label>
+                <Label htmlFor="dateTime">{t('booking.dateTime')}</Label>
                 <Input
                   id="dateTime"
                   type="datetime-local"
@@ -184,11 +184,11 @@ const Booking = () => {
 
               {/* Address */}
               <div className="space-y-2">
-                <Label htmlFor="address">Complete Address</Label>
+                <Label htmlFor="address">{t('booking.address')}</Label>
                 <Input
                   id="address"
                   type="text"
-                  placeholder="House/Flat no, Street, Area"
+                  placeholder={t('booking.addressPlaceholder')}
                   value={formData.address}
                   onChange={(e) =>
                     setFormData({ ...formData, address: e.target.value })
@@ -199,11 +199,11 @@ const Booking = () => {
 
               {/* City */}
               <div className="space-y-2">
-                <Label htmlFor="city">City</Label>
+                <Label htmlFor="city">{t('profile.city')}</Label>
                 <Input
                   id="city"
                   type="text"
-                  placeholder="Enter your city"
+                  placeholder={t('auth.city')}
                   value={formData.city}
                   onChange={(e) =>
                     setFormData({ ...formData, city: e.target.value })
@@ -214,7 +214,7 @@ const Booking = () => {
 
               {/* Payment Mode */}
               <div className="space-y-3">
-                <Label>Payment Mode</Label>
+                <Label>{t('booking.paymentMode')}</Label>
                 <RadioGroup
                   value={formData.paymentMode}
                   onValueChange={(value) =>
@@ -224,13 +224,13 @@ const Booking = () => {
                   <div className="flex items-center space-x-2 p-3 bg-muted/50 rounded-lg">
                     <RadioGroupItem value="cash" id="cash" />
                     <Label htmlFor="cash" className="cursor-pointer flex-1">
-                      Cash
+                      {t('booking.cash')}
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2 p-3 bg-muted/50 rounded-lg">
                     <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online" className="cursor-pointer flex-1">
-                      Online (UPI)
+                      {t('booking.online')} (UPI)
                     </Label>
                   </div>
                 </RadioGroup>
@@ -243,7 +243,7 @@ const Booking = () => {
                 className="w-full bg-gradient-primary hover:opacity-90"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Processing..." : "Continue to Payment"}
+                {isSubmitting ? t('common.loading') : t('booking.submitBooking')}
               </Button>
             </form>
           </CardContent>

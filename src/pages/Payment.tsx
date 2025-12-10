@@ -117,13 +117,13 @@ const Payment = () => {
       <div className="container mx-auto max-w-2xl px-4 py-6">
         <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4 transition-colors">
           <ArrowLeft className="w-4 h-4" />
-          Back to Home
+          {t('common.backToHome')}
         </Link>
         <Card className="bg-card border shadow-elegant">
           <CardHeader>
-            <CardTitle className="text-2xl">Complete Payment</CardTitle>
+            <CardTitle className="text-2xl">{t('payment.title')}</CardTitle>
             <p className="text-muted-foreground">
-              Service: {serviceName} - ₹{amount}
+              {t('services.title')}: {serviceName} - ₹{amount}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -133,26 +133,26 @@ const Payment = () => {
                   <CheckCircle2 className="w-20 h-20 text-green-500" />
                 </div>
                 <h3 className="text-2xl font-bold text-green-500">
-                  ✅ Payment Successful!
+                  ✅ {t('payment.paymentSuccess')}
                 </h3>
-                <p className="text-lg font-medium">Booking Confirmed</p>
+                <p className="text-lg font-medium">{t('payment.bookingConfirmed')}</p>
                 <p className="text-sm text-muted-foreground">
-                  Redirecting to your bookings...
+                  {t('payment.thankYou')}
                 </p>
               </div>
             ) : !paymentInitiated ? (
               <div className="space-y-4">
                 <div className="p-4 bg-muted/50 rounded-lg space-y-2">
-                  <p className="text-sm font-medium">Booking Details:</p>
+                  <p className="text-sm font-medium">{t('booking.title')}:</p>
                   <p className="text-sm text-muted-foreground">
-                    Service: {serviceName}
+                    {t('services.title')}: {serviceName}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Amount: ₹{amount}
+                    {t('payment.amount')}: ₹{amount}
                   </p>
                   {provider && (
                     <p className="text-sm text-muted-foreground">
-                      Provider: {provider.name}
+                      {t('services.providers')}: {provider.name}
                     </p>
                   )}
                 </div>
@@ -162,7 +162,7 @@ const Payment = () => {
                   className="w-full bg-primary hover:bg-primary/90"
                   onClick={handlePayNow}
                 >
-                  Pay ₹{amount} via UPI
+                  {t('payment.openUPI')} - ₹{amount}
                 </Button>
               </div>
             ) : (
@@ -170,15 +170,15 @@ const Payment = () => {
                 {isMobile ? (
                   <div className="text-center space-y-4">
                     <p className="text-lg font-medium">
-                      Complete payment in your UPI app
+                      {t('payment.subtitle')}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      Choose PhonePe, Google Pay, or Paytm to complete the payment
+                      {t('payment.scanInstruction')}
                     </p>
                   </div>
                 ) : (
                   <div className="text-center space-y-4">
-                    <p className="text-lg font-medium mb-4">Scan QR Code to Pay</p>
+                    <p className="text-lg font-medium mb-4">{t('payment.scanQR')}</p>
                     <div className="flex justify-center">
                       <img
                         src={paymentQR}
@@ -191,10 +191,10 @@ const Payment = () => {
                         UPI ID: {upiId}
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        Amount: ₹{amount}
+                        {t('payment.amount')}: ₹{amount}
                       </p>
                       <p className="text-xs text-muted-foreground mt-2">
-                        Scan to pay with any UPI app
+                        {t('payment.scanInstruction')}
                       </p>
                     </div>
                   </div>
@@ -206,7 +206,7 @@ const Payment = () => {
                   onClick={handlePaymentConfirm}
                   disabled={isProcessing}
                 >
-                  {isProcessing ? "Processing..." : "I've Paid"}
+                  {isProcessing ? t('common.loading') : t('payment.confirmPayment')}
                 </Button>
               </div>
             )}
