@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Users, Briefcase, MapPin, Star, UserCircle, Clock, Shield, ThumbsUp, ChevronRight, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import ServicesSection from "@/components/ServicesSection";
 import VoiceSearch from "@/components/VoiceSearch";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +16,7 @@ import {
 } from "@/components/ui/carousel";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [voiceSearchTerm, setVoiceSearchTerm] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,12 +33,12 @@ const Index = () => {
   };
 
   const jobCategories = [
-    { name: "Maid", icon: "🧹", count: "500+ Workers" },
-    { name: "Cook", icon: "👨‍🍳", count: "300+ Workers" },
-    { name: "Electrician", icon: "⚡", count: "250+ Workers" },
-    { name: "Plumber", icon: "🔧", count: "200+ Workers" },
-    { name: "Carpenter", icon: "🔨", count: "150+ Workers" },
-    { name: "Painter", icon: "🎨", count: "180+ Workers" },
+    { name: t('home.categories.maid'), icon: "🧹", count: t('home.categories.maidCount') },
+    { name: t('home.categories.cook'), icon: "👨‍🍳", count: t('home.categories.cookCount') },
+    { name: t('home.categories.electrician'), icon: "⚡", count: t('home.categories.electricianCount') },
+    { name: t('home.categories.plumber'), icon: "🔧", count: t('home.categories.plumberCount') },
+    { name: t('home.categories.carpenter'), icon: "🔨", count: t('home.categories.carpenterCount') },
+    { name: t('home.categories.painter'), icon: "🎨", count: t('home.categories.painterCount') },
   ];
 
   const handleCategoryClick = (categoryName: string) => {
@@ -46,11 +49,10 @@ const Index = () => {
     }
   };
 
-
   const whyChooseUs = [
-    { icon: Clock, title: "30-Min Fast Service", desc: "Get connected with workers in under 30 minutes" },
-    { icon: Shield, title: "Verified Workers", desc: "All workers are background-verified for your safety" },
-    { icon: ThumbsUp, title: "Quality Assured", desc: "Rated by thousands of satisfied customers" },
+    { icon: Clock, title: t('home.whyChoose.fastService'), desc: t('home.whyChoose.fastServiceDesc') },
+    { icon: Shield, title: t('home.whyChoose.verifiedWorkers'), desc: t('home.whyChoose.verifiedWorkersDesc') },
+    { icon: ThumbsUp, title: t('home.whyChoose.qualityAssured'), desc: t('home.whyChoose.qualityAssuredDesc') },
   ];
 
   return (
@@ -61,16 +63,17 @@ const Index = () => {
           <h1 className="text-2xl font-bold text-white tracking-tight">
             Work<span className="text-accent">Xpress</span>
           </h1>
-          <div className="flex gap-3">
+          <div className="flex gap-3 items-center">
+            <LanguageSwitcher />
             <Link to="/profile">
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20 transition-all hover:scale-105">
                 <UserCircle className="h-4 w-4 mr-2" />
-                Profile
+                {t('nav.profile')}
               </Button>
             </Link>
             <Link to="/auth">
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20 transition-all hover:scale-105">
-                Sign In
+                {t('nav.login')}
               </Button>
             </Link>
           </div>
@@ -90,24 +93,24 @@ const Index = () => {
             Work<span className="text-accent">Xpress</span>
           </h1>
           <p className={`text-xl md:text-3xl text-white/95 mb-4 max-w-3xl mx-auto leading-relaxed font-light animate-fade-in delay-200`}>
-            Your Trusted Daily Wage Job Platform
+            {t('home.subtitle')}
           </p>
           <p className={`text-lg md:text-xl text-white/85 mb-10 max-w-2xl mx-auto animate-fade-in delay-300`}>
-            Connect with verified workers in 30 minutes. Quality service, every time.
+            {t('home.description')}
           </p>
           
           <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto animate-scale-in delay-500`}>
             <Link to="/jobs" className="w-full sm:w-auto">
               <Button size="lg" variant="secondary" className="w-full text-lg py-7 px-10 shadow-strong hover-lift font-semibold">
                 <Users className="mr-3 h-6 w-6" />
-                Find Jobs Near You
+                {t('home.findJobs')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/employer-dashboard" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full text-lg py-7 px-10 bg-white/10 border-white/30 text-white hover:bg-white/20 shadow-strong hover-lift font-semibold backdrop-blur-sm">
                 <Briefcase className="mr-3 h-6 w-6" />
-                Post a Job
+                {t('home.postJob')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -120,10 +123,10 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Popular Job Categories
+              {t('home.popularCategories')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Browse through our most in-demand services
+              {t('home.browseServices')}
             </p>
           </div>
 
@@ -155,10 +158,10 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Why Choose WorkXpress?
+              {t('home.whyChooseTitle')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We make connecting with skilled workers simple, safe, and reliable
+              {t('home.whyChooseSubtitle')}
             </p>
           </div>
           
@@ -178,16 +181,15 @@ const Index = () => {
         </div>
       </section>
 
-
       {/* Voice Search Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto max-w-3xl text-center">
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Voice Search Services
+              {t('home.voiceSearchTitle')}
             </h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-              Simply speak to find the services you need — fast and easy
+              {t('home.voiceSearchSubtitle')}
             </p>
           </div>
           
@@ -201,7 +203,7 @@ const Index = () => {
                 />
               </div>
               <p className="text-sm text-muted-foreground">
-                Click the microphone and say what service you need
+                {t('home.voiceSearchHint')}
               </p>
             </div>
           </div>
@@ -216,22 +218,22 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-secondary/30" />
         <div className="container mx-auto text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Ready to Get Started?
+            {t('home.ctaTitle')}
           </h2>
           <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Join thousands of workers and employers using WorkXpress to connect and grow
+            {t('home.ctaSubtitle')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
             <Link to="/worker-dashboard" className="w-full sm:w-auto">
               <Button size="lg" variant="secondary" className="w-full text-lg py-7 px-10 shadow-strong hover-lift font-semibold">
-                Start Finding Work
+                {t('home.startFindingWork')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/employer-dashboard" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full text-lg py-7 px-10 bg-white/10 border-white/30 text-white hover:bg-white/20 shadow-strong hover-lift font-semibold backdrop-blur-sm">
-                Start Hiring
+                {t('home.startHiring')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -249,35 +251,35 @@ const Index = () => {
                 Work<span className="text-accent">Xpress</span>
               </h3>
               <p className="text-background/80 leading-relaxed">
-                Your trusted platform for connecting with skilled daily wage workers quickly and reliably.
+                {t('home.footerDescription')}
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-xl font-semibold mb-6">Quick Links</h4>
+              <h4 className="text-xl font-semibold mb-6">{t('home.quickLinks')}</h4>
               <ul className="space-y-3">
-                <li><Link to="/jobs" className="text-background/80 hover:text-accent transition-colors">Find Jobs</Link></li>
-                <li><Link to="/employer-dashboard" className="text-background/80 hover:text-accent transition-colors">Post a Job</Link></li>
-                <li><Link to="/worker-dashboard" className="text-background/80 hover:text-accent transition-colors">Worker Dashboard</Link></li>
-                <li><Link to="/profile" className="text-background/80 hover:text-accent transition-colors">Profile</Link></li>
+                <li><Link to="/jobs" className="text-background/80 hover:text-accent transition-colors">{t('nav.findJobs')}</Link></li>
+                <li><Link to="/employer-dashboard" className="text-background/80 hover:text-accent transition-colors">{t('nav.postJob')}</Link></li>
+                <li><Link to="/worker-dashboard" className="text-background/80 hover:text-accent transition-colors">{t('nav.dashboard')}</Link></li>
+                <li><Link to="/profile" className="text-background/80 hover:text-accent transition-colors">{t('nav.profile')}</Link></li>
               </ul>
             </div>
 
             {/* Support */}
             <div>
-              <h4 className="text-xl font-semibold mb-6">Support</h4>
+              <h4 className="text-xl font-semibold mb-6">{t('home.support')}</h4>
               <ul className="space-y-3">
-                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">Safety Guidelines</a></li>
-                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">{t('home.helpCenter')}</a></li>
+                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">{t('home.safetyGuidelines')}</a></li>
+                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">{t('home.termsOfService')}</a></li>
+                <li><a href="#" className="text-background/80 hover:text-accent transition-colors">{t('home.privacyPolicy')}</a></li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-xl font-semibold mb-6">Contact Us</h4>
+              <h4 className="text-xl font-semibold mb-6">{t('home.contactUs')}</h4>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-background/80">
                   <Phone className="h-5 w-5 text-accent" />
@@ -289,7 +291,7 @@ const Index = () => {
                 </li>
                 <li className="flex items-center gap-3 text-background/80">
                   <MapPin className="h-5 w-5 text-accent" />
-                  <span>Karnataka, India</span>
+                  <span>{t('home.location')}</span>
                 </li>
               </ul>
             </div>
@@ -299,7 +301,7 @@ const Index = () => {
           <div className="border-t border-background/20 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <p className="text-background/70">
-                © 2025 WorkXpress. All rights reserved.
+                {t('home.copyright')}
               </p>
               <div className="flex gap-6">
                 <a href="#" className="text-background/70 hover:text-accent transition-colors hover:scale-110 transform">
