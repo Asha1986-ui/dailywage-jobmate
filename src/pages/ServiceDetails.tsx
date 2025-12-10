@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +28,7 @@ import {
 import DiabetesMealPlan from "@/components/DiabetesMealPlan";
 
 const ServiceDetails = () => {
+  const { t } = useTranslation();
   const { serviceKey } = useParams();
   const navigate = useNavigate();
 
@@ -1355,7 +1357,7 @@ const ServiceDetails = () => {
               className="flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Home
+              {t('common.backToHome')}
             </Button>
           </Link>
         </div>
@@ -1363,10 +1365,10 @@ const ServiceDetails = () => {
         {/* Service Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            {serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) + " Service" : "Service Details"}
+            {serviceKey ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) + " " + t('services.title') : t('services.title')}
           </h1>
           <p className="text-muted-foreground text-lg">
-            {providers.length > 1 ? "Choose from our verified service providers" : "Professional and verified service provider"}
+            {providers.length > 1 ? t('serviceDetails.availableProviders') : t('serviceDetails.availableProviders')}
           </p>
         </div>
 
@@ -1383,7 +1385,7 @@ const ServiceDetails = () => {
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder="Search by name or location..."
+                    placeholder={t('serviceDetails.searchProvider')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 h-12"
@@ -1400,7 +1402,7 @@ const ServiceDetails = () => {
                   className="gap-2"
                 >
                   <Filter className="w-4 h-4" />
-                  {showFilters ? "Hide Filters" : "Show Filters"}
+                  {showFilters ? t('services.hideFilters') : t('services.showFilters')}
                 </Button>
                 {hasActiveFilters && (
                   <Button
@@ -1410,7 +1412,7 @@ const ServiceDetails = () => {
                     className="gap-2 text-muted-foreground"
                   >
                     <X className="w-4 h-4" />
-                    Clear All
+                    {t('services.clearFilters')}
                   </Button>
                 )}
               </div>
@@ -1420,13 +1422,13 @@ const ServiceDetails = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-muted/30 rounded-lg">
                   {/* Location Filter */}
                   <div className="space-y-2">
-                    <Label htmlFor="location">Location</Label>
+                    <Label htmlFor="location">{t('serviceDetails.location')}</Label>
                     <Select value={locationFilter} onValueChange={setLocationFilter}>
                       <SelectTrigger id="location" className="bg-background">
-                        <SelectValue placeholder="All Locations" />
+                        <SelectValue placeholder={t('serviceDetails.allLocations')} />
                       </SelectTrigger>
                       <SelectContent className="bg-background z-50">
-                        <SelectItem value="all">All Locations</SelectItem>
+                        <SelectItem value="all">{t('serviceDetails.allLocations')}</SelectItem>
                         {uniqueLocations.map((location) => (
                           <SelectItem key={location} value={location}>
                             {location}
@@ -1438,13 +1440,13 @@ const ServiceDetails = () => {
 
                   {/* Rating Filter */}
                   <div className="space-y-2">
-                    <Label htmlFor="rating">Minimum Rating</Label>
+                    <Label htmlFor="rating">{t('serviceDetails.minimumRating')}</Label>
                     <Select value={minRating.toString()} onValueChange={(v) => setMinRating(Number(v))}>
                       <SelectTrigger id="rating" className="bg-background">
-                        <SelectValue placeholder="Any Rating" />
+                        <SelectValue placeholder={t('services.anyRating')} />
                       </SelectTrigger>
                       <SelectContent className="bg-background z-50">
-                        <SelectItem value="0">Any Rating</SelectItem>
+                        <SelectItem value="0">{t('services.anyRating')}</SelectItem>
                         <SelectItem value="4">4+ Stars</SelectItem>
                         <SelectItem value="4.5">4.5+ Stars</SelectItem>
                         <SelectItem value="4.7">4.7+ Stars</SelectItem>
@@ -1456,7 +1458,7 @@ const ServiceDetails = () => {
                   {/* Price Filter */}
                   <div className="space-y-2">
                     <Label htmlFor="price">
-                      Max Price: ₹{maxPrice === 100000 ? "Any" : maxPrice}
+                      {t('serviceDetails.maxPrice')}: ₹{maxPrice === 100000 ? t('services.anyRating') : maxPrice}
                     </Label>
                     <Slider
                       id="price"
@@ -1484,13 +1486,13 @@ const ServiceDetails = () => {
           <Card className="bg-gradient-card border-0 shadow-medium">
             <CardContent className="py-12 text-center">
               <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">No providers found</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('serviceDetails.noProviders')}</h3>
               <p className="text-muted-foreground mb-4">
-                Try adjusting your filters or search criteria
+                {t('services.noResultsDesc')}
               </p>
               {hasActiveFilters && (
                 <Button onClick={clearFilters} variant="outline">
-                  Clear Filters
+                  {t('services.clearFilters')}
                 </Button>
               )}
             </CardContent>
@@ -1518,7 +1520,7 @@ const ServiceDetails = () => {
                       </h3>
                       {provider.verified && (
                         <Badge className="text-sm px-3 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 border-0 font-medium">
-                          ✓ Verified
+                          ✓ {t('serviceDetails.verified')}
                         </Badge>
                       )}
                     </div>
@@ -1559,13 +1561,13 @@ const ServiceDetails = () => {
                       onClick={() => handleCall(provider.phone)}
                     >
                       <Phone className="w-5 h-5 mr-2" />
-                      Call
+                      {t('common.call')}
                     </Button>
                     <Button
                       className="flex-1 md:flex-none md:w-36 h-11 text-base font-medium bg-primary hover:bg-primary/90 rounded-xl"
                       onClick={() => handleBookNow(provider)}
                     >
-                      Book Now
+                      {t('common.bookNow')}
                     </Button>
                   </div>
                 </div>

@@ -41,8 +41,8 @@ const Auth = () => {
       // Validate inputs
       if (!fullName.trim() || !city.trim() || !email.trim() || !password.trim()) {
         toast({
-          title: "Missing Information",
-          description: "Please fill in all fields",
+          title: t('auth.fillAllFields'),
+          description: t('auth.fillAllFields'),
           variant: "destructive",
         });
         return;
@@ -50,8 +50,8 @@ const Auth = () => {
 
       if (password.length < 6) {
         toast({
-          title: "Weak Password",
-          description: "Password must be at least 6 characters long",
+          title: t('auth.passwordLength'),
+          description: t('auth.passwordLength'),
           variant: "destructive",
         });
         return;
@@ -76,34 +76,34 @@ const Auth = () => {
       // Check if email confirmation is required
       if (authData.user && !authData.session) {
         toast({
-          title: "✅ Account created!",
-          description: "Please check your email to confirm your account before logging in.",
+          title: t('auth.signupSuccess'),
+          description: t('auth.signupSuccess'),
         });
         setMode('login');
         return;
       }
 
       toast({
-        title: "✅ Account created successfully!",
-        description: "Welcome to WorkXpress!",
+        title: t('auth.signupSuccess'),
+        description: t('auth.signupSuccess'),
       });
 
       // Redirect to home page
       navigate("/");
     } catch (error: any) {
-      let errorMessage = "⚠️ Signup failed. Try again.";
+      let errorMessage = t('auth.authError');
       
       if (error.message.includes("already registered") || error.message.includes("User already registered")) {
-        errorMessage = "This email is already registered. Please login instead.";
+        errorMessage = t('auth.authError');
         setMode('login');
       } else if (error.message.includes("Invalid email")) {
-        errorMessage = "Please enter a valid email address";
+        errorMessage = t('auth.authError');
       } else if (error.message.includes("Password")) {
-        errorMessage = "Password must be at least 6 characters long";
+        errorMessage = t('auth.passwordLength');
       }
       
       toast({
-        title: "Signup Failed",
+        title: t('auth.authError'),
         description: errorMessage,
         variant: "destructive",
       });
@@ -135,25 +135,25 @@ const Auth = () => {
       const userRole = profileData?.role || 'user';
 
       toast({
-        title: "✅ Logged in successfully!",
-        description: "Welcome back!",
+        title: t('auth.loginSuccess'),
+        description: t('auth.loginSuccess'),
       });
 
       // Redirect to home page
       navigate("/");
     } catch (error: any) {
-      let errorMessage = "⚠️ Invalid email or password.";
+      let errorMessage = t('auth.authError');
       
       if (error.message.includes("Invalid login credentials")) {
-        errorMessage = "Invalid email or password. Please check your credentials.";
+        errorMessage = t('auth.authError');
       } else if (error.message.includes("Email not confirmed")) {
-        errorMessage = "Please verify your email first. Check your inbox for the confirmation link.";
+        errorMessage = t('auth.authError');
       } else if (error.message.includes("Invalid email")) {
-        errorMessage = "Please enter a valid email address";
+        errorMessage = t('auth.authError');
       }
       
       toast({
-        title: "Login Failed",
+        title: t('auth.authError'),
         description: errorMessage,
         variant: "destructive",
       });
@@ -167,12 +167,12 @@ const Auth = () => {
       <Card className="w-full max-w-md shadow-soft border-0 bg-gradient-card">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold">
-            {mode === 'login' ? 'Welcome Back' : 'Create Account'}
+            {mode === 'login' ? t('auth.welcomeBack') : t('auth.createAccount')}
           </CardTitle>
           <CardDescription>
             {mode === 'login' 
-              ? 'Login to access your account'
-              : 'Sign up to get started'
+              ? t('auth.loginSubtitle')
+              : t('auth.signupSubtitle')
             }
           </CardDescription>
         </CardHeader>
@@ -180,7 +180,7 @@ const Auth = () => {
           {mode === 'signup' ? (
             <form onSubmit={handleSignup} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name *</Label>
+                <Label htmlFor="fullName">{t('auth.fullName')} *</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -188,7 +188,7 @@ const Auth = () => {
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Enter your full name"
+                    placeholder={t('auth.fullName')}
                     className="pl-10"
                     required
                   />
@@ -196,7 +196,7 @@ const Auth = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="city">City *</Label>
+                <Label htmlFor="city">{t('auth.city')} *</Label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -204,7 +204,7 @@ const Auth = () => {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="Enter your city"
+                    placeholder={t('auth.city')}
                     className="pl-10"
                     required
                   />
@@ -212,7 +212,7 @@ const Auth = () => {
               </div>
 
               <div className="space-y-3">
-                <Label>Role *</Label>
+                <Label>{t('auth.selectRole')} *</Label>
                 <RadioGroup value={role} onValueChange={(value) => setRole(value as 'user' | 'worker')}>
                   <div className="flex items-center space-x-2 p-3 rounded-lg border border-input hover:bg-accent/50 transition-colors">
                     <RadioGroupItem value="user" id="user" />
@@ -220,8 +220,8 @@ const Auth = () => {
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4 text-primary" />
                         <div>
-                          <p className="font-medium">User (Customer)</p>
-                          <p className="text-sm text-muted-foreground">Book services and hire workers</p>
+                          <p className="font-medium">{t('profile.user')}</p>
+                          <p className="text-sm text-muted-foreground">{t('auth.signupSubtitle')}</p>
                         </div>
                       </div>
                     </Label>
@@ -232,8 +232,8 @@ const Auth = () => {
                       <div className="flex items-center gap-2">
                         <Briefcase className="h-4 w-4 text-primary" />
                         <div>
-                          <p className="font-medium">Worker (Service Provider)</p>
-                          <p className="text-sm text-muted-foreground">Offer services and find jobs</p>
+                          <p className="font-medium">{t('profile.worker')}</p>
+                          <p className="text-sm text-muted-foreground">{t('auth.signupSubtitle')}</p>
                         </div>
                       </div>
                     </Label>
@@ -242,7 +242,7 @@ const Auth = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="signup-email">Email *</Label>
+                <Label htmlFor="signup-email">{t('auth.email')} *</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -250,7 +250,7 @@ const Auth = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder={t('auth.email')}
                     className="pl-10"
                     required
                   />
@@ -258,7 +258,7 @@ const Auth = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="signup-password">Password *</Label>
+                <Label htmlFor="signup-password">{t('auth.password')} *</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -266,7 +266,7 @@ const Auth = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Create a password (min 6 characters)"
+                    placeholder={t('auth.password')}
                     className="pl-10"
                     required
                     minLength={6}
@@ -275,7 +275,7 @@ const Auth = () => {
               </div>
 
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Creating Account...' : 'Create Account'}
+                {loading ? t('common.loading') : t('auth.signupButton')}
               </Button>
 
               <div className="text-center">
@@ -291,14 +291,14 @@ const Auth = () => {
                   }}
                   className="text-sm"
                 >
-                  Already have an account? <span className="font-semibold ml-1">Login</span>
+                  {t('auth.hasAccount')} <span className="font-semibold ml-1">{t('auth.login')}</span>
                 </Button>
               </div>
             </form>
           ) : (
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="login-email">Email *</Label>
+                <Label htmlFor="login-email">{t('auth.email')} *</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -306,7 +306,7 @@ const Auth = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder={t('auth.email')}
                     className="pl-10"
                     required
                   />
@@ -314,7 +314,7 @@ const Auth = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="login-password">Password *</Label>
+                <Label htmlFor="login-password">{t('auth.password')} *</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -322,7 +322,7 @@ const Auth = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
+                    placeholder={t('auth.password')}
                     className="pl-10"
                     required
                   />
@@ -330,7 +330,7 @@ const Auth = () => {
               </div>
 
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Logging in...' : 'Login'}
+                {loading ? t('common.loading') : t('auth.loginButton')}
               </Button>
 
               <div className="text-center">
@@ -343,7 +343,7 @@ const Auth = () => {
                   }}
                   className="text-sm"
                 >
-                  Don't have an account? <span className="font-semibold ml-1">Sign up</span>
+                  {t('auth.noAccount')} <span className="font-semibold ml-1">{t('auth.signup')}</span>
                 </Button>
               </div>
             </form>

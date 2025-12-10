@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +23,7 @@ import {
 } from "lucide-react";
 
 const Jobs = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -337,8 +339,8 @@ const Jobs = () => {
 
   const handleApply = (jobId: string, jobTitle: string) => {
     toast({
-      title: "Application Sent",
-      description: `Applied for ${jobTitle}. Employer will contact you soon.`,
+      title: t('jobs.applicationSent'),
+      description: `${jobTitle}`,
     });
   };
 
@@ -347,8 +349,8 @@ const Jobs = () => {
     window.location.href = `tel:${phoneNumber}`;
     
     toast({
-      title: "Calling Employer",
-      description: `Calling ${jobTitle} employer at ${phoneNumber}`,
+      title: t('jobs.callingEmployer'),
+      description: `${jobTitle} - ${phoneNumber}`,
     });
   };
 
@@ -370,7 +372,7 @@ const Jobs = () => {
               className="flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Home
+              {t('common.backToHome')}
             </Button>
           </Link>
         </div>
@@ -378,10 +380,10 @@ const Jobs = () => {
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2 flex items-center justify-center gap-3">
             <Briefcase className="w-8 h-8 text-primary" />
-            Find Jobs Near You
+            {t('jobs.title')}
           </h1>
           <p className="text-muted-foreground text-lg">
-            Discover daily wage opportunities in your area
+            {t('jobs.subtitle')}
           </p>
         </div>
 
@@ -392,7 +394,7 @@ const Jobs = () => {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search for jobs, companies, locations..."
+                placeholder={t('jobs.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 h-12 text-base"
@@ -424,18 +426,18 @@ const Jobs = () => {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Filter className="w-4 h-4 text-muted-foreground" />
-                <h3 className="font-semibold text-sm">Filters</h3>
+                <h3 className="font-semibold text-sm">{t('common.filter')}</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Location Filter */}
                 <div className="space-y-2">
-                  <Label htmlFor="location" className="text-xs text-muted-foreground">Location</Label>
+                  <Label htmlFor="location" className="text-xs text-muted-foreground">{t('services.location')}</Label>
                   <Select value={selectedLocation} onValueChange={setSelectedLocation}>
                     <SelectTrigger id="location" className="h-9">
-                      <SelectValue placeholder="All Locations" />
+                      <SelectValue placeholder={t('services.allLocations')} />
                     </SelectTrigger>
                     <SelectContent className="bg-popover">
-                      <SelectItem value="all">All Locations</SelectItem>
+                      <SelectItem value="all">{t('services.allLocations')}</SelectItem>
                       {locations.slice(1).map((location) => (
                         <SelectItem key={location} value={location}>
                           {location}
@@ -447,22 +449,22 @@ const Jobs = () => {
 
                 {/* Price Sort */}
                 <div className="space-y-2">
-                  <Label htmlFor="price-sort" className="text-xs text-muted-foreground">Sort by Price</Label>
+                  <Label htmlFor="price-sort" className="text-xs text-muted-foreground">{t('jobs.sortByPrice')}</Label>
                   <Select value={priceSort} onValueChange={setPriceSort}>
                     <SelectTrigger id="price-sort" className="h-9">
-                      <SelectValue placeholder="None" />
+                      <SelectValue placeholder={t('jobs.sortByPrice')} />
                     </SelectTrigger>
                     <SelectContent className="bg-popover">
-                      <SelectItem value="none">None</SelectItem>
-                      <SelectItem value="low-to-high">Low to High</SelectItem>
-                      <SelectItem value="high-to-low">High to Low</SelectItem>
+                      <SelectItem value="none">{t('jobs.sortByPrice')}</SelectItem>
+                      <SelectItem value="low-to-high">{t('jobs.lowToHigh')}</SelectItem>
+                      <SelectItem value="high-to-low">{t('jobs.highToLow')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 {/* Availability Filter */}
                 <div className="space-y-2">
-                  <Label htmlFor="availability" className="text-xs text-muted-foreground">Availability</Label>
+                  <Label htmlFor="availability" className="text-xs text-muted-foreground">{t('services.available')}</Label>
                   <div className="flex items-center space-x-2 h-9">
                     <Switch
                       id="availability"
@@ -470,7 +472,7 @@ const Jobs = () => {
                       onCheckedChange={setShowAvailableOnly}
                     />
                     <Label htmlFor="availability" className="text-sm cursor-pointer">
-                      Available Only
+                      {t('jobs.availableOnly')}
                     </Label>
                   </div>
                 </div>
@@ -491,8 +493,8 @@ const Jobs = () => {
             <Card className="p-8 text-center">
               <CardContent>
                 <Briefcase className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                <h3 className="text-lg font-semibold mb-2">No Jobs Found</h3>
-                <p className="text-muted-foreground">Try adjusting your search criteria or view all categories.</p>
+                <h3 className="text-lg font-semibold mb-2">{t('jobs.noJobs')}</h3>
+                <p className="text-muted-foreground">{t('jobs.noJobsDesc')}</p>
               </CardContent>
             </Card>
           ) : (
@@ -532,7 +534,7 @@ const Jobs = () => {
                           </Badge>
                         ))}
                         <Badge variant={job.available ? "default" : "destructive"} className="text-xs">
-                          {job.available ? "Available" : "Not Available"}
+                          {job.available ? t('services.available') : t('services.notAvailable')}
                         </Badge>
                       </div>
                     </div>
@@ -544,7 +546,7 @@ const Jobs = () => {
                         <span>{job.salary}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        per day
+                        {t('services.perDay')}
                       </p>
                     </div>
                   </div>
@@ -560,7 +562,7 @@ const Jobs = () => {
                         className="flex items-center gap-2 flex-1"
                       >
                         <Phone className="w-4 h-4" />
-                        Call
+                        {t('common.call')}
                       </Button>
                       
                       {/* Apply Button */}
@@ -568,7 +570,7 @@ const Jobs = () => {
                         onClick={() => handleApply(job.id, job.title)}
                         className="sm:w-auto w-full shadow-medium hover:shadow-strong"
                       >
-                        Apply Now
+                        {t('jobs.applyNow')}
                       </Button>
                   </div>
                 </CardContent>
@@ -581,17 +583,17 @@ const Jobs = () => {
           <CardContent className="p-6">
             <div className="text-center">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Need Help Finding the Right Job?
+                {t('jobs.needHelp')}
               </h3>
               <p className="text-muted-foreground mb-4">
-                Contact our support team for personalized job recommendations
+                {t('jobs.supportPhone')}
               </p>
               <Button 
                 variant="outline" 
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 onClick={() => window.location.href = 'tel:+918904051999'}
               >
-                Get Job Assistance
+                {t('common.call')}
               </Button>
             </div>
           </CardContent>
