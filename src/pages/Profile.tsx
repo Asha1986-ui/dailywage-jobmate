@@ -210,7 +210,7 @@ const Profile = () => {
             <Link to="/">
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
+                {t('common.backToHome')}
               </Button>
             </Link>
             <Button 
@@ -220,14 +220,14 @@ const Profile = () => {
               className="bg-white/10 border-white/30 text-white hover:bg-white/20"
             >
               <LogOut className="h-4 w-4 mr-2" />
-              Logout
+              {t('nav.logout')}
             </Button>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            My Profile
+            {t('profile.title')}
           </h1>
           <p className="text-white/90 text-lg">
-            Manage your services and bookings
+            {t('profile.subtitle')}
           </p>
         </div>
       </header>
@@ -237,15 +237,15 @@ const Profile = () => {
         <div className="container mx-auto max-w-6xl">
           <Tabs defaultValue="user" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="user">User (Customer)</TabsTrigger>
-              <TabsTrigger value="worker">Worker (Service Provider)</TabsTrigger>
+              <TabsTrigger value="user">{t('profile.userTab')}</TabsTrigger>
+              <TabsTrigger value="worker">{t('profile.workerTab')}</TabsTrigger>
             </TabsList>
 
             {/* User Tab */}
             <TabsContent value="user" className="space-y-8">
               {/* User Profile Information */}
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Profile Information</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('profile.profileInfo')}</h2>
                 {loadingProfile ? (
                   <Card className="p-8 text-center shadow-soft bg-gradient-card border-0">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -256,29 +256,29 @@ const Profile = () => {
                       <div className="flex items-center gap-3">
                         <User className="h-5 w-5 text-primary" />
                         <div>
-                          <p className="text-sm text-muted-foreground">Full Name</p>
-                          <p className="text-lg font-semibold">{userProfile?.display_name || "Not set"}</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.fullName')}</p>
+                          <p className="text-lg font-semibold">{userProfile?.display_name || t('profile.notSet')}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <MapPin className="h-5 w-5 text-primary" />
                         <div>
-                          <p className="text-sm text-muted-foreground">City</p>
-                          <p className="text-lg font-semibold">{userProfile?.city || "Not set"}</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.city')}</p>
+                          <p className="text-lg font-semibold">{userProfile?.city || t('profile.notSet')}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-5 w-5 text-primary" />
                         <div>
-                          <p className="text-sm text-muted-foreground">Email</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.email')}</p>
                           <p className="text-lg font-semibold">{userEmail}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Briefcase className="h-5 w-5 text-primary" />
                         <div>
-                          <p className="text-sm text-muted-foreground">Role</p>
-                          <p className="text-lg font-semibold capitalize">{userProfile?.role || "Not set"}</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.role')}</p>
+                          <p className="text-lg font-semibold capitalize">{userProfile?.role || t('profile.notSet')}</p>
                         </div>
                       </div>
                     </div>
@@ -288,14 +288,14 @@ const Profile = () => {
 
               {/* Find & Book Services Section */}
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Find & Book Services</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('profile.findBookServices')}</h2>
                 <Card className="p-6 shadow-soft bg-gradient-card border-0">
                   <p className="text-muted-foreground mb-4">
-                    Browse and book professional services in your area
+                    {t('profile.browseDescription')}
                   </p>
                   <Link to="/">
                     <Button className="w-full md:w-auto">
-                      Browse Services
+                      {t('profile.browseServices')}
                     </Button>
                   </Link>
                 </Card>
@@ -304,10 +304,10 @@ const Profile = () => {
               {/* User Booking History */}
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-semibold">Booking History</h2>
+                  <h2 className="text-2xl font-semibold">{t('bookingHistory.title')}</h2>
                   <Link to="/booking-history">
                     <Button variant="outline" size="sm">
-                      View All
+                      {t('common.viewAll')}
                     </Button>
                   </Link>
                 </div>
@@ -318,9 +318,9 @@ const Profile = () => {
                   </Card>
                 ) : userBookings.length === 0 ? (
                   <Card className="p-8 text-center shadow-soft bg-gradient-card border-0">
-                    <p className="text-muted-foreground mb-4">No bookings yet</p>
+                    <p className="text-muted-foreground mb-4">{t('bookingHistory.noBookings')}</p>
                     <Link to="/">
-                      <Button size="sm">Browse Services</Button>
+                      <Button size="sm">{t('profile.browseServices')}</Button>
                     </Link>
                   </Card>
                 ) : (
@@ -368,10 +368,10 @@ const Profile = () => {
               {/* Post Service Section */}
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-semibold">My Services</h2>
+                  <h2 className="text-2xl font-semibold">{t('profile.myServices')}</h2>
                   <Button onClick={() => setShowServiceForm(!showServiceForm)}>
                     <Plus className="h-4 w-4 mr-2" />
-                    Post a Service
+                    {t('profile.postService')}
                   </Button>
                 </div>
 
@@ -380,10 +380,10 @@ const Profile = () => {
                   <Card className="p-6 shadow-soft bg-gradient-card border-0 mb-6">
                     <form onSubmit={handleSubmitService} className="space-y-4">
                       <div>
-                        <Label htmlFor="serviceName">Service Name *</Label>
+                        <Label htmlFor="serviceName">{t('profile.serviceName')} *</Label>
                         <Input
                           id="serviceName"
-                          placeholder="e.g., Cook, Plumber, Maid"
+                          placeholder={t('profile.serviceNamePlaceholder')}
                           value={newService.name}
                           onChange={(e) => setNewService({ ...newService, name: e.target.value })}
                           required
@@ -391,10 +391,10 @@ const Profile = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="price">Price per hour/day *</Label>
+                        <Label htmlFor="price">{t('profile.pricePerHour')} *</Label>
                         <Input
                           id="price"
-                          placeholder="e.g., ₹500/hour"
+                          placeholder={t('profile.pricePlaceholder')}
                           value={newService.price}
                           onChange={(e) => setNewService({ ...newService, price: e.target.value })}
                           required
@@ -402,10 +402,10 @@ const Profile = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="location">Location *</Label>
+                        <Label htmlFor="location">{t('booking.addressLabel')} *</Label>
                         <Input
                           id="location"
-                          placeholder="e.g., Koramangala, Bengaluru"
+                          placeholder={t('profile.locationPlaceholder')}
                           value={newService.location}
                           onChange={(e) => setNewService({ ...newService, location: e.target.value })}
                           required
@@ -418,14 +418,14 @@ const Profile = () => {
                           checked={newService.available}
                           onCheckedChange={(checked) => setNewService({ ...newService, available: checked })}
                         />
-                        <Label htmlFor="availability">Available</Label>
+                        <Label htmlFor="availability">{t('services.available')}</Label>
                       </div>
 
                       <div>
-                        <Label htmlFor="description">Short Description</Label>
+                        <Label htmlFor="description">{t('profile.shortDescription')}</Label>
                         <Textarea
                           id="description"
-                          placeholder="Brief description of your service"
+                          placeholder={t('profile.descriptionPlaceholder')}
                           value={newService.description}
                           onChange={(e) => setNewService({ ...newService, description: e.target.value })}
                           rows={3}
@@ -433,9 +433,9 @@ const Profile = () => {
                       </div>
 
                       <div className="flex gap-2">
-                        <Button type="submit">Submit Service</Button>
+                        <Button type="submit">{t('common.submit')}</Button>
                         <Button type="button" variant="outline" onClick={() => setShowServiceForm(false)}>
-                          Cancel
+                          {t('common.cancel')}
                         </Button>
                       </div>
                     </form>
@@ -459,7 +459,7 @@ const Profile = () => {
                               </div>
                             </div>
                             <Badge className={service.available ? "bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20" : "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20"}>
-                              {service.available ? "Available" : "Not Available"}
+                              {service.available ? t('services.available') : t('services.notAvailable')}
                             </Badge>
                           </div>
 
@@ -477,10 +477,10 @@ const Profile = () => {
 
                         <div className="flex flex-col gap-2 md:w-32">
                           <Button variant="outline" size="sm" className="w-full">
-                            Edit
+                            {t('common.edit')}
                           </Button>
                           <Button variant="outline" size="sm" className="w-full text-red-600 hover:text-red-700">
-                            Remove
+                            {t('common.remove')}
                           </Button>
                         </div>
                       </div>
@@ -492,10 +492,10 @@ const Profile = () => {
               {/* Worker Booking History */}
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-semibold">Job History</h2>
+                  <h2 className="text-2xl font-semibold">{t('workerBookingHistory.title')}</h2>
                   <Link to="/worker-booking-history">
                     <Button variant="outline" size="sm">
-                      View All
+                      {t('common.viewAll')}
                     </Button>
                   </Link>
                 </div>
@@ -512,7 +512,7 @@ const Profile = () => {
                               </h3>
                               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                 <User className="h-4 w-4" />
-                                <span>Customer: {job.customerName}</span>
+                                <span>{t('bookingHistory.bookedBy')}: {job.customerName}</span>
                               </div>
                             </div>
                             <Badge className={getStatusColor(job.status)}>

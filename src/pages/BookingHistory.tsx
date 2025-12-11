@@ -102,13 +102,13 @@ const BookingHistory = () => {
             <CardContent className="p-12 text-center">
               <CheckCircle className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                No Bookings Yet
+                {t('bookingHistory.noBookings')}
               </h3>
               <p className="text-muted-foreground mb-6">
-                You haven't made any bookings yet. Start exploring services!
+                {t('bookingHistory.noBookingsDescription')}
               </p>
               <Link to="/">
-                <Button>Explore Services</Button>
+                <Button>{t('bookingHistory.exploreServices')}</Button>
               </Link>
             </CardContent>
           </Card>
@@ -147,7 +147,7 @@ const BookingHistory = () => {
                       </span>
                     </div>
                     <div className="text-muted-foreground">
-                      Booked by: <span className="font-medium text-foreground">{booking.user_name}</span>
+                      {t('bookingHistory.bookedBy')}: <span className="font-medium text-foreground">{booking.user_name}</span>
                     </div>
                   </div>
                 </CardContent>
